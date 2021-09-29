@@ -187,6 +187,15 @@ history %>%
   - AFU (2010)
   - IAAS, Rampur started degree course on plant breeding since 1998.
 
+- Before 2005, varietal breeding programs laid focus on wider adaptability of a test genotype without due regard to evolutionary breeding. Current trend is exactly opposite, due to recognition of diversity in climate and geography, needs of the farmers, and several other factors.
+- Among three different breeding methods, namely, conventional, participatory, and modern plant breeding, conventional breeding dominates institutional research. 
+- Introduction, mass selection, heterosis breeding, and maintenance breeding are practiced in Nepal for both self-pollinated and cross-pollinated crops. Mutation breeding, back crossing, pure line selection, bulk method, cultivars mixture, single seed descent, and pedigree method have been practised in self pollinated crops, while recurrent selection, synthetic variety, and population improvement are conducted out in cross pollinated crops. For vegetatively reproduced crops, different methods such as introduction, selection through clonal, and heterosis breeding are practiced.
+- Shuttle breeding and participatory plant breeding are also practiced in Nepal.
+
+```{r plant-breeding-timeline, out.width="98%", fig.cap="History of plant breeding works in Nepal", fig.pos = "H"}
+knitr::include_graphics("./images/plb_development_nepal.PNG")
+```
+
 ## Objectives
 
 ### Broad objectives
@@ -221,6 +230,31 @@ history %>%
 - Low shattering $\longrightarrow$ legumes
 
 ## Achievements
+
+```{r rice-variety-development}
+readr::read_csv("./data/rice_varieties_from_landraces.csv", show_col_types = FALSE) %>% 
+  knitr::kable(format = "latex", caption = "Rice varieties from landraces", booktabs = TRUE, align = "l") %>% 
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position")) %>% 
+  kableExtra::column_spec(column = 1:4, width = c("6em", "16em", "8em", "10em"))
+```
+
+```{r rice-pureline-variety-development}
+readr::read_csv("./data/rice_varieties_pureline_from_landraces.csv", show_col_types = FALSE) %>% 
+  knitr::kable(format = "latex", caption = "Rice varieties (pureline) from landraces", booktabs = TRUE, longtable = TRUE, align = "l") %>% 
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position")) %>% 
+  kableExtra::column_spec(column = 1:5, width = c("2em", "6em", "8em", "8em", "10em"))
+```
+
+```{r khumal-4-development, out.width="98%", fig.cap="Development of khumal-4 rice variety", fig.pos="H"}
+knitr::include_graphics("./images/khumal-4_development.png")
+```
+
+```{r maize-national-hybrids}
+readxl::read_xlsx("./data/maize_hybrids_released_registered.xlsx") %>% 
+  knitr::kable(format = "latex", caption = "Maize hybrids released or registered in Nepal", booktabs = TRUE, longtable = TRUE, align = "l") %>% 
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position")) %>% 
+  kableExtra::column_spec(column = 1:7, width = c("1em", "5em", "5em", "6em", "6em", "6em", "12em"))
+```
 
 ### Biofortication
 

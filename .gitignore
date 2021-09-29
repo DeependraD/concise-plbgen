@@ -71,3 +71,6 @@ $RECYCLE.BIN/
 concise-plbgen.log
 literatures
 _book
+nul
+concise-plbgen.Rmd
+concise-plbgen.tex

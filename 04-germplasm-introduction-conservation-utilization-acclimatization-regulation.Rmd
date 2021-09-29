@@ -34,8 +34,8 @@ The export of germplasm needs to complete the following formalities:
 - Pedigree analysis reveals that 13 landraces originated in 8 different countries were used to develop Khumal-4 rice variety.
 - A total of 47 ancestors (landraces) originated in 12 different countries were used to develop 20 mid and high hill rice cultivars and a total of 35 ancestors originated in 11 different countries were used to develop 28 rice cultivars for terai region by 2016.
 
-```{r}
-landraces <- tribble(~"Crop", ~"Local name", ~"Uniqueness", 
+```{r landraces-unique-features}
+landraces <- tribble(~"Crop", ~"Local name", ~"Unique character", 
         "Buckwheat", "Bhate pahper", "Loose husk", 
         "Buckwheat", "Kagpani phaper", "Highest rutin content", 
         "Cauliflower", "Garve cauli", "Very large head, perinniality gene, vegetatively propagated", 
@@ -43,19 +43,16 @@ landraces <- tribble(~"Crop", ~"Local name", ~"Uniqueness",
         "Chilly", "Jire khursani", "All year round fruiting", 
         "Finger millet", "Dailekh local", "Higher yielder and adapted to low fertility soils", 
         "Maize", "Pani makkia", "Tolerant to water logged conditions", 
-        "Rice", "Amaghuaj", "Multiple spikelets per node", 
-        "Rice", "Anadi dhan", "Sticky rice", 
-        "Rice", "Bhati", "Deep water rice", 
-        "Rice", "Ekle rice", "Zn deficiency tolerant", 
-        "Rice", "Gamadi dhan", "Matured panicle remained within flag leaf", 
-        "Rice", "Jumli marshi", "Cold tolerant rice", 
-        "Rice", "Mansara", "Adopted to very marginalized land", 
-        "Rice", "Pakhe masino, Lahure sahila, Goi sahila, Makar Kandhu", "Huide (boro) rice", 
-        "Rice", "Samundaphinj", "Swampy land rice", 
         "Sarsoon", "Gorlikharka", "Highest oil content", 
         "Wheat", "Dabdabe local", "For low fertility and moisture deficient land")
 
-landraces %>%
+readxl::read_xlsx("./data/rice_varieties_unique_characters.xlsx") %>% 
+  mutate(Crop = "Rice") %>% 
+  select(-SN) %>% 
+  rename(`Local name` = Genotypes) %>% 
+  relocate(Crop, .before = 1) %>%
+  full_join(landraces, by = c("Crop", "Local name", "Unique character")) %>% 
+  arrange(Crop, `Local name`) %>% 
   kableExtra::kbl(booktabs = TRUE, caption = "Some landraces of cultivated crop unique to Nepal", format = "latex", align = "l", longtable = TRUE) %>%
   kableExtra::kable_styling(font_size = 8, repeat_header_continued = TRUE) %>% # do not use use latex_options = "striped" together with collapse_rows, it has unintended results.
   kableExtra::column_spec(column = 2:3, width = c("10em", "18em")) %>% # specifying width for the column that is being collapsed! in a single column_spec statement produces latex error!
@@ -63,6 +60,7 @@ landraces %>%
   kableExtra::collapse_rows(columns = 1, latex_hline = "full", valign = "middle")
 
 ```
+
 
 ## Germplasm collection
 
