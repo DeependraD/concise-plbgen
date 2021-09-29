@@ -1,0 +1,200 @@
+
+# Seed system and varietal release/registration in Nepal
+
+(Note: A large portion of this section is borrowed from Comprehensive Crap Guide, so initial parts are quite similar in content.)
+
+## Seed system history
+
+- Seed act was first enacted in 2045 BS. Since then it’s first amendment came into being in 2064.
+- Organized seed production program initiated in Nepal in 1973 (Wheat)
+- Establishment of agriculture input corporation: 1974
+- In 1960, High yielding variety of wheat Lerma-52 was released.
+- In 1962, Seed testing laboratory was established under Agronomy Division, Khumaltar.
+- In 1964, Central Seed Lab of Nepal was designated membership with International Seed Testing Association (ISTA).
+- In 1966, Seed testing laboratory moved to Agri-Botany Division.
+- In 1966, Rice variety CH-45 was released.
+- In 1974, AIC established under Corporation Act, 1965.
+- In 1980, Seed production and input storated project (SPISP, USAID) launched
+- In 1982, Seed technology and improvement programme
+- In 1984, Central seed science and technology division established
+- In 1988, Seed act enacted
+- In 1997, National seed policy approved
+- In 1998, Seed production guidelines published
+- In 2001, Seed quality control center established
+- In 2002, National seed company limited established
+- In 2010, Seed science and technology division revived as central disciplinary division of seed in NARC
+- In 2013, Promulgation of seed regulation, 2013
+- In 2004, First hybrid of maize – Gaurav, was officially released.
+- In 2010, First hybrid of tomato – Srijana, was registered
+- Upto 2010, 231 hybrids were registered for cultivation in Nepal.
+
+## Certification system in Nepal
+
+1. Seed certification: Official body responsible for certifying seed in the SQCC. Three classes of seeds are identified: Foundation, Certified-I, Certified-II and Improved under this system.
+
+Following activities are carried out in various stages of a crop are crucial for inspection by a seed inspector:
+
+  - Standing crop: By licenced inspector, for field inspection check for crop's source and seed class, purity, isolation distance, seed affecting diseases, weed and type of varieties.
+  - At harvest: Threshing, processing, transporation and storage.
+  - After processing: To verify that minimun quality meets, insect damage (In legume: and maize: 1% and other crops: 0.5%), seed moisture, weed and off type seeds, germination percentage
+  - Seed is sampled and taken to lab
+  - Lab should return results within 30 days of receiving a sample.
+  - If suspected, sample may be subjected to grow out test by the tester.
+  - If farmer isn't convinced of the results of the seed testing, s/he may file for re-certification.
+
+- Tagging storage container with certification tag, with signature of certifying inspector.
+- If the seed is to be stored for more than 1 season, the storage sample must be re-certified for quality standards.
+- There are some steps to be followed in prolonging the validity of certification. 
+
+- There are two main types of certification:
+  1. Minimum standard certification:
+    - Location and land requirement fulfilment certification
+      - In terai, a minimum of 1 hectares is required for cereal and cash crops.
+      - In terai, for vegetables, a minimum of 0.25 hectares is required.
+      - In hills, for cereal, a minimum of 0.25 hectare is the necessary criterion.
+      - In hills, for vegetables, a minimum of 0.1 ha land should be cultivated with seed under the question.
+      - Maximum distance between plots of same certification lot should not exceed 50 m.
+  2. Location and locality of specification
+  3. Source of seed verification
+  4. Timing of inspector assignment
+  
+(For a discussion about Seed classes and Certification standards of various crops, refer to Comprehensive Crap Guide)
+
+## Seed vision 2013-25
+
+- Self-sufficiency, import substitution and export promotion
+- Conservation of indigenous varieties and traditional knowledge for crop improvement (sustainable use)
+- Formulate and amend policy and act for ensuring farmers' rights on seeds
+- Develop policy for breeders rights to provide incentives and investment in competent seed industry development
+- Provision of contract farming act including seed insurance and mechanization for seed production
+- Harmonization of seed policy with other Nepalese policies, laws and also with neighboring countries
+- Focus on hybrid variety development to provide adequate options and access of HYVs to farmers by encouraging both public and private sectors
+- Simplify variety approval, release and registration of indigenous and farmers varieties
+- Decentralize source seed production for enhancing access to quality seeds and strengthening capacity of private sector and communities in seed production and supply.
+- Public-private partnership (Public sector in breeding and private sector in marketing)
+
+- 90% of the seeds are supplied through informal sector (SQCC, 2011).
+- Seed replacement rate of cereals: 9.75% (SQCC, 2011)
+- SRR for vegetable crops was as high as 66% in 2009 (NSV)
+- Seed vision, 2013-2025 published by SQCC, Nepal has envisioned improvement in SRR during the implementation period, with
+  
+  – Cereals: 25% SRR
+  – Vegetables: 90% SRR
+- Tomato receives attention from the National Seed Vision with regard as crop that have importance for import substitution (Srijana Hybrid and Lapsigede) and export promotion. (There are 17 crops that have received due attention as having potential for import substitution and export promotion. Extensive listing can be found on Section Seed Vision 2013-25, Comprehensive Crap Guide)
+
+```{r seed-replacement-rate-crops}
+tribble(~"Crop", ~"SRR (percent, 2009)", ~"SRR (percent, 2010)", 
+        "Paddy", 9.14, 11.38,
+        "Maize", 6.54, 9.03,
+        "Wheat", 9.4, 11.0,
+        "Millet", 1.97, 2.35,
+        "Lentil", 3.08, 3.26,
+        "Oilseeds", 2.62, 2.86,
+        "Vegetables", 66.3, 68.3,
+        "Potato", 5, 5.5,
+        "Average (cereals)", 8.78, 10.68) %>% 
+  knitr::kable(booktabs = TRUE, caption = "Seed replacement rate of different crops (SQCC, 2010).") %>% 
+  kableExtra::kable_styling(latex_options = "striped") %>% 
+  kableExtra::add_footnote(label = c("Source: SQCC, 2011 as cited in Seed vision, 2013-2025."))
+```
+
+#### Expected outcomes
+
+1. 10 lakh farm families will have access to quality seeds upon demand prior to planting season. The country will be self-sufficient in food crop seeds.
+2. 88 mt breeder, 2,978mt foundation and 92,527 mt improved seeds will be produced through formal system by 2025. 
+3. 750mt Nepal produced high quality seeds will have improved access to export by 2025.
+4. Seed replacement rates will be increased up to 25 percent for cereals and over 90 percent for vegetables.
+5. Good quality seeds will be available in market through quality assurance with genuine label.
+6. Four hundred twenty-three open pollinated varieties and 60 hybrids will be released by 2025.
+7. 40,000 seed samples will be tested and analyzed annually by seed laboratories. 
+8. Seed production and marketing will be done through structured and efficient seed system.
+9. Yield of rice and vegetable crops will be increased up to 3.8 mt/ha and 19 mt/ha respectively. 
+10. Enhanced participation of private sector will increase availability of quality seeds in the market.Private sector will establish or strengthen four big seed companies.
+11. 293 highly skilled seed specialists will be developed in private and public sectors.
+12. Farmers' rights will be protected and breeders will get incentive for developing better varieties.
+13. Seed import and export regulations will be harmonized in line with WTO and SAARC.
+14. All the stakeholders will be accountable to farmers and be responsible participants of Nepalese seed system.
+15. 255 thousand people will get additional full time employment upon the implementation of Seed Vision 2013 -2025.
+16. Seed Vision will contribute to food security. Edible food availability by 2025 will reach 8 million mt, worth around 200 billion rupees at current price.
+17. Agro-based industries will have adequate raw materials from increased production.
+18. Nepal's seed sector will be able to share its experience and knowledge to other countries.
+
+## Seed policy, 1999
+
+- Ownership of traditional varieties and conservation of Agro-biodiversity.
+- Technical support in seed production and supply by organizing farmers groups in remote areas to enhance access of quality seeds to small farmers.
+- Subsidy on source seed production and transportation of seeds to remote hills and mountain regions; seed supply will be expanded in coordination with private producers and traders including by giving some support.
+- Involvement of private sectors in source seed production and seed supply in remote areas and seed quality assurance services.
+- Research on Biotechnology and regulation of GMO: Research and studies on biotechnology, genetic engineering, GMO, transgenic plant and tissues culture will proceed in Nepal also but biotechnology regulations will be prepared and implemented for the sake of the general public.
+- Seed supply: There will be a buffer stock of seed at the national level, which may be utilized under conditions of natural calamity.
+- Institutional strengthening: This will be fulfilled by the strengthening of the NSB Secretariat, and establishment of non-government laboratories, besides including institutional management in the contracting system whilst the semi-government agency involved in seed will be commercialized.
+
+## Variety notification (release/registration) system in Nepal
+
+### Definition of variety (Seed act, 2045)
+
+- 'Variety' means a plant grouping within a single botanical taxon of the lowest known rank, which can be defined by the expression of the characteristics resulting from a given genotype of that plant grouping, distinguished from any other plant grouping by expression of at least one of the said characteristics and considered as a unit with regard to its suitability for being propagated, which remains unchanged after such propagation.
+
+### General standards for defining variety
+
+- Laboratory of field based tests determine whether or not the rights are granted.
+- To be granted PBR, new variety must be:
+  - novel -- new to the market, i.e., not available commercially usually before the date of application for DUS tests;
+  - distinct -- have a unique identity;
+  - uniform -- must be sufficiently uniform within the limits achievable of the species breeding system, e.g., self-pollinating or partially out-pollinating or obligate out-pollinating etc., from which the new variety was derived; and
+  - stable -- capable of reproducing its uniqueness and uniformity over successive generations.
+- Usually for 2 successive growing seasons.
+- The UPOV guidelines specify which characters should be recorded, at what growth stage records should be taken, the states of expression of individual characters, and example varieties that illustrate specific states of expression
+- For SP cereals, once practical homozygosity is reached, variety enters into DUS tests and performance trials.
+  - What percent of applications should then meet uniformity criteria ?
+  - Distinctness is measured by recording morphological characters on 1-9 scale. One being the weakest state of expression. For example anthocyanin color of the leaf margins in corn. Distinctness may show discrete expression too. Presence of hairs on rachilla of barley.
+- A consistent difference of at least 1 scale point in morphological characters from the most similar variety is usually enough to confer distinctness.
+
+### Authoritative system for variety notification 
+
+- Cultivars (varieties and landraces) to be included in the national list (i.e. released and registered genotypes) need to pass through some rules and regulations (SQCC 2014). Cultivars published in the Nepal Gazette are the National list of cultivars and referred as notified.
+- Nepal seed board is delegated the authority to formulate and implement policies relating to the seeds and to give necessary advice to Government of Nepal on the matters pertaining to the seeds. Amongst other duties, the board is also assigned to approve, release and register the seeds of new variety as prescribed^[Seed act, 2045].
+- The board is comprised of 11 person members including Secretary of Ministry of Agriculture acting as chairperson.
+- It tests the specialty, uniformity and permanency of the seeds of new variety and grant the right of ownership to the breeder as prescribed.
+- GoN regulates and controls the quality standards for any type or variety of the seeds to, in consultation with the board, prescribe such type or variety as the notified, by publishing a notification in the Nepal Gazette. The prescription may be differently made for different regions.
+
+### Steps in variety notification (release/registration)
+
+- Submission of application by the authorized institution/individual/company for release or registration in the prescribed format to NSB/SQCC;
+- Review and evaluation of the proposal by the Technical Subcommittee;
+- Provision of feedback on the proposal, and, if needed, defense by the applicant and/or updating the proposal;
+- Review and evaluation of the updated proposal by members of the Variety Approval, Release and Registration Sub-committee (VARRS) and comments for improvement/clarification by the applicant, if required;
+- Presentation of the proposal at the VARRS meeting and responses to the queries or defense of the proposal, if needed;
+- Approval or rejection of the proposal by NSB on the basis of the recommendations of VARRS; and
+- If the variety/hybrid has been approved for registration, its notification in the gazette by the MoAD.
+
+### Information required to be reported for variety release and registration
+
+- Status
+- Importance
+- Names (Common,botanical,proposed, symbolic)
+- Pedigree (Parents)
+- Country of origin
+- Source of material (Name of institution, farmer/farming community), experiment and the year in which it was first introduced, etc.)
+- Trial (Years, supervision by)
+- Details of where, when and which seasons were following trials conducted:
+  - Varietal trial
+  - Disease damage scoring
+  - Insect damage scoring
+  - Fertilizer trial
+  - Agronomic trial
+  - CVT
+  - FFT/FAT
+  - Others
+- Performance data on phenology and growth for each year of experiment
+  - Days to maturity, plant height, branches/plant (tiller/hill), effective tillers/sqm, lodging, (cobs/pods/siliqua)/plant, (panicles/spikes)/(hill/sqm), filled pods/plant or effective panicles/sqm, grain yield, 1000 seed weight, straw yield, HI.
+- Combined analysis of major agronomic traits (Yield, days to maturity, plant height)
+- Summary of agronomic traits (Comparison with varieties with Checks)
+- Soil test report and fertilizer application details
+- Disease and insect score data
+- Farmer field trial (major agronomical traits and yield), participatory trial data, information on stakeholders' preference
+- On station v/s on farm data comparison
+- Cost-benefit analysis
+- DUS of the variety
+- Stability analysis
+- Recommendation domain (Agroecology, soil moisture, growing season, cropping pattern, special package of practice (if any))

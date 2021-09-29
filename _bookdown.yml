@@ -1,0 +1,17 @@
+book_filename: concise-plbgen
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+# dput(list.files(".", pattern = ".*-(body)_.*"))
+rmd_files:
+  html: []
+  latex: ["index.Rmd",
+  "01-plant-breeding-introduction-objectives-scope.Rmd",
+  "02-crop-domestication-origin-germplasm-resources-types.Rmd",
+  "03-modes-of-reproduction-barriers-genetic-variation-hybridization-techniques.Rmd",
+  "04-germplasm-introduction-conservation-utilization-acclimatization-regulation.Rmd",
+  "06-seed-system-in-nepal.Rmd"
+  ]
+  epub: []
+

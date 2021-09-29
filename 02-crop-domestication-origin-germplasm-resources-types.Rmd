@@ -1,0 +1,93 @@
+# Crop domestication, origin, germplasm resource types
+
+## Center of origin and estimated time of cultivation
+
+```{r center-of-origin-cultivation}
+tribble(
+  ~"Crop",	~"Length of time domesticated (years)",	~"Possible region of origin",
+  "Maize, Zea mays",	"7000",	"Mexico, Central America",
+  "Rice, Oryza sativa",	"4500",	"Thailand, Southern China",
+  "Wheat, Triticum spp.",	"8500",	"Syria, Jordan, Israel, Iraq",
+  "Barley, Hordeum vulgare",	"9000",	"Syria, Jordan, Israel, Iraq",
+  "Sorghum, Sorghum bicolor",	"8000",	"Equatorial Africa",
+  "Soybean, Glycine max",	"2000",	"North China",
+  "Oil palm, Elaeis guineensis",	"9000", "Central Africa",
+  "Coconut palm, Cocos nucifera",	"100", "Southern Asia",
+  "Rapeseed, Brassica napus",	"500",	"Mediterranean Europe",
+  "Sunflower, Helianthus annus",	"3000",	"Western United States",
+  "Beans, Phaseolus spp",	"7000",	"Centra America, Mexico",
+  "Lentil, Lens culinaris",	"7000",	"Syria, Jordan, Israel, Iraq",
+  "Peas, Pisum sativum",	"9000",	"Syria, Jordan, Israel, Iraq",
+  "Potato, Solanum tuberosum",	"7000",	"Peru",
+  "Cassava, Manihot esculenta",	"5000",	"Brazil, Mexico",
+  "Sweet potato, Ipomoea batatas",	"6000",	"South Central America",
+  "Sugar beet, Beta vulgaris",	"300",	"Mediterranean Europe",
+  "Tomato, Lycopersicum esculentum",	"3000",	"Western South America",
+  "Cabbage, Brassica oleracea",	"3000",	"Mediterranean Europe",
+  "Onion, Allium spp.",	"4500",	"Iran, Afganistan, Pakistan",
+  "Orange, Citrus sinensis",	"9000",	"South-east Asia",
+  "Apple, Malus spp.",	"3000",	"Asia Minor, Central Asia",
+  "Grape, Vitis spp.",	"7000",	"Eastern Asia",
+  "Banana, Musa acuminata, M. balbisiana",	"4500",	"South-east Asia",
+  "Cotton, Gossypium spp.",	"4500",	"Centra America, Brazil",
+  "Coffee, Coffea spp.",	"500",	"West Ethiopia",
+  "Rubber, Hevea brasiliensis",	"200",	"Brazil, Bolivia, Paraguay",
+  "Alfalfa, Medicago sativa",	"4000",	"Iran, Northern Pakistan",
+) %>% 
+  knitr::kable(booktabs = TRUE, longtable = TRUE) %>% 
+  kableExtra::kable_styling(position = "center", latex_options = "striped", font_size = 8) %>% 
+  kableExtra::column_spec(column = 1:3, width = c("14em", "12em", "12em"))
+
+```
+
+
+### Crops of indian origin
+
+```{r indian-main-center-origin}
+indian_origin_crop <- bind_rows(
+  read_csv("./data/agronomy_crops_origin_indian_main_center1.csv", col_names = c("Group", "Crops")) %>% 
+    tidyr::fill(Group, .direction = "down"),
+  read_csv("./data/agronomy_crops_origin_indian_main_center2.csv", col_names = c("Group", "Crops")) %>% 
+    tidyr::fill(Group, .direction = "down"))
+
+indian_origin_crop %>% 
+  separate(col = "Crops", sep = ", ", into = c("Common name", "Scientific name")) %>% 
+  mutate(`Scientific name` = paste0("\\textit{", `Scientific name`, "}")) %>% 
+  knitr::kable(booktabs = TRUE, caption = "Crops with their origin in Indian Main center", escape = FALSE, longtable = TRUE) %>% 
+  # kableExtra::kable_styling(font_size = 8, latex_options = "striped") %>%
+  kableExtra::kable_styling(font_size = 8) %>% 
+  kableExtra::column_spec(column = 1:3, width = c("8em", "8em", "15em")) %>% 
+  kableExtra::collapse_rows(1:2, row_group_label_position = "stack")
+```
+
+```{r indian-indo-malayan-origin}
+read_csv("./data/agronomy_crops_origin_indo_malayan_center.csv", col_names = c("Group", "Crops")) %>% 
+  tidyr::fill(Group, .direction = "down") %>% 
+  separate(col = "Crops", sep = ", ", into = c("Common name", "Scientific name")) %>% 
+  mutate(`Scientific name` = paste0("\\textit{", `Scientific name`, "}")) %>% 
+  knitr::kable(booktabs = TRUE, caption = "Crops with their origin in Indo-Malyan center", escape = FALSE, longtable = TRUE) %>% 
+  # kableExtra::kable_styling(font_size = 8, latex_options = "striped") %>% 
+  kableExtra::kable_styling(font_size = 8) %>% 
+  kableExtra::column_spec(column = 1:3, width = c("8em", "8em", "15em")) %>% 
+  kableExtra::collapse_rows(1:2, row_group_label_position = "stack")
+```
+
+```{r indian-central-asiatic-origin}
+read_csv("./data/agronomy_crops_origin_central_asiatic_center.csv", col_names = c("Group", "Crops")) %>%
+  tidyr::fill(Group, .direction = "down") %>%
+  separate(col = "Crops", sep = ", ", into = c("Common name", "Scientific name")) %>%
+  mutate(`Scientific name` = paste0("\\textit{", `Scientific name`, "}")) %>%
+  knitr::kable(booktabs = TRUE, caption = "Crops with their origin in Central Asiatic center", escape = FALSE, longtable = TRUE) %>%
+  # kableExtra::kable_styling(font_size = 8, latex_options = "striped") %>%
+  kableExtra::kable_styling(font_size = 8) %>%
+  kableExtra::column_spec(column = 1:3, width = c("6em", "8em", "15em")) %>%
+  kableExtra::collapse_rows(1:2, row_group_label_position = "stack", longtable_clean_cut = FALSE)
+```
+
+## Germplasm resources
+
+### Gene pool concept
+
+A spectrum of different vegetables could be derived from the same wild progenitor. Brassica oleracea stands as an excellent example for this biological process. Wild progenitor is a weedy herb that grows on limestone in the Mediterranean region. Domestication of several distinct lineages of _B. oleracea_ produced several vegetable varieties or cultivar groups or subspecies ("ssp."): kale and collard greens (ssp. acephala), Chinese broccoli (ssp. alboglabra), red and green cabbages (ssp. capitata), savoy cabbage (ssp. sabauda), kohlrabi (ssp. gongylodes), Brussels sprouts (ssp. gemmifera), broccoli (ssp. italica) and cauliflower (ssp. botrytis). Though these varieties look dramatically different, they are considered the same species since they are all inter-fertile, capable of mating with one another and producing fertile offspring.
+
+### Types
