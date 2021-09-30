@@ -109,10 +109,10 @@ d. it is difficult to maintain clones through seed conservation.
 
 ### In-vitro germplasm preservation (Methods for Ex-situ conservation)
 
-1. Germplasm can be preserved in vitro through cryopreservation, low-pressure storage and low-oxygen storage. In cryopreservation, the cells are preserved in a frozen state using solid carbon dioxide (at -79 C), low temperature deep freezers (at -80 C), vapour phase nitrogen (at -150 C) and liquid nitrogen (at -196 C).
+1. Germplasm can be preserved in vitro through cryopreservation, low-pressure storage and low-oxygen storage. In cryopreservation, the cells are preserved in a frozen state using solid carbon dioxide (at \SI{-79}{\celsius}), low temperature deep freezers (at \SI{-80}{\celsius}), vapor phase nitrogen (at \SI{-150}{\celsius}) and liquid nitrogen (at \SI{-196}{\celsius}).
 Cells stay in completely inactive state. So, they can be conserved for long periods. Tissues like meristems, embryos, endosperms, ovules, seeds, cultured plant cells, protoplasts and callus are usually used for cryopreservation. Cryoprotectants are to be added during cryopreservation. They are DMSO (dimethyl sulfoxide), glycerol, ethylene, propylene, sucrose, mannose, glucose, etc. The damage caused by freezing and thawing will be prevented by cryoprotectants.
 
-2. Germplasm conservation by cold storage is done at low and non-freezing temperature (1–9 C). Here, only growth of the tissue is slowed down. So, cold storage prevents cryogenic injuries. An example to this method is virus-free strawberry plants that can be preserved at 10 C for about 6 years. Grape plants can be preserved for 15 years at 9 C.
+2. Germplasm conservation by cold storage is done at low and non-freezing temperature (\SIrange{1}{9}{\celsius}). Here, only growth of the tissue is slowed down. So, cold storage prevents cryogenic injuries. An example to this method is virus-free strawberry plants that can be preserved at 10 C for about 6 years. Grape plants can be preserved for 15 years at \SI{9}{\celsius}.
 
 3. In low-pressure and low-oxygen storage, the atmospheric pressure and oxygen concentration are reduced. The lowered partial pressure reduces the in vitro growth of plants. Low oxygen concentration keeps partial pressure of oxygen below 50 mmHg (mmHg is a manometric unit of pressure) which reduces growth. Reduced availability of oxygen leads to reduced photosynthetic activity. This technique can be used in increasing the shelf life of fruits, vegetables and flowers.
 
