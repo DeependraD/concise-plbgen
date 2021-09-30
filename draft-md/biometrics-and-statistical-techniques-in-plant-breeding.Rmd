@@ -1,0 +1,726 @@
+# Biometrics and statistical techniques in Plant Breeding
+
+## Arithmetic mean and standard deviation
+
+**Arithmetic mean**
+
+It is the arithmetic average of a group of scores/observations. Mathematically,
+
+$$
+\mu = \frac{\sum_{i = 1}^N {x}}{N}
+$$
+
+Where,
+
+- $\mu$ represents the population mean
+- $\sum$ represents the sum
+- $x$ represents individual scores/observations
+- $N$ represents the number of scores in the distribution
+
+The analogous expression for arithmetic mean of samples is,
+
+$$
+\bar{X} = \frac{\sum_{i = 1}^n{x}}{n}
+$$
+Where,
+
+$\bar{X}$ represents sample mean.
+
+Arithmetic mean is a better measure of central tendency whenever the observation do not contain the extreme values and ordinal data is not being used. It is affected by all every observation in the dataset thus accounting for all their weights, while the medium and a mode are only the positional indicators and frequency dependent concepts for describing a distribution.
+
+**Standard deviation**
+
+It is a measure of variation: the average difference between the scores in the distribution and the mean or central point of the distribution, or more precisely, the square root of the average squared deviation from the mean. Mathematically,
+
+$$
+\sigma = \sqrt{\frac{\sum_{i = 1}^N{(x_i - \mu)^2}}{N}}
+$$
+Where the term, $\frac{\sum_{i = 1}^N{|x_i - \mu|}}{N}$, is the average deviation.
+
+Analogous to the population standard deviation is the formulation of sample standard deviation:
+
+$$
+\sigma = \sqrt{\frac{\sum_{i = 1}^n{(x_i - \mu)^2}}{n-1}}
+$$
+
+Standard deviation provides a measure of dispersion. The weights provided to the scores lying at the either side of the far ends of distribution is greater in standard deviation than that in average deviation. Hence, similar to the arithmetic mean, it is unaffected by quantile distribution of the data.
+
+## Correlation
+
+- The systematic interrelationship between the two continuous related variables say, X and Y is termed as correlation. When only two variables are involved, the correlation is called simple correlation. If more than two variables are involved, the correlation is said to be multiple correlation.
+- When the variables move in the same direction, i.e., increase in one variable causes and increase in other variable and vice versa, such type of correlation is called positive/direct correlation. In general, grain yield of wheat and the number of grains per spike are positively correlated. 
+- By analogy, negative correlation is said to occur when increase in one variable is followed by decrease in other. For example, grain yield of wheat and severity of disease in the field are negatively correlated.
+
+
+
+### Karl pearson's coefficient of correlation (linear correlation)
+
+### Correlation coefficient for bivariate frequency distribution
+
+## Regression
+
+## Relationship between correlation coefficient and regression
+
+
+
+## Using $\Large \chi^2$ test on monohybrid and dihybrid ratios
+
+### Checking observation against expectation
+
+- Often the question is whether the obtained results are close to an expected ratio, although it is not identical to.
+- A statistical test ($\chi^2$) checks the observation against expectation.
+- The general situation is one in which observed results are compared with those predicted by a hypothesis. 
+- In a simple genetic example, suppose you have bred a plant that you hypothesize on the basis of a preceding analysis to be a heterozygote, A/a. 
+- To test this hypothesis, you cross this heterozygote with a tester of genotype a/a and count the numbers of phenotypes with genotypes A/− and a/a in the progeny. Then, you must assess whether the numbers that you obtain constitute the expected 1 : 1 ratio. 
+- If there is a close match, then the hypothesis is deemed consistent with the result, whereas if there is a poor match, the hypothesis is rejected.
+- As part of this process, a judgment has to be made about whether the observed
+numbers are close enough to those expected.
+- The $\chi^2$ test is simply a way of quantifying the various deviations expected by chance if a hypothesis is true. 
+
+### Probabilistic testing of data
+
+We can model this idea with a barrelful of equal numbers of red and white marbles. If we blindly remove samples of 100 marbles, on the basis of chance we would expect samples to show small deviations such as 52 red : 48 white quite commonly and to show larger deviations such as 60 red : 40 white less commonly. Even 100 red marbles is a possible outcome, at a very low probability of $\left(\frac{1}{2}\right)^{100}$ . 
+
+However, if any result is possible at some level of probability even if the hypothesis is true, how can we ever reject a hypothesis? A general scientific convention is that a hypothesis will be rejected as false if there is a probability of less than 5 percent of observing a deviation from expectations at least as large as the one actually observed. The implication is that, although results this far from expectations are expected 5 percent of the time even when the hypothesis is true, we will mistakenly reject the hypothesis in only 5 percent of cases and we are willing to take this chance of error.
+
+**Numerical problem 1: Dihybrid testcross ratio**
+
+Consider a general dihybrid testcross, in which it is not known if the genes are linked or not: A/a.B/b x a/a.b/b
+
+If there is _no_ linkage, that is, the genes assort independently, we have seen that the following phenotypic proportions are expected in progeny:
+
+```{r}
+tribble(~"Phenotype", ~"Proportion", 
+        "AB", 0.25,
+        "Ab", 0.25,
+        "aB", 0.25,
+        "ab", 0.25) %>% 
+  knitr::kable(booktabs = TRUE) %>% 
+  kableExtra::kable_styling(position = "center", font_size = 6)
+```
+
+A cross of this type was made and the following phenotypes obtained in a progeny sample of 200.
+
+```{r}
+tribble(~"Phenotype", ~"Count", 
+        "AB", 60,
+        "Ab", 37,
+        "aB", 41,
+        "ab", 62) %>% 
+  knitr::kable(booktabs = TRUE) %>% 
+  kableExtra::kable_styling(position = "center", font_size = 6)
+```
+
+$\longrightarrow$
+
+- There is clearly a deviation from the prediction of no linkage which would have given the progeny numbers 50:50:50:50. 
+- The results suggest that the dihybrid was a cis configuration of linked genes, A B / a b, because the progeny A B and a b are in the majority. 
+- The recombinant frequency would be $\frac{37 + 41}{200} = 39\%$, or 39 m.u.
+- However, we know that chance deviations can provide results that resemble those produced by genetic processes; hence we, need the $\chi^2$ test to help calculate the probability of a chance deviation of this magnitude form a 1:1:1:1 ratio. 
+
+- The test statisic $\chi^2$ is obtained by:
+
+$$
+\chi^2 = \frac{\left[\sum|observed-expected|-\frac{1}{2}\right]^2}{expected}
+$$
+
+- First, let us examine the allele ratios for both loci. These are 97:103 for A:a, and - 101:99 for B:b. Such numbers are close to the 1:1 allele ratios expected from mendel's first law, so skewed allele ratios cannot be responsible for the quite large deviations from the expected numbers of progenies.
+
+- We must apply the $\chi^2$ analysis to test a hypothesis of no linkage. If that hypothesis is rejected, we can infer linkage. (Why can't we test a hypothesis of linkage directly ?)
+
+```{r chi-sqrt-linkage, message=FALSE, warning=FALSE, echo=FALSE}
+chi_sqrt_linkage <- read_csv("./../data/chi_square_test.csv") %>% 
+  rename(" " = "X1")
+
+kable(chi_sqrt_linkage, 
+      booktabs = TRUE, escape = FALSE, 
+      caption = "Chi-square calculations for the hypothesis that the observations of four phenotypic classes is obtained due to no linkage between loci A and B.") %>% 
+  kableExtra::kable_styling(latex_options = "scale_down", font_size = 5)
+```
+
+
+```{r chi-sqrt-values, echo=FALSE, message=FALSE}
+# Set p-values
+p <- c(0.995, 0.99, 0.975, 0.95, 0.90, 0.10, 0.05, 0.025, 0.01, 0.005)
+# Set degrees of freedom
+df <- c(seq(1,20),25,30,35,40,50,100)
+
+# Calculate a matrix of chisq statistics
+m <- outer(p, df, function(x,y) qchisq(x,y))
+
+# Transpose for a better view
+m <- t(m)
+
+# Set column and row names
+colnames(m) <- rev(p)
+rownames(m) <- df
+
+kable(m, format = "latex", booktabs = TRUE, escape = TRUE, 
+      caption = "The probabilities of exceeding different chi-square values for degrees of freedom from 1 to 50 when the expected hypothesis is true") %>% 
+  kableExtra::kable_styling(latex_options = "striped", font_size = 5) %>% 
+  kableExtra::column_spec(6, border_left = TRUE)
+```
+
+- Since there are four genotypic classes, we must use 4-1 = 3 degrees of freedom.
+- Consulting the $\chi^2$ table, we see our values of 9.88 and 3 df give a p value of ~0.025, or 2.5%. 
+- This is less than the standard cut-off value of 5 percent, so we can reject the hypothesis of no linkage. 
+- Hence, we are left with the conclusion that the genes are very likely linked, approximately 39 m.u. apart.
+
+## Binomial expansion
+
+- The set of terms, along with their coefficients, obtained by expanding the general binomial $(a + b)^n$ is known as binomial expansion. 
+- Expansion involves:
+  - Determination of various terms of the expansion
+  - Determination of coefficients of the expansion
+- Simplification of $(a + b)^n$ yields following expansion:
+
+$$
+(a + b)^n = a^n + a^{n-1}b^1 + a^{n-2}b^2 + .... + a^1b^{n-1} + b^n
+$$
+
+- The coefficient for a term can be calculated by the following general formula:
+
+$$
+\text{Coefficient} = \frac{n!}{s! t!}
+$$
+
+- Where, n = index of binomial, s = index of a in the given term and t = index of b in the term.
+- It is applicable to those events in which the number of mutually exclusive events is two.
+
+**Numerical problem 1**
+
+If 5 coins are tossed together, determine the probability of getting
+
+1. 3H and 2T
+2. At least 3H
+3. More than 3H
+4. Less than 3H
+5. Not more than 3H
+
+$\longrightarrow$
+
+Let $a$ represent probability of turning head ($P(H) = \frac{1}{2}$) and $b$ represent the probability of turning tail ($P(T) = \frac{1}{2}$), then, Binomial expansion can be used to mimic all 5 tosses.
+
+$$
+(a + b)^5 = a^5 + 5a^4b + 10 a^3 b^2 + 10 a^2 b^3 + 5 ab^4 + b^5
+$$
+
+Now,
+
+1. Probability(P) of 3H and 2T is given by $\mathrm{3^{rd}}$ term, which is: $10 a^3 b^2$ equals $\frac{5}{16}$.
+2. Probabilities of having (3H or 4H or 5H)
+3. Probabilities of having (4H or 5H)
+4. Probabilities of having (1H or 2H)
+5. Probabilities of having (1H or 2H or 3H)
+
+**Numerical problem 2**
+
+Two heterozygous brown-eyed (Bb) individuals have five children. What is the probability that two of the couple's five children will have blue eye ?
+
+$\longrightarrow$
+
+Applying binomial expansion
+
+1. Calculate individual probabilities (Using punnet square)
+
+$$
+\begin{aligned}
+P_{(\text{blue eyes})} &= p = \frac{1}{4} \\
+P_{(\text{brown eyes})} &= q = \frac{3}{4}
+\end{aligned}
+$$
+
+2. Determine the number of events
+
+$$
+\begin{aligned}
+n &= \text{total number of children} = 5 \\
+x &= \text{total number of blue-eyed children} = 2
+\end{aligned}
+$$
+
+3. Substituting the values in the following binomial equation, $2^{nd}$ term ($\frac{n!}{s! t!} p^2 q^3$) and its coefficient gives the probability of having two children with blue eyes. That is,
+
+$$
+P = \frac{5!}{2! \times 3!} \left(\frac{1}{4}\right)^2 \left(\frac{3}{4}\right)^3 = 0.26
+$$
+
+This yields that 26% of the time, a heterozygote couples' five of the children will contain two with blue eyes and three with brown eyes.
+
+**Numerical problem 3**
+
+In a family with 5 children, what is the probability that it has 3 boys and 2 girls among them.
+
+$\longrightarrow$
+
+Let us assume the probability of having a boy child as $p$ = 0.5, and the probability of having a girl child as $q$ = 0.5. Now the combined probability of having, among 5 children, 3 boys and 2 girls can determined by following term of the $(p + q)^5$ binomial expansion.
+
+$$
+p^3q^{5-3} = p^3q^{2} = \left(\frac{1}{2}\right)^3 \times \left(\frac{1}{2}\right)^2
+$$
+
+This has the following coefficient: $5\choose{3}$
+
+The probability is, therefore, computed as: `r choose(5, 3)*(1/2)^3*(1/2)^2`.
+
+## Probability distributions
+
+### Discrete uniform distribution
+
+A r.v. $X$ is said to have a discrete uniform distribution over the range $[1, n]$ if its p.m.f is expressed as follows:
+
+\[
+P(X = x) =
+\begin{cases}
+\frac{1}{n} & \text{for}~ x = 1,2,..,n \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+
+### Bernoulli distribution
+
+A r.v. $X$ is said to have a Bernoulli distribution with parameter $p$ if its p.m.f is given by:
+
+\[
+P(X = x) =
+\begin{cases}
+p^x(1-p)^{1-x} & \text{for}~ x = 0,1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+A Bernouli Disribution is the probability distribution of a random variable which takes the value 1 with probability $p$ and value 0 with probability $1-p$^[http://benalexkeen.com/discrete-probability-distributions-bernoulli-binomial-poisson/], i.e.
+
+<!-- $$ -->
+<!-- \left\{ -->
+<!--   \begin{aligned} -->
+<!--   \begin{array}{ll} -->
+<!--   1- p & \textrm{for} & k = 0 \\ -->
+<!--   p & \textrm{for} & k = 1 -->
+<!--   \end{array} -->
+<!--   \end{aligned} -->
+<!-- \right\} -->
+<!-- $$ -->
+
+\[
+\begin{cases}
+1-p & \text{for } k = 0 \\
+p & \text{for } k = 1
+\end{cases}
+\]
+
+**Numerical problem 1**
+
+In a population, approximately 10% of the people are left-handed ($p = 0.1$). We want to know, out of a random sample of 10 people, what is the probability of 3 these 10 people being left handed ?
+
+We assign a 1 to each person if they are left handed and 0 otherwise:
+
+\[
+\begin{aligned}
+P(X = 1) &= 0.1 \\
+P(X = 0) &= 0.9
+\end{aligned}
+\]
+
+A Binomial distribution is derived from the Bernoulli distribution. Let's start with a simpler problem.
+
+What is the probability of the first 3 people we pick being left-handed, followed by 7 people being right-handed ?
+
+This is given by: $0.1^3 \times 0.9^7$. Which is:
+
+```{r}
+round(0.1^3 * 0.9^7, 4)
+```
+
+What if we wanted the last 3 people to be left-handed ? This is given by: $0.9^7 \times 0.1^3$. This is same as previous.
+
+The fact is it does not matter how we arrange the 3 people, we always have the same proability.
+
+So we have to add up all the ways we can arrange the 3 people being picked.
+
+There are $10!$ ways to arrange 10 people and there are $3!$ ways to arrange the 3 people that are picked and $7!$ ways to arrange the 7 that aren't picked.
+
+Thus ways in which 3 people being picked are picked is given by: $\frac{10!}{3!7!}$, which is:
+
+```{r}
+factorial(10)/(factorial(3)*factorial(7))
+```
+
+This can be generalized to say that, "10 choose 3". The "n choose k" notation is written as:
+
+$$
+\binom{N}{k} = \frac{n!}{k!(n-1)!}
+$$
+
+We can now calculate the probability that there are 3 left-handed people in a random selection of 10 people as:
+
+$$
+P(X = 3) = \binom{10}{3}(0.1)^3(0.9)^7
+$$
+
+This equals `r (factorial(10)/(factorial(3)*factorial(7)))*0.1^3*0.9^7`.
+
+This expression of "n choose k" is implemented in r function `choose`.
+
+```{r}
+choose(10, 3)
+```
+
+This can be further generalized as:
+
+$$
+P(X = k) = \binom{n}{k} (p)^k(1-p)^{n-k}
+$$
+
+This probability can be calculated using r's native `dbinom` function. This is also known as binomial density.
+
+```{r}
+dbinom(x = 3, size = 10, prob = 0.1)
+```
+
+For obtaining different 0, 1, 2, 3 and 4 successful outcomes (left handed people) (assuming each have same frequency of occurance (10%) in the population), binomial density function approximation could be used as follows:
+
+```{r}
+dbin_df <- tibble(selection_of = 0:4, probability = dbinom(x = c(0:4), size = 10, prob = 0.1))
+dbin_df %>% 
+  rename_all(function(x)str_to_sentence(str_replace_all(x, "_", " "))) %>% 
+  knitr::kable(bootabs = TRUE)
+```
+
+We could plot our probabilities for each values upto all 10 people being left-handed:
+
+```{r}
+ggplot(data = dbin_df, aes(x = selection_of, y = probability)) +
+  geom_col() +
+  labs(y = "P(X = Number of people being selected)", 
+       x = "Number of people being selected", 
+       title = "Binomial PMF")
+```
+
+We can see there is almost negligible chance of getting more than 6 left-handed people in a random group of 10 people.
+
+The probability of obtaining either 0, 1, 2, 3 **or** 4 successes (left handed people) (it can be restated as: the probability of having less than 4 successes) in a random selection of 10 people, can be obtained by summing over the binomial density vector.
+
+```{r}
+sum(dbinom(x = c(0:4), size = 10, prob = 0.1))
+```
+
+This is same as calculating cumulative probability density using `pbinom` function.
+
+```{r}
+pbinom(q = 4, size = 10, prob = 0.1, lower.tail = TRUE)
+```
+
+The quantile is defined as the smallest value x such that $F(x) \geq p$, where F is the distribution function.
+
+**Numerical problem 2**
+
+On an American roulette wheel there are 38 squares:
+
+- 18 black
+- 18 red
+- 2 green
+
+We bet on black 5 times in a row, what are the chances of winning more than half of these ?
+
+The problem can be formulated as:
+
+$$
+P(X > 5) = \sum{}^{10}_{i = 6}\binom{10}{i}\left( \frac{18}{38} \right)^i\left(1- \frac{18}{38} \right)^{n-i}
+$$
+
+The probability value can be obtained by following r expression:
+
+```{r}
+p <- 18/38
+
+pbinom(10, 10, p) - pbinom(5, 10, p)
+```
+
+### Simulating bernoulli trial
+
+We can generate a sequence of 20 Bernoulli trials -- random successes or failures. We use TRUE to signify a success and FALSE otherwise.
+
+R could implement the simulation via `sample` function. By default, sample will choose equally among the set elements and so the probability of selecting either TRUE or FALSE is 0.5. With a Bernoulli trial, the probability p of success is not necessarily 0.5. You can bias the sample by using the prob argument of sample; this argument is a vector of probabilities, one for each set element. Suppose we want to generate 20 Bernoulli trials with a probability of success p = 0.8. We set the probability of FALSE to be 0.2 and the probability of TRUE to 0.8.
+
+```{r}
+sample(c(FALSE, TRUE), 20, replace = TRUE, prob = c(0.2, 0.8))
+```
+
+The resulting sequence is clearly biased towards TRUE. This special case of a binary-valued sequence can be simulated using another built-in function `rbinom`, the random generator for binomial variates.
+
+```{r}
+as.logical(rbinom(20, 1, 0.8))
+```
+
+### Exact binomial test
+
+Note that exact probability of success in Bernoulli experiment is different from probability values for acceptance of hypothesis from exact test of a simple null. Like all other hypothesis testing, it requires sides of alternative be defined and (defaults to "two.sided") and confidence level be specified.
+
+Under (the assumption of) simple Mendelian inheritance, a cross between plants of two particular genotypes produces progeny $\frac{1}{4}$ of which are "dwarf" and $\frac{3}{4}$ of which are "giant", respectively (@conover1980practical; p. 97f.)
+
+In an experiment to determine if this assumption is reasonable, a cross results in progeny having 243 dwarf and 682 giant plants.
+
+If "giant" is taken as success, the null hypothesis is that $p = \frac{3}{4}$ and the alternative that $p!= \frac{3}{4}$.
+
+```{r}
+binom.test(c(682, 243), p = 3/4)
+# binom.test(682, 682 + 243, p = 3/4)   # The same.
+```
+
+Data are in agreement with the null hypothesis.
+
+Assuming data of P(probability values) and V(observation values) for a discrete probability distribution. Calculation of mean and variances of discrete probability distribution can be done as follows:
+
+```{r}
+probability_data <- tibble(probability = c(0.301, 0.176, 0.125, 0.097, 0.079, 0.067, 0.058, 0.051, 0.046),
+       values = seq(1:9))
+
+# the mean, variance and sd of a discrete probability distribution
+probability_data %>% 
+  summarise(probability_sum = sum(values*probability), 
+            probability_variance = sum(probability*(values-mean(values))^2), 
+            probability_sd = sqrt(probability_variance))
+```
+
+Let's make use of dataset about sales of car on a saturday by a car-salesman.
+
+```{r}
+saturday_sales <- tribble(
+  ~numsold, ~prob,
+  0, 0.60,
+  1, 0.15,
+  2, 0.10,
+  3, 0.08,
+  4, 0.05,
+  5, 0.02
+)
+
+mu <- sum(saturday_sales$numsold * saturday_sales$prob)
+mu
+variance <- sum((saturday_sales$numsold-mu)^2 * saturday_sales$prob)
+variance
+
+tibble(numsold = saturday_sales$numsold, 
+       probability = (dbinom(saturday_sales$numsold, size = 5, prob = .5)))
+```
+
+Probability of exactly 8 successes out of 10 times
+
+```{r}
+dbinom(8, size = 10, prob = 0.76)
+```
+
+Probability of successes 6 times or less.
+
+Question: why is the probability of success 6 times or less is smaller than individual probabilities? $\longrightarrow$ Because individual probability of success is high i.e., 0.76)
+
+```{r}
+sum(dbinom(c(1:6), size = 10, prob = 0.76))
+# pbinom(6, 10, 0.76) # same
+```
+
+Generate 100 sample of successes in times out of 10 trials with given probability of success
+
+```{r}
+randombinom <- rbinom(100, 10, 0.76)
+```
+
+Having confidence limits below, we can say with 95% confidence that out of 10 trials between "lower confidence limit" successes and "uper confidence limit" successes will occur.
+
+```{r}
+quantile(randombinom, 0.025)# lower limit
+quantile(randombinom, 0.975)# upper limit
+```
+
+
+### Binomial distribution
+
+A r.v. $X$ is said to follow binomial distribution if it assumes only non-negative values and its p.m.f. is given by:
+
+\[
+P(X = x) = p(x) =
+\begin{cases}
+\binom{n}{x} p^xq^{n-x} & x = 0, 1, 2..., n; q = 1-p \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+#### Simplified explaination of Binomial distribution
+
+Given that the probabilities of success or failure at each of the outcome is assumed to be same throughout the experiment (Bernoulli trial), let $p$ represent the probability of success and $q$ represent the probability of failure.
+
+For any single trial, the combined probability of success and failure sums to unity ($p + q = 1$). There will be $n \choose x$ ways in which $x$ successes can occur in $n$ trials. The probability of each combination of $x$ successes and $(n - x)$ failures is $p^x q^{n-x}$. Since each trial is independent (Bernoulli trial) from the other, the $n \choose x$ combinations are mutually exclusive and therefore their probabilities are added. The probability of $x$ success out of $n$ trials (or at least or utmost $x$ successes out of $n$ trials) is obtained by $\binom{n}{x}p^x q^{n-x}$.
+
+The assignment of probabilities in the above (formal) definition of binomial distribution is permissible because,
+
+\[
+\sum^n_{x = 0} p(x) = \sum^n_{x = 0} \binom{n}{x} p^xq^{n-x} = (q + p)^n = 1
+\]
+
+Let us suppose that $n$ trials constitute an experiment. Then, if this experiment is repeated $N$ times, the frequency function of the binomial distribution is given by:
+
+$$
+f(x) = Np(x) = N\sum^n_{x = 0} \binom{n}{x} p^xq^{n-x}; x = 0, 1, 2, ..., n
+$$
+
+and the expected frequencies of 0, 1, 2,..., n successes are the successive terms of a binomial expansion, $N (q + p)^n$, $q + p = 1$.
+
+#### Binomial theorem
+
+We know the fact that,
+
+$$
+k\binom{n}k=\frac{kn!}{k!(n-k)!}=\frac{n!}{(k-1)!(n-k)!}=\frac{n(n-1)!}{(k-1)!(n-k)!}=n\binom{n-1}{k-1}\;:
+$$
+
+So,
+
+$$
+\small
+\begin{aligned}
+\sum^n_{k=0}k\binom nkp^k(1-p)^{n-k}&=\sum_{k=0}^nn\binom{n-1}{k-1}p^k(1-p)^{n-k}\\
+&=n\sum_{k=0}^n\binom{n-1}{k-1}p^k(1-p)^{n-k}\\
+&=n\sum_{k=0}^{n-1}\binom{n-1}kp^{k+1}(1-p)^{n-k-1}\\
+&=np\sum_{k=0}^{n-1}\binom{n-1}kp^k(1-p)^{n-k-1}\\
+&=np\Big(p+(1-p)\Big)^{n-1}&&\text{binomial theorem}\\
+&=np\ .
+\end{aligned}
+$$
+
+**Physical/Experimental conditions for Binomial distribution**
+
+1. Each trial results in two exhaustive and mutually disjoint outcomes, termed as success and failure.
+2. The number of trials 'n' is finite.
+3. The trials are independent of each other.
+4. The probability of success 'p' is constant in each trial.
+
+Note: The trials satisfying the conditions 1, 3 and 4 are also called **Bernoulli trials**.
+
+**Numerical problem 3**
+
+A coffee connoisseur claims that he can distinguish between a cup of instant coffee and a cup of percolator coffee 75% of the time. It is agreed that his claim will be accepted if he correctly identifies at least 5 of the 6 cups. Find his chances of having the claim (i) accepted, (ii) rejected, when he does have the ability he claims.
+
+If $p$ denotes the probability of a correct distinction between a cup of instant coffee and a cup of percolator coffee, then we are given:
+
+$$
+p = \frac{75}{100} = \frac{3}{4} \implies q = 1-p = \frac{1}{4}, \text{and } n = 6
+$$
+
+If the random variable $X$ denotes the number of correct distinctions, then by the Binomial probability law, the probability of correct identification out of 6 cups is:
+
+\[
+P(X = x) = p(x) = \binom{6}{x} {\left(\frac{3}{4}\right)}^x {\left(\frac{1}{4}\right)}^{6-x};  x = 0, 1, 2, ..., 6
+\]
+
+1. The probability of the claim being accepted is:
+
+$$
+\small
+P(X \geq 5) = p(5) + p(6) = \binom{6}{5} {\left(\frac{3}{4}\right)}^5 {\left(\frac{1}{4}\right)}^{6-5} 
++ 
+\binom{6}{6} {\left(\frac{3}{4}\right)}^6 {\left(\frac{1}{4}\right)}^{6-6}
+= 0.534
+$$
+
+2. The probability of claim being rejected is:
+
+$$
+\small
+P(X \leq 4) = 1 - P (X \geq 5) = 1-0.534 = 0.466
+$$
+
+**Numerical Problem 4**
+
+In a binomial distribution consisting of 5 independent trials, probabilities of 1 and 2 successes are 0.4096 and 0.2048 respectively. Find the parameter 'p' of the distribution.
+
+Let $X \sim B(n, p)$. In usual notations, we are given: $n = 5$, $p(1) = 0.4096$ and $p(2) = 0.2048$.
+
+According to Binomial probability law:
+
+$$
+P(X = x) = p(x) = \binom{5}{x}p^x (1-p)^{5-x}; x = 1, 2, ..., 5
+$$
+
+Now, 
+
+$$
+\begin{aligned}
+p(1) &= \binom{5}{1} p(1-p)^4 &= 0.4096 & ... \text{ (expression 1) } \\ 
+p(2) &= \binom{5}{2} p^2(1-p)^3 &= 0.2048 & ... (\text{expression 2}).
+\end{aligned}
+$$
+
+Dividing (expression 1) by (expression 2), we get:
+
+$$
+\frac{\binom{5}{1} p(1-p)^4}{\binom{5}{2} p^2(1-p)^3} = \frac{0.4096}{0.2048} \implies \frac{5(1-p)}{10p} = 2 \implies p = \frac{1}{5} = 0.2
+$$
+
+### Poisson distribution
+
+A random variable X is said to follow Poisson distribution if it assumes only non-negative values and its probability mass function is given by:
+
+\[P(k, \lambda) = P(X = k) =  
+  \begin{cases} 
+    e^{-\lambda}\frac{\lambda^k}{k!}; x = 0, 1, 2, ..., n; \lambda > 0 \\
+    0, \text{ otherwise}
+  \end{cases}
+\]
+
+Here, $\lambda$ is known as the parameter of the distribution. We shall use the notation $X \sim p(\lambda)$, to denote that $X$ is a poisson variate with parameter $\lambda$.
+
+A poisson distribution is a limiting version of the binomial distribution, where $n$ becomes large and $np$ approaches some $\lambda$, which is the mean value.
+
+The poisson distribution can be used for the number of events in other specified intervals such as distance, area or volume. Examples that may follow a Poisson include the number of phone calls received by a call center per hour and the number of decay events per second from a radioactive source.
+
+**Numerical problem 5**
+
+The average number of goals in a World Cup football match is 2.5.
+
+Probability of 4 goals in a match can be calculated as:
+
+```{r}
+lambda = 2.5
+k = 4
+
+exp(-lambda)*lambda^k/factorial(k)
+```
+
+This can be accomplished using built-in function
+
+```{r}
+dpois(4, 2.5)
+```
+
+Find probabilities of occurance of 1:10 goals and plot the poisson probability distribution
+
+```{r poisson-probability-distribution, fig.align='center'}
+dpo_df <- tibble(goals = 1:10, probability = dpois(1:10, 2.5))
+
+ggplot(data = dpo_df, aes(x = goals, y = probability)) +
+  geom_col() +
+  labs(y = "P(X = Number of goals)", 
+       x = "Number of goals", 
+       title = "Poisson PMF")
+```
+
+
+## Coefficient of variation (A numerical example) 
+
+The consistency of the data is measured by coefficient of variation -- CV. Mathematically,
+
+CV = $\frac{\sigma}{\bar{X}}$
+
+Considering the following two set of data for panicle length of rice, which of the data is more consistent, why ?
+
+- Data 1: Panicle length; mean ($\bar{X_1}$) = 21 cm, standard deviation ($\sigma_1$) = 3.71 cm
+- Data 2: Panicle length; mean ($\bar{X_2}$) = 27 cm, standard deviation ($\sigma_2$) = 4.23 cm
+
+$\longrightarrow$
+
+For Data 1, $CV_1$ = $\frac{3.71}{21}$ = 0.177
+For Data 2, $CV_2$ = $\frac{4.23}{27}$ = 0.157
+
+Since the second data set has lesser coefficient of variation, it is more consistent that the first data in terms of panicle length of rice.

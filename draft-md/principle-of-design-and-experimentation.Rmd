@@ -1,0 +1,191 @@
+# Principles of field plot experiments
+
+## Replication
+
+## Randomization
+
+## Local control
+
+## One way analysis of variance (Completely randomized design)
+
+Completely randomized design involves selection of random samples from each of k different levels corresponding to the k populations, also the _treatments_ for this one-way classification. This design involves only one factor, the population from which the measurement comes -- hence the designation as a one-way classification.
+
+To find out whether the difference exists among the k population means, or not, the analysis of variance procedure provides one overall test to judge the equality of the k population means.
+
+**Example**
+
+A researcher is interested in the effects of five types of insecticides for use in controlling the boll weevil in cotton fields. Explain how to implement a completely randomized design to investigate the effects of the five insecticides on crop yield.
+
+$\longrightarrow$ The only way to generate the equivalent of five random samples from the hypothetical populations corresponding to the five insecticides is to use a method called a randomized assignment. A fixed number of cotton plants are chosen for treatment, and each is assigned a random number. Suppose that each sample is to have an equal number of measurements. Using a randomization device, you can assign the first n plants chosen to receive insecticide 1, the second n plants to receive insecticide 2, and so on, until all five treatments have been assigned.
+
+### The Analysis of Variance for CRD
+
+Suppose there are $k$ population means, $\mu_1, \mu_2, ..., \mu_k$, based on independent random samples of size $n_1, n_2, ..., n_k$ from normal populations with a common variance $\sigma^2$. That is, each of the normal populations has the same shape, but their locations might be different.
+
+Let $x_{ij}$ be the jth measurement ($j = 1, 2, ..., n_i$) in the ith sample. The analysis of variance procedure begins by considering the total variation in the experiment, which is measured by a quantity called the total sum of square (TSS):
+
+Total SS = $\sum (x_ij - \bar{x})^2$ = $\sum x^2_{ij} - \frac{(\sum x_{ij})^2}{n}$
+
+The first part of above expression gives the sample variance of the entire set of $n = n_1 + n_2 + ... + n_k$ measurements. The second part of the calculation is called the correction factor (CF). If we let G represent the grand total of all n obervations, then
+
+$$
+CF = \frac{(\sum x_{ij})^2}{n} = \frac{G^2}{n}
+$$
+The Total SS is partitioned into two components. The first component, called the sum of squares for treatments (SST), measures the variation among the k sample means:
+
+$$
+SST = \sum n_i (\bar{x}_i - \bar{x})^2 = \sum \frac{T^2_i}{n_i} - CF
+$$
+
+where $T_i$ is the total of the observations for treatment $i$. The second component, called the sum of squares for error (SSE), is used to measure the pooled variation within the $k$ samples:
+
+$$
+SSE = (n_1 - 1)s_1^2 + (n_2 - 1)s_2^2 + ... + (n_k - 1)s_k^2
+$$
+This formula is a direct extension of the numerator in the formula for the pooled estimate of $\sigma^2$.
+
+**Pooled estimate of variance**
+
+The population variance $\sigma^2$ describes the shape of the normal distributions from which your samples come, so that either $s_1^2$ or $s_2^2$ would give you an estimate of $\sigma^2$ . But why use just one when information is provided by both? A better procedure is to combine the information in both sample variances using a weighted average, in which the weights are determined by the relative amount of information (the number of measurements) in each sample. For example, if the first sample contained twice as many measurements as the second, you might consider giving the first sample variance twice as much weight. To achieve this result, use this formula:
+
+$$
+s^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}
+$$
+
+We can show algebraically that, in the analysis of variance,
+
+Total SS = SST + SSE
+
+Therefore, only one of the two sums of squares may be calculated and the third can be found by subtraction.
+
+Each of the sources of variation, when divided by its appropriate degree of freedom, provides an estimate of the variation in the experiment. Since Total SS involves n squared observations, its degree of freedom are $df = (n - 1)$. Similarly, the sum of squares for treatments involves $k$ squared observations, and its degree of freedom are $df = k - 1$. Finally, the sum of squares for error, a direct extension of the pooled estimated, has
+
+$$
+df = (n_1 - 1) + (n_2 - 1) + ... + (n_k - 1) = n - k
+$$
+Notice that the degrees of freedom for treatments and errors are additive -- that is, $df(\text{total}) = df(\text{treatments}) + df (\text{error})$.
+
+These two sources of variation and their respective degrees of freedom are combined to form the mean square as $MS = SS/df$. The total variation in the experiment is then displayed in an analysis of variance (or ANOVA) table.
+
+```{r anova-crd-template}
+tribble(
+  ~"Sources of variation", ~"Degree of freedom", ~"Sum of squares (SS)", ~"Mean square (MS)", ~"Expected mean square (MS)", 
+  "Treatments", "$t-1$", "$r \\sum_i (\\bar{y}_i - \\bar{y})^2 = SS(T)$", "$MS(T) = \\frac{SS(T)}{(t-1)}$", "$\\sigma_e^2 + \\frac{r}{t-1} \\sum_{i = 1}^t \\tau_i^2$", 
+  "Error", "$t(r-1)$", "$\\sum_{i,j} (y_{ij} - \\bar{y}_i)^2 = SS(E)$", "$MS(E) = \\frac{SS(E)}{t(r-1)}$", "$\\sigma_e^2$"
+)# %>% 
+  knitr::kable(escape = FALSE, booktabs = TRUE)
+```
+
+
+## Two way analysis of variance (Randomized complete block design)
+
+Consider an experimental situation in which $v$ treatments are to be compared via $N = vr$ experimental units (plots) arranged in r blocks each of size v such that each treatment occurs exactly once in each block, i.e., the experiment is conducted using a randomized complete block design. Let $n$ plants be selected from each plot and observations are made from $n$ selected plants. The response variable can be represented by a linear, additive, fixed effect model as,
+
+$$
+Y_{ijt} = \mu + \tau_i + \beta_j + e_{ij} + \eta_{ijt}
+$$
+
+Where $Y_{ijt}$ is the observation pertaining to the t-th sampling unit for the i-th treatment in the j-th blck ($i = 1, 2, \ldots, v$, $j = 1, 2, \ldots, r$; $t = 1, 2, \ldots, n$), $\mu$ is the general mean effect; $\tau_i$ is the i-th treatment effect, $\beta_j$ is the effect of j-th block, $e_{ij}$ is the plot error distributed as $N(0, \sigma_e^2)$, $\eta_{ijt}$ is the sampling error distributed as $N(0, \sigma_s^2)$. The analysis of variance (ANOVA) for such a design is given in \ref{tab:anova-rcbd-template}.
+
+```{r anova-rcbd-template}
+tribble(
+  ~"Sources of variation", ~"Degree of freedom", ~"Sum of squares (SS)", ~"Mean square (MS)", ~"Expected mean square (MS)", 
+  "Blocks", "$r - 1$", "SSB", NA, NA, 
+  "Treatments", "$v-1$", "SST", NA, "$\\sigma_s^2 + n \\sigma_e^2 + \\frac{rn}{v-1} \\sum_{i = 1}^v \\tau_i^2$", 
+  "Treatments x Blocks (experimental error)", "$(v-1)(r-1)$", "SSBT", "MSBT", "$\\sigma_s^2 + n \\sigma_e^2$", 
+  "Sampling error", "$rv(n-1)$", "SSSE", "MSSE", "$\\sigma_s^2$"
+) %>% 
+  knitr::kable(escape = FALSE, booktabs = TRUE)
+```
+
+The sum of squares due to different components of ANOVA can be obtained as follows:
+
+Form a $r \times v$ two-way table between blocks and treatments, each cell figure being the total overall samples from a plot.
+
+```{r}
+tribble(
+  ~"Blocks", ~"1", ~"2", ~"i", ~"v", ~"Block totals",
+  "1", "$T_{11}$", "$T_{21}$", "$T_{i1}$", "$T_{v1}$", "B_{.1}", 
+  "2", "$T_{12}$", "$T_{22}$", "$T_{i2}$", "$T_{v2}$", "B_{.2}", 
+  ".", ".", ".", ".", ".", ".", 
+  "j", "$T_{1j}$", "$T_{2j}$", "$T_{ij}$", "$T_{vj}$", "B_{.j}", 
+  ".", ".", ".", ".", ".", ".", 
+  "r", "$T_{1r}$", "$T_{2r}$", "$T_{ir}$", "$T_{vr}$", "B_{.r}", 
+) %>% 
+  gt() %>%
+    tab_spanner(
+    label = "Treatments",
+    columns = c("1", "2", i, v), gather = T
+  )
+
+```
+
+The sum of squares (S.S) due to different components of ANOVA can be obtained as follows:
+
+Grand Total (GT) = $\sum_{i = 1}^v \sum_{j = 1}^r \sum_{t = 1}^n y_{ijt}$
+
+Correction factor (CF) = $\frac{GT^2}{rvn}$
+
+Total SS of the table (TSS) = $\large \frac{\sum_{i = 1}^v \sum_{j = 1}^r \sum_{t = 1}^n y_{ijt}^2}{n} - CF$
+
+$T_i$ = i-th treatment total = $\sum_{j = 1}^r \sum_{t = 1}^n y_{ijt}$
+
+$B_i$ = j-th block total = $\sum_{i = 1}^v \sum_{t = 1}^n y_{ijt}$
+
+Treatment SS (SST) = $\large \frac{\sum_{i = 1}^v T_i^2}{nv} - CF$
+
+Block SS (SSB) = $\large \frac{\sum_{j = 1}^r B_j^2}{nv} - CF$
+
+Block x Treatment SS (SSBT) = TSS - SST - SSB
+
+Total SS of the entire data = $\sum_{i = 1}^v \sum_{j = 1}^r \sum_{t = 1}^n y_{ijt}^2 - CF$
+
+Sum of squares due to the sampling error (SSSE) = Total SS of the entire data - SSB - SST - SSBT
+
+Using the expression of expected mean squares in the above ANOVA table (\ref{tab:anova-rcbd-template}), it is clear that the null hypothesis regarding the equality of treatment effects is tested against the experimental error. From the ANOVA, it is also clear that the sampling error is estimated as
+
+$\hat{\sigma_s}^2 = s_2^2$.
+
+The experimental error (variance between plots of the same treatment) is estimated as $\large \hat{\sigma}_e^2 = \frac{s_1^2 - s_2^2}{n}$. When $\hat{\sigma}_e^2$ is negative, it is taken as zero.
+
+The variance of the i-th treatment mean ($\bar{Y}_i$) based on r-replications and n-samples per plot = ${\large \frac{\sigma_s^2 + n \sigma_e^2}{rn}}$
+
+The estimated variance of $\large \bar{Y}_{i..} = \frac{\hat{\sigma}_s^2 + n\hat{\sigma}_e^2}{rn}$.
+
+Taking the number of sampling units in a plot to be large (infinite), the estimated variance of a treatment mean when there is complete recording (i.e., the entire plot is harvested) = $\large \frac{\hat{\sigma}_e^2}{r}$
+
+The efficiency of sampling as compared to complete enumeration:
+
+$$
+\large \frac{\frac{\hat{\sigma}_e^2}{r}}{\frac{\hat{\sigma}_s^2 + n \hat{\sigma}_e^2}{rn}}
+$$
+
+The standard error of a treatment mean $\bar{Y}_{i...}$ with n samples per plot and r replication is
+
+$$
+\left[ \frac{\hat{\sigma}_s^2}{rn} + \frac{\hat{\sigma}_e^2}{r} \right]^{\frac{1}{2}}
+$$
+
+The coefficient of variation is
+
+$$
+\large 
+p = \frac{\left[ \frac{\hat{\sigma}_s^2}{rn} + \frac{\hat{\sigma}_e^2}{r} \right]^{\frac{1}{2}}}{\bar{Y}_{i...}} \times 100
+$$
+
+Thus, $n$ can be found by rearraning the above expression.
+
+Generally, the margin of error (d or D) is $Z_{\alpha/2}$ times the value of coefficient of variation of $\bar{Y}_{i...}$ based on the concept of $100(1-\alpha)\%$, confidence intervals. Therefore,
+
+$$
+\large
+n = \frac{\hat{\sigma}_s^2}{r} \left[\frac{Z_{\alpha/2}^2}{D^2 (\bar{Y}_i)^2 - Z_{\alpha/2}^2 \frac{\hat{\sigma}_e^2}{r}} \right]
+$$
+
+For any given $r$ and $p(D)$, there will be $t$ values for $n$ corresponding to the $t$ treatment means. The maximum $n$ will ensure the estimation of any treatment mean with a standard error not exceeding $p$ percent or margin of error not exceeding $D$.
+
+For an example to accompany theory of analyzing RCB design, refer to http://apps.iasri.res.in/ebook/EBADAT/2-Basic%20Statistical%20Techniques/22-plotsamp-final.pdf .
+
+## Three way analysis of variance (Latin square design)
+
+## Factorial experiments
