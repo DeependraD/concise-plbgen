@@ -1,10 +1,13 @@
 --- 
 title: "Concise note on Plant Breeding and Genetics"
 subtitle: "A lazy ass guide"
-author: "Deependra Dhakal, Samita Paudel"
+author: "Deependra Dhakal"
 date: "November, 2019"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output: 
+  bookdown::pdf_book:
+    pandoc_args: ["--lua-filter=luafilters/columns_lua.lua"] # does not work yet
+  bookdown::gitbook: default
 documentclass: book
 classoption: openany # this will force for 2 side layout of book to open chapter at any side
 bibliography: [bibliography/bib.bib]
