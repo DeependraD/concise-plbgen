@@ -117,7 +117,7 @@ crossing("Ploidy" = c("2n", "3n", "4n"), "Number of X chromosomes" = c(1, 2, 3, 
     TRUE ~ NA_character_
   )) %>% 
   knitr::kable(booktabs = TRUE, escape = FALSE) %>% 
-  kableExtra::kable_styling(font_size = 6) %>% 
+  kableExtra::kable_styling(font_size = 8) %>% 
   kableExtra::column_spec(1:5, width = "7em")
 ```
 
@@ -290,7 +290,7 @@ knitr::include_graphics("./images/variegation_cytoplasmic_inheritance.png")
 ```
 
 
-```{r maize-variegation, fig.cap="Many cases of white leaves are caused by mutations in chloroplast genes that control the production and deposition of the green pigment chlorophyll.", fig.align='center', out.width="50%"}
+```{r maize-variegation, fig.cap="Many cases of white leaves are caused by mutations in chloroplast genes that control the production and deposition of the green pigment chlorophyll.", fig.align='center', out.width="40%"}
 knitr::include_graphics("./images/maize_variegation.jpg")
 ```
 

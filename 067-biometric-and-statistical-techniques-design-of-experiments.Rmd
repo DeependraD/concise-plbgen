@@ -795,7 +795,9 @@ For obtaining different 0, 1, 2, 3 and 4 successful outcomes (left handed people
 dbin_df <- tibble(selection_of = 0:4, probability = dbinom(x = c(0:4), size = 10, prob = 0.1))
 dbin_df %>% 
   rename_all(function(x)str_to_sentence(str_replace_all(x, "_", " "))) %>% 
-  knitr::kable(booktabs = TRUE, format = "latex")
+  knitr::kable(booktabs = TRUE, format = "latex") %>% 
+  kableExtra::kable_styling(position = "center", font_size = 8)
+
 ```
 
 We could plot our probabilities for each values upto all 10 people being left-handed:
@@ -850,13 +852,14 @@ probability_data <- tibble(probability = c(0.301, 0.176, 0.125, 0.097, 0.079, 0.
 
 probability_data %>% 
   knitr::kable(booktabs = TRUE, caption = "A series of discrete probability distribution with binomial outcomes", longtable = TRUE) %>% 
+  rename_all(function(x)str_to_sentence(x)) %>% 
   kableExtra::kable_styling(latex_options = "striped")
 
 # the mean, variance and sd of a discrete probability distribution
 probability_data %>% 
-  summarise(probability_sum = sum(values*probability), 
-            probability_variance = sum(probability*(values-mean(values))^2), 
-            probability_sd = sqrt(probability_variance)) %>% 
+  summarise(`Probability sum` = sum(values*probability), 
+            `Probability variance` = sum(probability*(values-mean(values))^2), 
+            `Probability sd` = sqrt(probability_variance)) %>% 
   knitr::kable(booktabs = TRUE, caption = "Mean, variance and sd of a discrete probability distribution", longtable = TRUE) %>% 
   kableExtra::kable_styling(latex_options = "striped")
 ```
@@ -875,7 +878,9 @@ saturday_sales <- tribble(
 )
 
 saturday_sales %>% 
-  knitr::kable(booktabs = TRUE)
+  knitr::kable(booktabs = TRUE) %>% 
+  rename(`Number sold` = numsold, `Probability` = prob) %>% 
+  kableExtra::kable_styling(latex_options = "striped")
 
 mu <- sum(saturday_sales$numsold * saturday_sales$prob)
 cat("Mean: ", mu)

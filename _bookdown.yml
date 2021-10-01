@@ -7,16 +7,16 @@ language:
 rmd_files:
   html: []
   latex: ["index.Rmd",
-  "01-plant-breeding-introduction-objectives-scope.Rmd",
-  "02-domestication-origin-germplasm-types-introduction-conservation-acclimatization-regulation.Rmd",
+  "01-02-plant-breeding-introduction-objectives-scope.Rmd",
+  "03-04-domestication-origin-germplasm-types-introduction-conservation-acclimatization-regulation.Rmd",
   "05-modes-of-reproduction-barriers-genetic-variation-hybridization-techniques.Rmd",
-  "06-biometric-and-statistical-techniques-design-of-experiments.Rmd"
-  # "08-sex-determination-sex-linkage-extranuclear-inheritance.Rmd",
-  # "11-gene-action-and-interaction.Rmd",
-  # "12-nucleic-acid-genetic-code-genetic-processes.Rmd",
-  # "13-mutation-chromosomal-aberration-transposable-genetic-elements.Rmd",
-  # "15-seed-system-in-nepal.Rmd",
-  # "17-plant-breeding-organizations-academic-institutions.Rmd"
+  "067-biometric-and-statistical-techniques-design-of-experiments.Rmd",
+  "08-sex-determination-sex-linkage-extranuclear-inheritance.Rmd",
+  "11-gene-action-and-interaction.Rmd",
+  "12-nucleic-acid-genetic-code-genetic-processes.Rmd",
+  "13-mutation-chromosomal-aberration-transposable-genetic-elements.Rmd",
+  "15-seed-system-in-nepal.Rmd",
+  "17-plant-breeding-organizations-academic-institutions.Rmd"
   ]
   epub: []
 

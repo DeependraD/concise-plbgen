@@ -41,11 +41,11 @@ knitr::include_graphics("./images/complementary_base_pairing.png")
 
 \begin{figure}
   \begin{center}
-  \includegraphics[width=0.90\linewidth]{./images/nucleotide_blocks1.png}
+  \includegraphics[width=0.40\linewidth]{./images/nucleotide_blocks1.png}
   \end{center}
   
   \begin{center}
-  \includegraphics[width=0.80\linewidth]{./images/nucleotide_blocks.png}
+  \includegraphics[width=0.40\linewidth]{./images/nucleotide_blocks.png}
   \end{center}
   
   \caption{\newline Nucleotides are made up of three building blocks: a pyrimidine or purine base, a pentose, and phosphoric acid. The base is bonded to the pentose by an N-$\beta$-glycoside, either via N1 of the pyrimidine or via N9 of the purine. The phosphoric acid forms an ester with the primary alcohol group of the pentose. Up to two further phosphoric acid groups can be attached by anhydride bonds to the a phosphoric acid group. The glycoside made up of a base and a ribose is called a nucleoside, and that made up of a base and 2-deoxyribose is called a deoxynucleoside. Nucleotides can be nucleoside monophosphates, diphosphates, or triphosphates, as shown in the example using adenosine and its nucleotides. Deoxynucleotides are thus deoxynucleoside monophosphates, diphosphates, or triphosphates. The sugar in ribonucleic acid (RNA) is ribose, and in deoxyribonucleic acid (DNA) it is 2-deoxyribose. The carbon atoms of the sugar are indicated in the nucleosides and nucleotides (1, 2, 5,...). C1 forms the glycosidic bond. To simplify the chemical skeletal formula, the hydrogens attached to carbons are often omitted in complex formulas (e.g., rings).}
@@ -142,11 +142,11 @@ knitr::include_graphics("./images/mrna_processed.png")
 
 \begin{figure}
   \begin{center}
-  \includegraphics[width=0.95\linewidth]{./images/ribonucleic_acids_trna.png}
+  \includegraphics[width=0.6\linewidth]{./images/ribonucleic_acids_trna.png}
   \end{center}
   
   \begin{center}
-  \includegraphics[width=0.95\linewidth]{./images/ribonucleic_acids_types.png}
+  \includegraphics[width=0.6\linewidth]{./images/ribonucleic_acids_types.png}
   \end{center}
   
   \begin{center}
@@ -205,7 +205,7 @@ knitr::include_graphics("./images/nucleotide_codons.jpg")
 - Nucleotide sequences are numerically designated based on transcription initiation site as reference point ("+" ve and "-" ve, former referring to downstream sequences, and latter to the upstream sequences)
 
 
-```{r gene-transcription, out.width="65%", fig.cap="(a) The promoter lies 'upstream' (toward the $5^\\prime$ end) of the initiation point and coding sequences. (b) Promoters have regions of similar sequences, as indicated by the yellow shading in seven different promoter sequences in \\textit{E. coli}. Spaces (dots) are inserted in the sequences to optimize the alignment of the common sequences. Numbers refer to the number of bases before (-) or after (+) the RNA synthesis initiation point. The consensus sequence for most E. coli promoters is at the bottom."}
+```{r gene-transcription, out.width="60%", fig.cap="(a) The promoter lies 'upstream' (toward the $5^\\prime$ end) of the initiation point and coding sequences. (b) Promoters have regions of similar sequences, as indicated by the yellow shading in seven different promoter sequences in \\textit{E. coli}. Spaces (dots) are inserted in the sequences to optimize the alignment of the common sequences. Numbers refer to the number of bases before (-) or after (+) the RNA synthesis initiation point. The consensus sequence for most E. coli promoters is at the bottom."}
 # pdftools::pdf_convert("../../literatures/textbooks/Introduction to Genetic Analysis/Griffiths - An Introduction to Genetic Analysis 11th Edition c2015.pdf",
 #                       pages = 325,
 #                       dpi = 300, format = "png",
@@ -221,7 +221,7 @@ knitr::include_graphics("./images/gene_transcription.png")
 - As the RNA polymerase moves along the DNA, it unwinds the DNA ahead of it and rewinds the DNA that has already been transcribed. In this way, it maintains a region of single-stranded DNA, called a **transcription bubble**.
 
 
-```{r gene-transcription-prokaryotes1, out.width="80%", fig.cap="(a-b) In transcription initiation, $\\sigma$ subunit positions prokaryotic RNA polymerase for transcription initiation"}
+```{r gene-transcription-prokaryotes1, out.width="70%", fig.cap="(a-b) In transcription initiation, $\\sigma$ subunit positions prokaryotic RNA polymerase for transcription initiation"}
 # pdftools::pdf_convert("../../literatures/textbooks/Introduction to Genetic Analysis/Griffiths - An Introduction to Genetic Analysis 11th Edition c2015.pdf",
 #                       pages = 326,
 #                       dpi = 300, format = "png",
@@ -231,7 +231,7 @@ knitr::include_graphics("./images/gene_transcription_prokaryotes1.png")
 ```
 
 
-```{r gene-transcription-prokaryotes2, out.width="75%", fig.cap="(a) Elongation: Synthesis of an RNA strand complementary to the single-strand region of the DNA template strand. DNA that is unwound ahead of RNA polymerase is rewound after it has been transcribed."}
+```{r gene-transcription-prokaryotes2, out.width="70%", fig.cap="(a) Elongation: Synthesis of an RNA strand complementary to the single-strand region of the DNA template strand. DNA that is unwound ahead of RNA polymerase is rewound after it has been transcribed."}
 # pdftools::pdf_convert("../../literatures/textbooks/Introduction to Genetic Analysis/Griffiths - An Introduction to Genetic Analysis 11th Edition c2015.pdf",
 #                       pages = 326,
 #                       dpi = 300, format = "png",
@@ -241,7 +241,7 @@ knitr::include_graphics("./images/gene_transcription_prokaryotes2.png")
 ```
 
 
-```{r gene-transcription-prokaryotes3, out.width="75%", fig.cap="(b) Termination: The intrinsic mechanism shown here is one of two ways used to end RNA synthesis and release the completed RNA transcript and RNA polymerase from the DNA."}
+```{r gene-transcription-prokaryotes3, out.width="70%", fig.cap="(b) Termination: The intrinsic mechanism shown here is one of two ways used to end RNA synthesis and release the completed RNA transcript and RNA polymerase from the DNA."}
 # pdftools::pdf_convert("../../literatures/textbooks/Introduction to Genetic Analysis/Griffiths - An Introduction to Genetic Analysis 11th Edition c2015.pdf",
 #                       pages = 326,
 #                       dpi = 300, format = "png",
@@ -279,7 +279,7 @@ knitr::include_graphics("./images/alternative_splicing.png")
 - Each gene codes for one polypeptide. Some proteins comprise more than one polypeptide (have multiple subunits).
 - All genes do not code for proteins and, further, all genes in a cell are not actively transcribing mRNA all of the time. Also, most enzymes are proteins, but all proteins are not enzymes.
 
-```{r polypeptides-amino, out.width="45%", fig.cap="(a) The basic structure of an amino acid consists of three units - an amino group, a carboxyl group, and a side chain (R) that distinguishes among the different amino acids. (b) A polypeptide chain is formed by linking many amino acids together; adjacent amino acids are linked by a peptide bond."}
+```{r polypeptides-amino, out.width="40%", fig.cap="(a) The basic structure of an amino acid consists of three units - an amino group, a carboxyl group, and a side chain (R) that distinguishes among the different amino acids. (b) A polypeptide chain is formed by linking many amino acids together; adjacent amino acids are linked by a peptide bond."}
 # pdftools::pdf_convert("../../literatures/plant_breeding/Principles of Plant Genetics and Breeding.pdf",
 #                       pages = 703,
 #                       dpi = 300, format = "png",
@@ -289,7 +289,7 @@ knitr::include_graphics("./images/polypeptides_amino_acid.png")
 ```
 
 
-```{r translation-prokaryotes, out.width="35%", fig.cap="(A) Initiation. Initiation of translation begins with the association of the small ribosome subunit with the Shine–Dalgarno sequence (S-D sequence) on the mRNA. Next, initiation factors IF1, IF2, and IF3 (not shown) charge or connect the initiator tRNA with fMet. The charged initiator tRNA ($tRNA^{ifMet}$) associates with the small ribosome subunit and finds the start codon. Finally, the large ribosomal subunit joins the small subunit and situates the initiator tRNA at the P site. (B) Elongation. During elongation, peptide bonds are formed between the amino acids at the A-site and the P-site. The movement of the ribosome along the mRNA and addition of a new tRNA to the A-site are controlled by elongation factors (also not shown). (C) Termination. Termination requires release factors. The various components dissociate. The completed protein folds into its proper three-dimensional shape."}
+```{r translation-prokaryotes, out.width="60%", fig.cap="(A) Initiation. Initiation of translation begins with the association of the small ribosome subunit with the Shine–Dalgarno sequence (S-D sequence) on the mRNA. Next, initiation factors IF1, IF2, and IF3 (not shown) charge or connect the initiator tRNA with fMet. The charged initiator tRNA ($tRNA^{ifMet}$) associates with the small ribosome subunit and finds the start codon. Finally, the large ribosomal subunit joins the small subunit and situates the initiator tRNA at the P site. (B) Elongation. During elongation, peptide bonds are formed between the amino acids at the A-site and the P-site. The movement of the ribosome along the mRNA and addition of a new tRNA to the A-site are controlled by elongation factors (also not shown). (C) Termination. Termination requires release factors. The various components dissociate. The completed protein folds into its proper three-dimensional shape."}
 # pdftools::pdf_convert("../../literatures/biotechnology/Biotechnology 2nd ed - David P. Clark, Nanette J. Pazdernik (AP, 2016).pdf",
 #                       pages = 62,
 #                       dpi = 300, format = "png",
