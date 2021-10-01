@@ -851,15 +851,15 @@ probability_data <- tibble(probability = c(0.301, 0.176, 0.125, 0.097, 0.079, 0.
        values = seq(1:9))
 
 probability_data %>% 
-  knitr::kable(booktabs = TRUE, caption = "A series of discrete probability distribution with binomial outcomes", longtable = TRUE) %>% 
   rename_all(function(x)str_to_sentence(x)) %>% 
+  knitr::kable(booktabs = TRUE, caption = "A series of discrete probability distribution with binomial outcomes", longtable = TRUE) %>%
   kableExtra::kable_styling(latex_options = "striped")
 
 # the mean, variance and sd of a discrete probability distribution
 probability_data %>% 
   summarise(`Probability sum` = sum(values*probability), 
             `Probability variance` = sum(probability*(values-mean(values))^2), 
-            `Probability sd` = sqrt(probability_variance)) %>% 
+            `Probability sd` = sqrt(`Probability variance`)) %>% 
   knitr::kable(booktabs = TRUE, caption = "Mean, variance and sd of a discrete probability distribution", longtable = TRUE) %>% 
   kableExtra::kable_styling(latex_options = "striped")
 ```
@@ -878,17 +878,19 @@ saturday_sales <- tribble(
 )
 
 saturday_sales %>% 
-  knitr::kable(booktabs = TRUE) %>% 
   rename(`Number sold` = numsold, `Probability` = prob) %>% 
+  knitr::kable(booktabs = TRUE) %>% 
   kableExtra::kable_styling(latex_options = "striped")
 
 mu <- sum(saturday_sales$numsold * saturday_sales$prob)
 cat("Mean: ", mu)
+cat("\\n")
 variance <- sum((saturday_sales$numsold-mu)^2 * saturday_sales$prob)
 cat("Variance: ", variance)
 
 tibble(numsold = saturday_sales$numsold, 
        probability = (dbinom(saturday_sales$numsold, size = 5, prob = .5))) %>% 
+    rename(`Number sold` = numsold, `Probability` = probability) %>% 
   knitr::kable(booktabs = TRUE, caption = "Probability densities for respective number of sales on a saturday given a total of five sales each with binomial outcome of success (sold) or failure (not-sold) equal to 0.5") %>% 
   kableExtra::kable_styling(latex_options = "striped")
 ```

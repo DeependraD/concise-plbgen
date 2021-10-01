@@ -10,7 +10,7 @@ rmd_files:
   "01-02-plant-breeding-introduction-objectives-scope.Rmd",
   "03-04-domestication-origin-germplasm-types-introduction-conservation-acclimatization-regulation.Rmd",
   "05-modes-of-reproduction-barriers-genetic-variation-hybridization-techniques.Rmd",
-  "067-biometric-and-statistical-techniques-design-of-experiments.Rmd",
+  "06-07-biometric-and-statistical-techniques-design-of-experiments.Rmd",
   "08-sex-determination-sex-linkage-extranuclear-inheritance.Rmd",
   "11-gene-action-and-interaction.Rmd",
   "12-nucleic-acid-genetic-code-genetic-processes.Rmd",
