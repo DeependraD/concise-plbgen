@@ -93,7 +93,7 @@ Factors that affect cross and self pollination are:
   - Light: It induces pollen inviable.
 2. Flower appearance: Shape of petal, color radiance, size of flower, olfactory cues, chemical signaling, etc.
 
-### Gene action and methods of breeding
+### Gene action and methods of breeding^[There is a separate chapter on gene action and interaction]
 
 - Self pollinated species: When additive gene action predominates in a self-pollinated species, breeders should consider using selection methods such as pure line selection, mass selection, progeny selection and hybridization. However, when non-additive gene action predominates, effective methods of breeding are the exploitation of heterosis in breeding hybrid cultivars.
 
@@ -106,6 +106,7 @@ Factors that affect cross and self pollination are:
 A synthetic cultivar is a result of open pollinated population improvement, although a synthetic cultivar cannot be propagated without changing the genetic make-up of the population.
 
 A synthetic cultivar must be reconstructed from its parental lines or clones. In case of maize, synthetic cultivars are developed using inbred lines as a three-stage process;
+
 1. Develop a number of inbred lines
 2. Progeny test the inbred lines for GCA
 3. Identify the 'best' parent and intercross these to produce the synthetic cultivar
@@ -113,6 +114,7 @@ A synthetic cultivar must be reconstructed from its parental lines or clones. In
 The process is almost identical to procedure for developing hybrid cultivars, and only differs in the last stage where many more parents will be included in a synthetic population development than in development of hybrid.
 
 In developing synthetics from clonal selections, following procedure is followed;
+
 1. Establishment of clonal nursery
 2. Selection of phenotypically best clones
 3. Randomized mating trial

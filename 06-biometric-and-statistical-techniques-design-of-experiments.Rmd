@@ -57,6 +57,8 @@ Standard deviation provides a measure of dispersion. The weights provided to the
 
 ### Correlation coefficient for bivariate frequency distribution
 
+(Procedure for calculation detailed in Numerical problem 3)
+
 ## Regression
 
 ## Relationship between correlation coefficient and regression
@@ -88,26 +90,26 @@ Consider a general dihybrid testcross, in which it is not known if the genes are
 
 If there is _no_ linkage, that is, the genes assort independently, we have seen that the following phenotypic proportions are expected in progeny:
 
-```{r}
+```{r dihybrid-phenotypes-independent-assortment, fig.cap="Equal proportions of phenotype appearing from a test cross of F1 dihybrid with a recessive tester. "}
 tribble(~"Phenotype", ~"Proportion", 
         "AB", 0.25,
         "Ab", 0.25,
         "aB", 0.25,
         "ab", 0.25) %>% 
   knitr::kable(booktabs = TRUE) %>% 
-  kableExtra::kable_styling(position = "center", font_size = 6)
+  kableExtra::kable_styling(position = "center", font_size = 8)
 ```
 
 A cross of this type was made and the following phenotypes obtained in a progeny sample of 200.
 
-```{r}
+```{r dihybrid-phenotypes-example-case}
 tribble(~"Phenotype", ~"Count", 
         "AB", 60,
         "Ab", 37,
         "aB", 41,
         "ab", 62) %>% 
   knitr::kable(booktabs = TRUE) %>% 
-  kableExtra::kable_styling(position = "center", font_size = 6)
+  kableExtra::kable_styling(position = "center", font_size = 8)
 ```
 
 $\longrightarrow$
@@ -129,19 +131,19 @@ $$
 
 ```{r chi-sqrt-linkage, message=FALSE, warning=FALSE, echo=FALSE}
 chi_sqrt_linkage <- tibble::tribble(
-  ~AB,                              ~Ab,                              ~aB,                              ~ab, ~Totals,
-  "60",                             "37",                             "41",                             "62",     200,
-  "$\\frac{1}{4}\\times 200 = 50$", "$\\frac{1}{4}\\times 200 = 50$", "$\\frac{1}{4}\\times 200 = 50$", "$\\frac{1}{4}\\times 200 = 50$",     200,
-  "10",                            "-13",                             "-9",                             "12",      NA,
-  "100",                            "169",                             "81",                            "144",      NA,
-  "2",                           "3.38",                           "1.62",                           "2.88",      NA,
-  NA,                               NA,                               NA,                               NA,    9.88
+  ~AB, ~Ab, ~aB, ~ab, ~Totals,
+  "60", "37", "41", "62", 200,
+  "$\\frac{1}{4}\\times 200 = 50$", "$\\frac{1}{4}\\times 200 = 50$", "$\\frac{1}{4}\\times 200 = 50$", "$\\frac{1}{4}\\times 200 = 50$", 200,
+  "10", "-13", "-9", "12", NA, 
+  "100", "169", "81", "144", NA,
+  "2", "3.38", "1.62", "2.88", NA,
+  NA, NA, NA, NA, 9.88
 )
 
 kable(chi_sqrt_linkage, 
       booktabs = TRUE, escape = FALSE, 
       caption = "Chi-square calculations for the hypothesis that the observations of four phenotypic classes is obtained due to no linkage between loci A and B.") %>% 
-  kableExtra::kable_styling(latex_options = "scale_down", font_size = 5)
+  kableExtra::kable_styling(latex_options = "striped", font_size = 8)
 ```
 
 
@@ -162,8 +164,8 @@ colnames(m) <- rev(p)
 rownames(m) <- df
 
 kable(m, format = "latex", booktabs = TRUE, escape = TRUE, 
-      caption = "The probabilities of exceeding different chi-square values for degrees of freedom from 1 to 50 when the expected hypothesis is true") %>% 
-  kableExtra::kable_styling(latex_options = "striped", font_size = 5) %>% 
+      caption = "The probabilities of exceeding different chi-square values for degrees of freedom from 1 to 50 when the expected hypothesis is true", longtable = TRUE) %>% 
+  kableExtra::kable_styling(latex_options = "striped", font_size = 8) %>% 
   kableExtra::column_spec(6, border_left = TRUE)
 ```
 
@@ -171,6 +173,415 @@ kable(m, format = "latex", booktabs = TRUE, escape = TRUE,
 - Consulting the $\chi^2$ table, we see our values of 9.88 and 3 df give a p value of ~0.025, or 2.5%. 
 - This is less than the standard cut-off value of 5 percent, so we can reject the hypothesis of no linkage. 
 - Hence, we are left with the conclusion that the genes are very likely linked, approximately 39 m.u. apart.
+
+## Heritability and components of variation
+
+Quantitative characters are more affected by environments. Thus phenotypic mean may be described according to a mathematical model to facilitate statistical analysis and interpretation:
+
+$$V_{P} = V_{G} + V_{E} + V_{GE}$$
+
+Where,
+
+$V_P$ = Observed phenotypic variance
+
+$V_G$ =  Genotypic variance
+
+$V_E$ = Environmental variance
+
+$V_{GE}$ = Variance due to interaction of Genotype and Environment
+
+### Heritability
+
+- To make economically meaningful progress in an organized programme of selective breeding, two conditions must be met;
+  - There must be some observable phenotypic variation within the crop. This would normally be expected, even if it were due entirely to the effects of a variable environment.
+  - At least some of this phenotypic variation must have a genetic basis.
+- This leads to the concept of heritability ( $h^2$), which is the proportion of phenotypic variance that is genetic in origin.
+- The values of $h^2$ can range from 0 to 1. If $h^2$ is close to zero, there will be little scope for advancement and there would be little point in trying to improve this character in a plant breeding program.
+- There are three main ways of estimating heritability:
+  1. Carrying out particular genetic crosses and observing the performance of their progeny so that the resulting data can be partitioned into genetic and environmental components.
+  2. Based on the direct measurement of the degree of resemblance between offspring and one, or both, of their parents. This is achieved by regression of the former onto the latter in the absence of selection.
+  3. Measuring the response of a population to given levels of selection.
+
+- Dominance model of quantitative inheritance dictates that total genetic variance will contain dominance genetic variance (denoted by $V_D$) and additive genetic variance (denoted by $V_A$). 
+- Dominance genetic variance is variation caused by heterozygotes loci in the individuals in the population, whereas additive genetic variance is the variation existing between homozygous loci in the segregating population.
+
+#### Broad sense heritability
+
+- The total genetic varinace divided by the total phenotypic variance is Broad-sense heritability ( $h_b^2$). 
+- This estimation uses the total genetic variance in a additive-dominance model, while the total phenotypic variance is obtained by adding environmental variance to this genetic variance.
+
+$$
+h_b^2 = \frac{V_A + V_D}{V_A + V_D + V_E}
+\tag{i}
+$$
+
+- Dominant genetic variance will be dependent upon the degree of heterozygosity in the population and will differ between fillial generations.
+
+#### Narrow sense heritability
+
+- A more useful form of heritability for plant breeders, therefore, is *narrow-sense heritability* ( $h_n^2$), which is:
+
+$$
+h_n^2 = \frac{V_A}{V_A+V_D+V_E}
+\tag{ii}
+$$
+
+### Variance partitioning of filial generation
+
+- In the first filial generation ( $F_1$), after hybridization between two homozygous parents, there is not genetic variance between individuals of a progeny (they will be genetically alike) and all the variation observed between $F_1$ plants will be entirely environmental. 
+- In the generation following ( $F_2$ and forth) there are both genetic and environmental components of phenotypic variance.
+- The genetic variance of the $F_2$ generation is:
+
+$$
+\sigma_{\bar{F_2}}^2 = \frac{1}{2}V_A + \frac{1}{4}V_D + \sigma_E^2
+$$
+
+- Thus broad sense heritability of the $F_2$ generation is:
+
+$$
+\label{eqn:hbs-filial}
+h_b^2 = \frac{\frac{1}{2}V_A + \frac{1}{4}V_D}{\frac{1}{2}V_A + \frac{1}{4}V_D + \sigma_E^2}
+\tag{iii}
+$$
+
+- In simple terms, to estimate the $h_b^2$ of $F_2$ family (or any other segregating family), only following estimates are required:
+
+1. Total phenotypic variance (Obtained from measurement on plants within $F_2$ families)
+2. Environmental variance (Obtained from measurement on $F_1$ families)
+
+Note that denominator has variation of simple $V_P = V_A + V_D + V_E$. This is because total phenotypic variation of $F_2$ has larger contribution of environmental and additive components than dominance component.
+
+### Partitioning environmental variance
+
+The other generation in which the phenotypic variance is also entirely attributable to environmental effects is the $F_1$. On the other hand, if the phenotypic variances of all these three generations were available, the environmental component of the phenotypic variance of the $F_2$ generation could be estimated as follows (in a simplified way):
+
+$$\sigma_E = \frac{\sigma_{\bar{P_1}}^2 + 2\sigma_{\bar{F_1}}^2 + \sigma_{\bar{P_2}}^2}{4}$$
+
+### Partitioning genetic variance
+
+The ratio of additive genetic variance to total phenotypic variance is called the narrow-sense heritability.
+
+$$
+h_n^2 = \frac{\frac{1}{2}V_A}{\frac{1}{2}V_A + \frac{1}{4}V_D + V_E}
+\tag{v}
+$$
+
+In order to estimate $h_n^2$, it is therefore necessary to partition the genetic variance into its two components ( $V_A$ and $V_D$). This is done by considering the phenotypic variance of the two backcross families ( $\sigma_{\bar{B_1}}^2$ and $\sigma_{\bar{B_2}}^2$ ).
+
+Following known relation can be used for estimating genetic components of $F_2$ generation:
+
+$$V_D = 4\left(V_{\bar{B_1}} + V_{\bar{B_2}} - V_{\bar{F_2}} - V_E \right)$$
+
+$$V_A = 2V_{\bar{F_2}} - (V_{B_1} + V_{B_2})$$
+
+Expressions for both $V_D$ and $V_A$ are derived from known relations:
+
+$$V_{\bar{F_2}} = \frac{1}{2}A + \frac{1}{4}D + V_E$$ and
+
+$$V_{B_1} + V_{B_2} = \frac{1}{2}A + \frac{1}{2}D + 2V_E$$
+
+### Variance component estimation summary
+
+Variances from additive, dominant and environmental effects may be obtained as follows:
+
+$V_{P1} = E; \quad V_{P2} = E; \quad V_{F1} = E; \quad \frac{V_{P1} + V_{P2} + 2V_{F1}}{4} \sim \frac{V_{P1} + V_{P2} + V_{F1}}{3} = E$
+
+$V_{F2} = \frac{1}{2}A + \frac{1}{4}D + E$
+
+$V_{B1} = \frac{1}{4}A + \frac{1}{4}D + E$
+
+$V_{B2} = \frac{1}{4}A + \frac{1}{4}D + E$
+
+$V_{B1} + V_{B2} = \frac{1}{2}A + \frac{1}{2}D + 2E$
+
+### Estimates of heritability
+
+- Variance based approaches - ratio of variance estimates
+
+$$h_{bs}^2 = \frac{V_G}{V_P} \\ h_{ns}^2 = \frac{V_A}{V_P}$$
+
+- Mean based approaches: 
+  
+  - realized heritability: If divergence (R) has been estimated and the accumulated effects of selection (S) are known, an estimate for the trait heritability can be calculated. This is known as the realized heritability
+
+$$
+h^2 = \frac{R}{S}
+$$
+  
+  - Six generation mean analysis method
+
+### Parent offspring regression
+
+- This method is based on how much does the resemblance parents and offspring exist. 
+- If there is perfect resemblance between parents and offspring, then, $b = 1$ and there is perfect heritable genetic effect. 
+- On contrary if there is no resemblance between parents and offspring $b = 0$, and there is no heritable effect but variation is only due to environment.
+
+- Therefore, narrow sense heritability ( $h_{ns}$ )
+
+$$b= h_{ns}^2 = \frac{V_A}{V_P}$$
+
+- If only one parent is known (animal experiments or polycrosses)
+
+
+\begin{eqnarray}
+b &=& \frac{1}{2}.\frac{V_A}{V_P} \\
+h_{ns}^2 &=& 2b 
+\end{eqnarray}
+
+$b$ = slope of parent offspring regression line
+
+```{r heritability-estimates}
+readxl::read_xlsx("./data/qualitative_and_quantitative_characters.xlsx", "h2_estimates") %>% 
+  knitr::kable(booktabs = TRUE, format = "latex",
+               caption = "Heritability estimates of some common plant architectural traits; Source: Acquaah, 2014") %>% 
+    kableExtra::kable_styling(latex_options = "striped")
+```
+
+### Numerical problems
+
+#### Problem 1
+
+Consider a field experiment with an inbreeding species such as wheat or barley. Parent 1 included 20 plants, Parent 2 included 20 plants and $F_2$ family derived from selfing of $F_1$ generation, which was obtained by intercrossing the two parents (i.e. Parent 1 x Parent 2), consisted of 100 individuals. These 140 plants were completely randomized within the experiment, and at harvest the weight of seeds from each plant was recorded. The variances in seed weight of the two parents were $\sigma_{\bar{P_1}}^2 = 16.8~kg^2$ and $\sigma_{\bar{P_2}}^2 = 18.4~kg^2$. The phenotypic variance (which included both genetic and environmental variation) of the $F_2$ was $\sigma_{\bar{F_2}}^2 = 56.9~kg^2$. The total phenotypic varinace of the $F_2$ generation is represented by denominator term of $h_b^2$ is estimated to be $56.9 kg^2$.
+
+But the problem is what is the value of environmental component of the phenotypic variance $\sigma_E^2$?
+
+$\longrightarrow$
+
+It now follows that the $h_b^2$, from given inform is:
+
+$$
+h_b^2 = \frac{56.9-\sigma_E^2}{56.9}
+$$
+
+Since, both parents are homozygous inbreds, any variance displayed by either must be attributable exclusively to the environment. The best esimate of the $\sigma_E^2$ is therefore:
+
+$$
+\begin{aligned}
+\sigma_E^2 &= \frac{\sigma_{\bar{P_1}}^2 + \sigma_{\bar{P_2}}^2}{2} \\
+&= \frac{16.8 + 18.4}{2} = 17.6~kg^2
+\end{aligned}
+$$
+
+And, therefore,
+
+$$
+h_b^2=\frac{56.9-17.6}{56.9} = 0.691
+$$
+Thus 69.1% of the phenotypic variance of the $F_2$ generation is estimated to be genetic in origin.
+
+#### Problem 2
+
+Estimate heritability (Broad sense and narrow sense) from given information.
+
+```{r heritability-estimation-filial-population}
+he_filial_pop <- tidyr::tribble(~"Population", ~"Variance",
+        "P1",	11,
+        "P2",	10.32,
+        "F1",	5.23,
+        "F2",	90.35,
+        "BC1",	47.35,
+        "BC2",	54.29)
+
+he_filial_pop %>% 
+  knitr::kable(booktabs = T, format = "latex") %>% 
+  kableExtra::kable_styling(latex_options = "striped")
+```
+
+$\longrightarrow$
+
+Elaborate solution:
+
+```{r heritability-estimates-filial-population2-1}
+Vp <- function(Va, Vd, Ve){
+  1/2*Va + 1/4*Vd + Ve
+}
+
+Ve <- (he_filial_pop[he_filial_pop$Population == "P1", 2, drop=T] +
+         he_filial_pop[he_filial_pop$Population == "P2", 2, drop=T] +
+         2*(he_filial_pop[he_filial_pop$Population == "F1", 2, drop=T]))/4
+
+Vd <- 4*(he_filial_pop[he_filial_pop$Population == "BC1", 2, drop=T] + 
+           he_filial_pop[he_filial_pop$Population == "BC2", 2, drop=T] -
+           he_filial_pop[he_filial_pop$Population == "F2", 2, drop=T] - 
+           Ve)
+
+Va <- 2*(he_filial_pop[he_filial_pop$Population == "F2", 2, drop=T]) - 
+  (he_filial_pop[he_filial_pop$Population == "BC1", 2, drop=T] + 
+     he_filial_pop[he_filial_pop$Population == "BC2", 2, drop=T])
+
+heritability_ns <- (1/2)*Va/Vp(Va, Vd, Ve)
+heritability_bs <- ((1/4)*Vd + (1/2)*Va)/Vp(Va, Vd, Ve)
+```
+
+$h^2_{bs}$ = `r heritability_bs`
+
+$h^2_{ns}$ = `r heritability_ns`
+
+Simplified solution (refer to Acquaah, P 86.):
+
+```{r heritability-estimates-filial-population2-2}
+# # narrow sense and broad sense alternative estimation
+# Vp <- he_filial_pop[he_filial_pop$Population == "F2", 2, drop=T]
+# Ve <- (he_filial_pop[he_filial_pop$Population == "P1", 2, drop=T] +
+#          he_filial_pop[he_filial_pop$Population == "P2", 2, drop=T] +
+#          2*(he_filial_pop[he_filial_pop$Population == "F1", 2, drop=T]))/4
+# Vg <- Vp-Ve
+# 
+# Vd <- 4*(he_filial_pop[he_filial_pop$Population == "BC1", 2, drop=T] + 
+#            he_filial_pop[he_filial_pop$Population == "BC2", 2, drop=T] -
+#            he_filial_pop[he_filial_pop$Population == "F2", 2, drop=T] - 
+#            Ve)
+# 
+# Va <- Vg-Vd
+# heritability_ns <- (1/2)*Va/Vp
+# heritability_bs <- ((1/4)*Vd + (1/2)*Va)/Vp
+
+# narrow sense and broad sense alternative estimation
+Vp <- he_filial_pop[he_filial_pop$Population == "F2", 2, drop=T]
+Ve <- (he_filial_pop[he_filial_pop$Population == "P1", 2, drop=T] +
+         he_filial_pop[he_filial_pop$Population == "P2", 2, drop=T] +
+         2*(he_filial_pop[he_filial_pop$Population == "F1", 2, drop=T]))/4
+Vg <- Vp-Ve
+
+Vd <- 4*(he_filial_pop[he_filial_pop$Population == "BC1", 2, drop=T] + 
+           he_filial_pop[he_filial_pop$Population == "BC2", 2, drop=T] -
+           he_filial_pop[he_filial_pop$Population == "F2", 2, drop=T] - 
+           Ve)
+
+Va <- Vg-Vd
+heritability_ns <- Va/Vp # yet another variation could use 1/2 as factor!
+heritability_bs <- Vg/Vp
+
+```
+
+$h^2_{bs}$ = `r heritability_bs`
+
+$h^2_{ns}$ = `r heritability_ns`
+
+#### Problem 3
+
+Estimate heritability through parent offspring regression method from the following available data.
+
+```{r question3}
+po_regression <- readxl::read_xlsx("./data/qualitative_and_quantitative_characters.xlsx", "question3")
+
+po_regression %>% 
+  knitr::kable(format = "latex", booktabs = TRUE, longtable = TRUE) %>% 
+  kableExtra::kable_styling(latex_options = "striped")
+```
+
+$\longrightarrow$
+
+First calculate Mean of X, Mean of Y, and SD and Variance of X and Y;
+
+```{r po-regression-sdvar}
+po_regression %>% 
+  magrittr::set_colnames(c("x", "y")) %>% 
+  add_column(.before = 1, ` ` = NA) %>% 
+  janitor::adorn_totals("row") %>%
+  bind_rows(tibble(" " = "Average", 
+                   "x" = mean(po_regression$`Mid parent value (X)`), 
+                   "y" = mean(po_regression$`Individual offspring (Y)`))) %>% 
+  bind_rows(tibble(" " = "SD", 
+                   "x" = sd(po_regression$`Mid parent value (X)`), 
+                   "y" = sd(po_regression$`Individual offspring (Y)`))) %>% 
+  bind_rows(tibble(" " = "Variance", 
+                   "x" = sd(po_regression$`Mid parent value (X)`)^2, 
+                   "y" = sd(po_regression$`Individual offspring (Y)`)^2)) %>% 
+  knitr::kable(booktabs = TRUE, escape = FALSE, caption = "Calculation of mean, standard deviation and variance of Mid parent value (X) and Individual offspring (Y)", longtable = TRUE) %>% 
+  kableExtra::kable_styling(latex_options = "striped")
+
+# sqrt(sum(po_regression_devsq$deviance_x_squared)/(nrow(po_regression_devsq)-1))
+sd_x <- sd(po_regression$`Mid parent value (X)`)
+sd_y <- sd(po_regression$`Individual offspring (Y)`)
+```
+
+SD (also denoted as $\sigma$) is given by:
+
+$$
+\sigma = {\sqrt \frac{\sum _{i=1}^{n}(x-\bar{x})^2}{n-1}}\text{ and, variance} = \sigma^2
+$$
+
+Where, $n$ = `r nrow(po_regression)`
+
+Now add deviance and squared deviance as well as product of deviances of x and y;
+
+```{r po-regression-solution-tab}
+po_regression_devsq <- po_regression %>% 
+  magrittr::set_colnames(c("x", "y")) %>%
+  mutate(`deviance_x` = `x`-mean(x), 
+         `deviance_y` = `y`-mean(y)) %>% 
+  mutate(deviance_x_squared = deviance_x^2, 
+         deviance_y_squared = deviance_y^2) %>% 
+  mutate(devxy = (deviance_x * deviance_y))
+
+po_regression_devsq %>%
+      knitr::kable(format = "latex", col.names = c("x", "y", "$x-\\bar{x}$", "$y-\\bar{y}$", "$(x-\\bar{x})^2$", "$(y-\\bar{y})^2$", "$x-\\bar{x}\\times y-\\bar{y}$"), booktabs = TRUE, escape = FALSE, caption = "Calcuation of deviances, squared deviances and product of deviance of both X and Y.") %>% 
+  kableExtra::kable_styling(latex_options = "striped")
+
+```
+
+
+Then find sum of squared deviances of x and y and sum of product of deviances of x and y;
+
+```{r po-regression-solution-summary}
+po_regression_devsq_summary <- po_regression %>% 
+  magrittr::set_colnames(c("x", "y")) %>%
+  mutate(`deviance_x` = `x`-mean(x), 
+         `deviance_y` = `y`-mean(y)) %>% 
+  mutate(deviance_x_squared = deviance_x^2, 
+         deviance_y_squared = deviance_y^2) %>% 
+  mutate(devxy = (deviance_x * deviance_y)) %>% 
+  add_column(.before = 1, NA) %>% 
+  bind_rows(summarise_all(., list(~if(is.numeric(.)) sum(.) else "Total"))) %>% 
+  bind_rows(summarise_all(., list(~if(is.numeric(.)) mean(.) else "Average")))
+
+# po_regression_devsq_summary
+
+po_regression_devsq_summary %>%
+      knitr::kable(format = "latex", col.names = c(" ", "x", "y", "$x-\\bar{x}$", "$y-\\bar{y}$", "$(x-\\bar{x})^2$", "$(y-\\bar{y})^2$", "$x-\\bar{x}\\times y-\\bar{y}$"), booktabs = TRUE, escape = FALSE) %>% 
+  kableExtra::kable_styling(latex_options = "striped")
+
+```
+
+
+Then calculate correlation coefficient;
+
+$$r_{xy}={\frac {\sum _{i=1}^{n}(x_{i}-{\bar {x}})(y_{i}-{\bar {y}})}{{\sqrt {\sum _{i=1}^{n}(x_{i}-{\bar {x}})^{2}}}{\sqrt {\sum _{i=1}^{n}(y_{i}-{\bar {y}})^{2}}}}}$$
+
+Mathematically, the correlation coefficient is unit free and always between -1 and 1. The sign of the correlation indicates the sign of the relationship and matches the sign of the slope of the regression line: positive (increasing) or negative (decreasing).
+
+Since we have,
+
+${\sum _{i=1}^{n}(x_{i}-{\bar {x}})(y_{i}-{\bar {y}})}$ = `r sum(po_regression_devsq$devxy)`
+
+${\sum _{i=1}^{n}(x_{i}-{\bar {x}})^{2}}$ = `r sum(po_regression_devsq$deviance_x_squared)`
+
+${\sum _{i=1}^{n}(y_{i}-{\bar {y}})^{2}}$ = `r sum(po_regression_devsq$deviance_y_squared)`
+
+$r_{xy}={\frac {...}{...}}$ = `r cor.test(po_regression[,1,drop=T], po_regression[,2,drop=T])[[4]]`
+
+Now, the coefficient of regression of $y$ on $x$ ( $b$) can be calculated from Pearson's correlation coefficient ( $r$) as:
+
+$b_{yx} = r_{xy}\frac{\sigma_y}{\sigma_x}$ = `r (cor.test(po_regression[,1,drop=T], po_regression[,2,drop=T])[[4]])*sd(po_regression[,2,drop=T])/sd(po_regression[,1,drop=T])`
+
+```{r}
+# verify from,
+# (lm(po_regression[,2,drop=T]~po_regression[,1,drop=T]) %>% coefficients())[[2]]
+```
+
+The sample correlation coefficient between $Y$ and $X$ is
+
+$$r_{yx} = \frac { \operatorname{\hat Cov}(Y,X)}{\hat \sigma_y\hat \sigma_x}$$
+
+while in a simple regression $Y = \beta_0 + \beta_1X+ u$, the OLS estimator for the slope coefficient is
+
+$$\hat \beta_1 = \frac { \operatorname{\hat Cov}(Y,X)}{\hat \sigma_x^2}$$
+
+Combining, we have the relation
+
+$$\hat \beta_1 = \frac {\hat \sigma_y}{\hat \sigma_x}r$$
+
 
 ## Binomial expansion
 
@@ -333,25 +744,17 @@ A Binomial distribution is derived from the Bernoulli distribution. Let's start 
 
 What is the probability of the first 3 people we pick being left-handed, followed by 7 people being right-handed ?
 
-This is given by: $0.1^3 \times 0.9^7$. Which is:
-
-```{r}
-round(0.1^3 * 0.9^7, 4)
-```
+This is given by: $0.1^3 \times 0.9^7$. Which is: `r round(0.1^3 * 0.9^7, 4)`.
 
 What if we wanted the last 3 people to be left-handed ? This is given by: $0.9^7 \times 0.1^3$. This is same as previous.
 
-The fact is it does not matter how we arrange the 3 people, we always have the same proability.
+The fact is it does not matter how we arrange the 3 people, we always have the same probability.
 
 So we have to add up all the ways we can arrange the 3 people being picked.
 
 There are $10!$ ways to arrange 10 people and there are $3!$ ways to arrange the 3 people that are picked and $7!$ ways to arrange the 7 that aren't picked.
 
-Thus ways in which 3 people being picked are picked is given by: $\frac{10!}{3!7!}$, which is:
-
-```{r}
-factorial(10)/(factorial(3)*factorial(7))
-```
+Thus ways in which 3 people being picked are picked is given by: $\frac{10!}{3!7!}$, which is: `r factorial(10)/(factorial(3)*factorial(7))`
 
 This can be generalized to say that, "10 choose 3". The "n choose k" notation is written as:
 
@@ -367,11 +770,12 @@ $$
 
 This equals `r (factorial(10)/(factorial(3)*factorial(7)))*0.1^3*0.9^7`.
 
-This expression of "n choose k" is implemented in r function `choose`.
+<!-- or  -->
+<!-- This expression of "n choose k" is implemented in r function `choose`. -->
 
-```{r}
-choose(10, 3)
-```
+<!-- ```{r} -->
+<!-- choose(10, 3) -->
+<!-- ``` -->
 
 This can be further generalized as:
 
@@ -381,11 +785,11 @@ $$
 
 This probability can be calculated using r's native `dbinom` function. This is also known as binomial density.
 
-```{r}
-dbinom(x = 3, size = 10, prob = 0.1)
+```{r echo=FALSE, results='asis'}
+cat(dbinom(x = 3, size = 10, prob = 0.1))
 ```
 
-For obtaining different 0, 1, 2, 3 and 4 successful outcomes (left handed people) (assuming each have same frequency of occurance (10%) in the population), binomial density function approximation could be used as follows:
+For obtaining different 0, 1, 2, 3 and 4 successful outcomes (left handed people) (assuming each have same frequency of occurance (10%) in the population), binomial density function approximation could be used. Corresponding probabilities for given set of successes are as follows:
 
 ```{r}
 dbin_df <- tibble(selection_of = 0:4, probability = dbinom(x = c(0:4), size = 10, prob = 0.1))
@@ -396,69 +800,30 @@ dbin_df %>%
 
 We could plot our probabilities for each values upto all 10 people being left-handed:
 
-```{r}
+```{r dbinom-graph-right-left-hand, fig.cap="Probability of respective number of individuals among 10 people being left handed", fig.width=4, out.width="48%"}
 ggplot(data = dbin_df, aes(x = selection_of, y = probability)) +
   geom_col() +
   labs(y = "P(X = Number of people being selected)", 
        x = "Number of people being selected", 
-       title = "Binomial PMF")
+       title = "Binomial PMF") +
+  theme_light()
 ```
 
 We can see there is almost negligible chance of getting more than 6 left-handed people in a random group of 10 people.
 
 The probability of obtaining either 0, 1, 2, 3 **or** 4 successes (left handed people) (it can be restated as: the probability of having less than 4 successes) in a random selection of 10 people, can be obtained by summing over the binomial density vector.
 
-```{r}
-sum(dbinom(x = c(0:4), size = 10, prob = 0.1))
+```{r dbinom-combined-probability, results='asis'}
+cat(sum(dbinom(x = c(0:4), size = 10, prob = 0.1)))
 ```
 
 This is same as calculating cumulative probability density using `pbinom` function.
 
-```{r}
-pbinom(q = 4, size = 10, prob = 0.1, lower.tail = TRUE)
+```{r dbinom-combined-using-pbinom, results='asis'}
+cat(pbinom(q = 4, size = 10, prob = 0.1, lower.tail = TRUE))
 ```
 
 The quantile is defined as the smallest value x such that $F(x) \geq p$, where F is the distribution function.
-
-**Numerical problem 2**
-
-On an American roulette wheel there are 38 squares:
-
-- 18 black
-- 18 red
-- 2 green
-
-We bet on black 5 times in a row, what are the chances of winning more than half of these ?
-
-The problem can be formulated as:
-
-$$
-P(X > 5) = \sum{}^{10}_{i = 6}\binom{10}{i}\left( \frac{18}{38} \right)^i\left(1- \frac{18}{38} \right)^{n-i}
-$$
-
-The probability value can be obtained by following r expression:
-
-```{r}
-p <- 18/38
-
-pbinom(10, 10, p) - pbinom(5, 10, p)
-```
-
-### Simulating bernoulli trial
-
-We can generate a sequence of 20 Bernoulli trials -- random successes or failures. We use TRUE to signify a success and FALSE otherwise.
-
-R could implement the simulation via `sample` function. By default, sample will choose equally among the set elements and so the probability of selecting either TRUE or FALSE is 0.5. With a Bernoulli trial, the probability p of success is not necessarily 0.5. You can bias the sample by using the prob argument of sample; this argument is a vector of probabilities, one for each set element. Suppose we want to generate 20 Bernoulli trials with a probability of success p = 0.8. We set the probability of FALSE to be 0.2 and the probability of TRUE to 0.8.
-
-```{r}
-sample(c(FALSE, TRUE), 20, replace = TRUE, prob = c(0.2, 0.8))
-```
-
-The resulting sequence is clearly biased towards TRUE. This special case of a binary-valued sequence can be simulated using another built-in function `rbinom`, the random generator for binomial variates.
-
-```{r}
-as.logical(rbinom(20, 1, 0.8))
-```
 
 ### Exact binomial test
 
@@ -470,8 +835,8 @@ In an experiment to determine if this assumption is reasonable, a cross results 
 
 If "giant" is taken as success, the null hypothesis is that $p = \frac{3}{4}$ and the alternative that $p!= \frac{3}{4}$.
 
-```{r}
-binom.test(c(682, 243), p = 3/4)
+```{r exact-binom-test, results='asis'}
+print(binom.test(c(682, 243), p = 3/4))
 # binom.test(682, 682 + 243, p = 3/4)   # The same.
 ```
 
@@ -479,20 +844,26 @@ Data are in agreement with the null hypothesis.
 
 Assuming data of P(probability values) and V(observation values) for a discrete probability distribution. Calculation of mean and variances of discrete probability distribution can be done as follows:
 
-```{r}
+```{r discrete-probability-distribution-mean-variance, results='asis'}
 probability_data <- tibble(probability = c(0.301, 0.176, 0.125, 0.097, 0.079, 0.067, 0.058, 0.051, 0.046),
        values = seq(1:9))
+
+probability_data %>% 
+  knitr::kable(booktabs = TRUE, caption = "A series of discrete probability distribution with binomial outcomes", longtable = TRUE) %>% 
+  kableExtra::kable_styling(latex_options = "striped")
 
 # the mean, variance and sd of a discrete probability distribution
 probability_data %>% 
   summarise(probability_sum = sum(values*probability), 
             probability_variance = sum(probability*(values-mean(values))^2), 
-            probability_sd = sqrt(probability_variance))
+            probability_sd = sqrt(probability_variance)) %>% 
+  knitr::kable(booktabs = TRUE, caption = "Mean, variance and sd of a discrete probability distribution", longtable = TRUE) %>% 
+  kableExtra::kable_styling(latex_options = "striped")
 ```
 
 Let's make use of dataset about sales of car on a saturday by a car-salesman.
 
-```{r}
+```{r saturday-sales, results="asis"}
 saturday_sales <- tribble(
   ~numsold, ~prob,
   0, 0.60,
@@ -503,43 +874,44 @@ saturday_sales <- tribble(
   5, 0.02
 )
 
+saturday_sales %>% 
+  knitr::kable(booktabs = TRUE)
+
 mu <- sum(saturday_sales$numsold * saturday_sales$prob)
-mu
+cat("Mean: ", mu)
 variance <- sum((saturday_sales$numsold-mu)^2 * saturday_sales$prob)
-variance
+cat("Variance: ", variance)
 
 tibble(numsold = saturday_sales$numsold, 
-       probability = (dbinom(saturday_sales$numsold, size = 5, prob = .5)))
+       probability = (dbinom(saturday_sales$numsold, size = 5, prob = .5))) %>% 
+  knitr::kable(booktabs = TRUE, caption = "Probability densities for respective number of sales on a saturday given a total of five sales each with binomial outcome of success (sold) or failure (not-sold) equal to 0.5") %>% 
+  kableExtra::kable_styling(latex_options = "striped")
 ```
 
-Probability of exactly 8 successes out of 10 times
+Probability of exactly 8 successes out of 10 times = `r dbinom(8, size = 10, prob = 0.76)`
 
-```{r}
-dbinom(8, size = 10, prob = 0.76)
-```
+Probability of successes 6 times or less = `r sum(dbinom(c(1:6), size = 10, prob = 0.76))`.
 
-Probability of successes 6 times or less.
+<!-- ```{r} -->
+<!-- # pbinom(6, 10, 0.76) # same -->
+<!-- ``` -->
 
-Question: why is the probability of success 6 times or less is smaller than individual probabilities? $\longrightarrow$ Because individual probability of success is high i.e., 0.76)
+Question: why is the probability of success 6 times or less is smaller than individual probabilities?
 
-```{r}
-sum(dbinom(c(1:6), size = 10, prob = 0.76))
-# pbinom(6, 10, 0.76) # same
-```
+$\longrightarrow$ Because individual probability of success is high i.e., 0.76)
 
-Generate 100 sample of successes in times out of 10 trials with given probability of success
+<!-- Generate 100 sample of successes in times out of 10 trials with given probability of success -->
 
-```{r}
-randombinom <- rbinom(100, 10, 0.76)
-```
+<!-- ```{r} -->
+<!-- randombinom <- rbinom(100, 10, 0.76) -->
+<!-- ``` -->
 
-Having confidence limits below, we can say with 95% confidence that out of 10 trials between "lower confidence limit" successes and "uper confidence limit" successes will occur.
+<!-- Having confidence limits below, we can say with 95% confidence that out of 10 trials between "lower confidence limit" successes and "uper confidence limit" successes will occur. -->
 
-```{r}
-quantile(randombinom, 0.025)# lower limit
-quantile(randombinom, 0.975)# upper limit
-```
-
+<!-- ```{r} -->
+<!-- quantile(randombinom, 0.025)# lower limit -->
+<!-- quantile(randombinom, 0.975)# upper limit -->
+<!-- ``` -->
 
 ### Binomial distribution
 
@@ -687,29 +1059,34 @@ The average number of goals in a World Cup football match is 2.5.
 
 Probability of 4 goals in a match can be calculated as:
 
-```{r}
+$$
+e^{-\lambda} \frac{\lambda^k}{k!} = e^{-2.5} \times \frac{2.5^4}{4!}
+$$
+
+```{r poisson-numerical, results='asis'}
 lambda = 2.5
 k = 4
 
-exp(-lambda)*lambda^k/factorial(k)
+cat(exp(-lambda)*lambda^k/factorial(k))
 ```
 
-This can be accomplished using built-in function
+<!-- This can be accomplished using built-in function -->
 
-```{r}
-dpois(4, 2.5)
-```
+<!-- ```{r} -->
+<!-- dpois(4, 2.5) -->
+<!-- ``` -->
 
-Find probabilities of occurance of 1:10 goals and plot the poisson probability distribution
+Find probabilities of occurrence of 1:10 goals and plot the poisson probability distribution
 
-```{r poisson-probability-distribution, fig.align='center'}
+```{r poisson-probability-distribution, fig.align='center', fig.cap="Probability of occurance of 1 through 10 goals given average goal of a match is 2.5.", fig.width=4, fig.height=2, out.width="45%"}
 dpo_df <- tibble(goals = 1:10, probability = dpois(1:10, 2.5))
 
 ggplot(data = dpo_df, aes(x = goals, y = probability)) +
   geom_col() +
   labs(y = "P(X = Number of goals)", 
        x = "Number of goals", 
-       title = "Poisson PMF")
+       title = "Poisson PMF") +
+  theme_bw()
 ```
 
 
@@ -736,9 +1113,39 @@ Since the second data set has lesser coefficient of variation, it is more consis
 
 ## Replication
 
+Replication is the repetition of experimental conditions so that the effects of interest can be estimated with greater precision and the associated variability can be estimated.
+
+Experiments make use of replication when they contain multiple trials that are executed under circumstances that are nominally identical. The word "nominally" refers to the degree of experimental control that can actually be exerted in the study. Within this degree of attainable control, replication effectively reduces the random variation or noise in the comparisons examined in the analysis, and provides an opportunity to estimate the typical size of this random component in individual measurements.
+
+There is a difference between "replication" and "repeated measurements." For example, suppose four subjects are each assigned to a drug and a measurement is taken on each subject. The result is four independent observations on the drug. This is "replication." On the other hand, if one subject is assigned to a drug and then measured four times, the measurements are not independent. We call them "repeated measurements." The variation recorded in repeated measurements taken at the same time reflects the variation in the measurement process, while the variation recorded in repeated measurements taken over a time interval reflects the variation in the single subject’s response to the drug over time.
+
+## Blocking 
+
+If a potential source of systematic variation is known, the experiment can sometimes be designed in blocks to minimize its effect.
+ 
+Experiment involves the application of treatments to experimental units to assess the effects of the treatments on some response. The "experimental units," which may be subjects, materials, conditions, points in time, or some combination of these, will be variable and induce variation in the response. Such variation in experimental units may be intentional, as the experimental conditions under which an experiment is run should be representative of those to which the conclusions of the experiment are to be applied. For inferences to be broad in scope, the experimental conditions should be appropriately varied. Blocking is a technique that can often be used to control and adjust for some of the variation in experimental units.
+
+Block an experiment involves dividing, or partitioning, the experimental units into groups called blocks in such a way that the experimental units in each block are intended to be relatively similar, so that treatments assigned to experimental units in the same block can be compared under relatively similar experimental conditions.
+
 ## Randomization
 
-## Local control
+The purpose of randomization is to prevent *systematic and personal biases* from being introduced into the experiment by the experimenter. A random assignment of subjects or experimental material to treatments prior to the start of the experiment ensures that observations that are favored or adversely affected by unknown sources of variation are observations "selected in the luck of the draw" and not systematically selected.
+
+Lack of a random assignment of experimental material or subjects leaves the experimental procedure open to experimenter bias. For example, a horticulturist may assign his or her favorite variety of experimental crop to the parts of the field that look the most fertile, or a medical practitioner may assign his or her preferred drug to the patients most likely to respond well. The preferred variety or drug may then appear to give better results no matter how good or bad it actually is.
+
+To understand the meaning of randomization, consider an experiment to compare the effects on blood pressure of three exercise programs, where each program is observed four times, giving a total of 12 observations. Now, given 12 subjects, imagine making a list of all possible assignments of the 12 subjects to the three exercise programs so that 4 subjects are assigned to each program. (There are $\frac{12!}{(4!4!4!)}$, or 34,650 ways to do this.) If the assignment of subjects to programs is done in such a way that every possible assignment has the same chance of occurring, then the assignment is said to be a completely random assignment.
+
+The most frequently used objective mechanism for achieving a random assignment in experimental design is a random number generator or a random number table. A random number generator is a computer program that gives as output a very long string of digits that are integers between 0 and 9 inclusive and that have the following properties. All integers between 0 and 9 occur approximately the same number of times, as do all pairs of integers, all triples, and so on. Furthermore, there is no discernible pattern in the string of digits, and hence the name "random" numbers.
+
+The most common random number generators on computers or calculators generate n-digit real numbers between zero and one. Single digit random numbers can be obtained from an n-digit real number by reading the first digit after the decimal point. Pairs of digits can be obtained by reading the first two digits after the decimal point, and so on.
+
+## Comparison and local control
+
+Experiments are controlled as carefully as possible so as to isolate the differences between the treatments of interest, and to minimize extraneous variability so as to enable the sharpest possible statistical analyses (e.g., narrow confidence intervals or powerful tests). In many instances, this high degree of control means that the data collected are actually representative of only a very special situation, reflecting the particular laboratory procedures, batch of experimental material, et cetera, used in the performance of the experiment. As a result, meaningful inferences usually need to be based on comparisons within an experiment, with the idea that anything unusual, but common, to all trials in the experiment will "cancel out" in the analysis.
+
+This emphasis on comparison often leads to the inclusion of one or more experimental controls, or simply controls, in the experimental plan. For example, in addition to the four carefully defined "experimental treatments", in an experiment evaluating pipeline varieties, one or two "locally adapted" cultivars are included so as to provide a comparison to what might have happened in a "normal" scenario or how would the "local check" perform in controlled experimental conditions.
+
+A large difference between responses form these treatment and "checks" could indicate unanticipated influences of the experimental procedure _per se_; a small or negligible difference might be viewed as support for the investigators' intent that "checks" are a reasonable representation for genotypes suited to the target environment. In an experiment involving the growth of cell cultures in response to hormone exposure, the control might consist of cultures grown without the addition of any hormones, while the more interesting cultures would be grown in the presence of one or more hormones at specified concentrations. Control and comparison are two experimental devices used to reduce sources of variability that are uninteresting or irrelevant in the context of the questions being asked.
 
 ## One way analysis of variance (Completely randomized design)
 
@@ -807,7 +1214,8 @@ tribble(
   "Treatments", "$t-1$", "$r \\sum_i (\\bar{y}_i - \\bar{y})^2 = SS(T)$", "$MS(T) = \\frac{SS(T)}{(t-1)}$", "$\\sigma_e^2 + \\frac{r}{t-1} \\sum_{i = 1}^t \\tau_i^2$", 
   "Error", "$t(r-1)$", "$\\sum_{i,j} (y_{ij} - \\bar{y}_i)^2 = SS(E)$", "$MS(E) = \\frac{SS(E)}{t(r-1)}$", "$\\sigma_e^2$"
 ) %>% 
-  knitr::kable(escape = FALSE, booktabs = TRUE)
+  knitr::kable(escape = FALSE, booktabs = TRUE) %>% 
+  kableExtra::column_spec(1:5, width = c("6em", "5em", "8em", "6em", "8em"))
 ```
 
 
@@ -829,28 +1237,25 @@ tribble(
   "Treatments x Blocks (experimental error)", "$(v-1)(r-1)$", "SSBT", "MSBT", "$\\sigma_s^2 + n \\sigma_e^2$", 
   "Sampling error", "$rv(n-1)$", "SSSE", "MSSE", "$\\sigma_s^2$"
 ) %>% 
-  knitr::kable(escape = FALSE, booktabs = TRUE)
+  knitr::kable(escape = FALSE, booktabs = TRUE, caption = "ANOVA table for RCB designs") %>% 
+  kableExtra::column_spec(column = 1:5, width = c("6em", "5em", "5em", "5em", "8em"))
 ```
 
 The sum of squares due to different components of ANOVA can be obtained as follows:
 
 Form a $r \times v$ two-way table between blocks and treatments, each cell figure being the total overall samples from a plot.
 
-```{r}
+```{r two-way-block-treatment}
 tribble(
   ~"Blocks", ~"1", ~"2", ~"i", ~"v", ~"Block totals",
-  "1", "$T_{11}$", "$T_{21}$", "$T_{i1}$", "$T_{v1}$", "B_{.1}", 
-  "2", "$T_{12}$", "$T_{22}$", "$T_{i2}$", "$T_{v2}$", "B_{.2}", 
+  "1", "$T_{11}$", "$T_{21}$", "$T_{i1}$", "$T_{v1}$", "$B_{.1}$", 
+  "2", "$T_{12}$", "$T_{22}$", "$T_{i2}$", "$T_{v2}$", "$B_{.2}$", 
   ".", ".", ".", ".", ".", ".", 
-  "j", "$T_{1j}$", "$T_{2j}$", "$T_{ij}$", "$T_{vj}$", "B_{.j}", 
+  "j", "$T_{1j}$", "$T_{2j}$", "$T_{ij}$", "$T_{vj}$", "$B_{.j}$", 
   ".", ".", ".", ".", ".", ".", 
-  "r", "$T_{1r}$", "$T_{2r}$", "$T_{ir}$", "$T_{vr}$", "B_{.r}", 
+  "r", "$T_{1r}$", "$T_{2r}$", "$T_{ir}$", "$T_{vr}$", "$B_{.r}$", 
 ) %>% 
-  gt::gt() %>%
-    gt::tab_spanner(
-    label = "Treatments",
-    columns = c("1", "2", i, v), gather = T
-  )
+  knitr::kable(booktabs = TRUE, caption = "Two way tabulation of block and treatment observations.", escape = FALSE)
 
 ```
 
@@ -921,5 +1326,78 @@ For any given $r$ and $p(D)$, there will be $t$ values for $n$ corresponding to 
 For an example to accompany theory of analyzing RCB design, refer to http://apps.iasri.res.in/ebook/EBADAT/2-Basic%20Statistical%20Techniques/22-plotsamp-final.pdf .
 
 ## Three way analysis of variance (Latin square design)
+
+## Split plot design
+
+Design was developed and first used for agricultural, mainly agronomic experiments.
+
+When we have two treatment factors A and B, with levels $a_1, a_2, ..., a_a$ and $b_1, b_2, ..., b_b$, respectively. Factor A is referred to as the whole-plot-factor and the EUs to which the levels of A are applied are the whole-plots. Factor B is the split-plot factor and the EUs to which the level of B are applied are the split-plots, each whole-plot having b split-plots as illustrated below for b = 4
+
+```{r split-plot-component, fig.width=4, fig.height=0.5, out.width="40%"}
+b <- 4
+crossing(whole_plot = 1, split_plots = 1:4) %>% 
+  mutate_all(function(x)as_factor(x)) %>% 
+  ggplot(aes(x = split_plots, y = whole_plot)) +
+  geom_tile(aes(fill = split_plots), size=1.5, stat="identity", 
+            show.legend = FALSE) +
+  scale_fill_discrete(c = 90, l = 95) +
+  geom_text(aes(split_plots, whole_plot, label = split_plots), 
+              color="black", size=rel(4.5)) +
+  theme_bw() +
+  labs(x = "Split plots", y = "Main plot") +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank())
+```
+
+A replicate consists then of one application of each level $a_1, a_2, ..., a_a$ and within each of the $a$ whole-plots of one application of each level $b_1, b_2, ..., b_b$. And the design consists then of r such replications.
+
+It is useful to think of this arrangement as superimposing one RCBD on top of another RCBD. For the first RCBD, involving the whole-plots and the whole-plot factor, we have
+
+$$
+\mathrm{RCBD_A}: t = a, \text{number of blocks} = r
+$$
+and for the second RCBD, involving the split-plots and split-plot factor, we have
+
+$$
+\mathrm{RCBD_B}: t = b, \text{number of blocks} = ra
+$$
+This brings out the fact that two independent randomizations are being used.
+
+Assuming no replicate x B interaction (since we are assuming unit-treatment additivity), we then have the complete partitioning of the d.f. as given in the ANOVA of Table \ref{tab:anova-split-plot}.
+
+```{r anova-split-plot}
+
+# to add: E(MS)
+tribble(
+  ~Source, ~df,  ~ SS, 
+  "Replicates", "$(r-1)$", "$ab \\sum_i{(\\bar{y}_{i..} - \\bar{y})^2} = SS(R)$",
+  "A-factor", "$(a-1)$", "$rb \\sum_j{(\\bar{y}_{.j.} - \\bar{y})^2} = SS(A)$",
+  "Error (A)", "$(r-1)(a-1)$", "$b \\sum_{i, j}{(\\bar{y}_{ij.}- \\bar{y}_{i..}- \\bar{y}_{.j.}+ \\bar{y}_{...})^2} = SS(E_A)$",
+  "B-factor", "$(b-1)$", "$ra \\sum_k{(\\bar{y}_{..k} - \\bar{y}_{...})^2} = SS(B)$",
+  "A x B", "$(a-1)(b-1)$", "$r \\sum_{j, k}{(\\bar{y}_{.jk}- \\bar{y}_{.j.}- \\bar{y}_{..k}+ \\bar{y}_{...})^2} = SS(A \\times B)$",
+  "Error(B)", "$(r-1)a(b-1)$", "$\\sum_{ijk}{(y_{ijk} - \\bar{y}_{ij.} - \\bar{y}_{.jk} + \\bar{y}_{.j.})^2} = SS(E_B)$",
+  "Total", "$rab-1$", "$\\sum_{i,j,k}{(y_{ijk} - \\bar{y}_{...})^2}$"
+) %>% 
+  knitr::kable(booktabs = TRUE, escape = FALSE, caption = "ANOVA table for Split plot designs")
+```
+
+## Split-split-plot design
+
+For a 5 x 3 x 3 factorial design, replicated 3 times, ANOVA of split-split-plot is shown in Table \ref{tab:anova-split-split-plot}.
+
+
+```{r anova-split-split-plot}
+
+# incomplete...complete from note copy
+tribble(
+  ~"Source of variation", ~"df", ~"SS", ~"MSS",
+  "Mainplot", NA, NA, NA,
+  "Replication (R)", "$(r-1) = 3-1 = 2$", NA, NA,
+  "Main-plot factor (A)", "$(a-1) = 3-1 = 2$", NA, NA,
+) %>% 
+  knitr::kable(booktabs = TRUE, caption = "ANOVA table for split split plot designs", escape = FALSE)
+
+```
+
 
 ## Factorial experiments
