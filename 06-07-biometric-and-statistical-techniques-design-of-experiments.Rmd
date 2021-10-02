@@ -219,11 +219,44 @@ $$
 
 #### Narrow sense heritability
 
-- A more useful form of heritability for plant breeders, therefore, is *narrow-sense heritability* ( $h_n^2$), which is:
+The ratio of additive genetic variance to total phenotypic variance is called the narrow-sense heritability.
 
 $$
-h_n^2 = \frac{V_A}{V_A+V_D+V_E}
-\tag{ii}
+h_n^2 = \frac{\frac{1}{2}V_A}{\frac{1}{2}V_A + \frac{1}{4}V_D + \sigma_E^2}
+\tag{v}
+$$
+
+In order to estimate $h_n^2$, it is therefore necessary to partition the genetic variance into its two components ($V_A$ and $V_D$). This is done by considering the phenotypic variance of the two backcross families ($\sigma_{\bar{B_1}}^2$ and $\sigma_{\bar{B_2}}^2$).
+
+The expected variances of $\sigma_{\bar{B_1}}^2$ and $\sigma_{\bar{B_2}}^2$ are:
+
+$$
+\begin{aligned}
+\sigma_{\bar{B_1}}^2 = \frac{1}{4}V_A + \frac{1}{4}V_D - \frac{1}{2}\left[\sum(a)\times\sum(d)\right] + \sigma_E^2 \\
+\sigma_{\bar{B_2}}^2 = \frac{1}{4}V_A + \frac{1}{4}V_D + \frac{1}{2}\left[\sum(a)\times\sum(d)\right] + \sigma_E^2
+\end{aligned}
+$$
+Note the sign before expression $\frac{1}{2}\left[\sum(a)\times\sum(d)\right]$. Adding together the equations,
+
+$$
+\sigma_{\bar{B_1}}^2 + \sigma_{\bar{B_2}}^2 = \frac{1}{2}V_A + \frac{1}{2}V_D + 2\sigma_E^2
+\tag{vi}
+$$
+
+From the relationship we addressed earlier of $\sigma_{\bar{F_2}}^2$ in terms of variance components, provided that numerical values for $\sigma_{\bar{B_1}}^2$ and $\sigma_{\bar{B_2}}^2$ can be estimated, we have sufficient information to calculate both $V_A$ and $V_D$, and hence the $h_n^2$.
+
+$$
+\begin{aligned}
+\sigma_{\bar{B_1}}^2 + \sigma_{\bar{B_2}}^2 - \sigma_{\bar{F_2}}^2 &= \frac{1}{2}V_A + \frac{1}{2}V_D + 2\sigma_E^2 - \left(\frac{1}{2}V_A + \frac{1}{4}V_D + \sigma_E^2\right) \\
+&= \frac{1}{4}V_D + \sigma_E^2
+\end{aligned}
+$$
+
+Therefore,
+
+$$
+V_D = 4\left(\sigma_{\bar{B_1}}^2 + \sigma_{\bar{B_2}}^2 - \sigma_{\bar{F_2}}^2 - \sigma_E^2 \right)
+\tag{vii}
 $$
 
 ### Variance partitioning of filial generation
@@ -582,6 +615,144 @@ Combining, we have the relation
 
 $$\hat \beta_1 = \frac {\hat \sigma_y}{\hat \sigma_x}r$$
 
+## Response to selection
+
+- Selection entails discriminating among genetic variation to identify and choose a number of individuals to establish the next generation.
+- This results in differential reproduction of genotypes, i.e. those that are selected have chance to increase their gene frequencies.
+- Subsequently, the genotypic and phenotypic values of the targeted traits also improve.
+- By selecting and advancing superior individuals (with high genetic potential) from a mixed population, the breeder aims to change population mean of the trait in a positive way in the next generation.
+
+The difference between the mean phenotypic value of the offspring of the selected parents and the whole of the parental generation before selection. 
+
+- Response to selection is related to heritability by the following equation (**Breeder's equation**):
+
+$$
+R = \Delta G = h^2 S
+$$
+
+### Selection differenatial (S)
+
+The selection differential (S) is the mean phenotypic value of the individuals selected as parents expressed as a deviation from the population mean (i.e., from the mean phenotypic value of all the individuals in the parental generation before selection). 
+
+$$
+S = X_s - X_o = i \sigma
+$$
+
+- The genetic advance achieved through selection depends on three factors:
+
+  1. The total variation (phenotypic) in the population in which selection will be conducted.
+  2. Heritability of the target trait.
+  3. Selection pressure to be imposed by the plant breeder (i.e., the proportion of the population that is selected for the next generation).
+- For desirable gain from selection
+  - Phenotypic variance should be large and clearly distinguishable
+  - Heritability of the selected phenotype should be high
+  - Selection pressure should be optimal.
+- In principle, the prediction of response is valid for only one generation of selection. - To predict the response in subsequent generations, heritabilities must be determined in each generation. Heritabilities are expected to change from one generation to the next because, if there is a response, it must be accompanied by change in gene frequencies on which heritability depends.
+- Also, selection of parents tends to reduce phenotypic variance especially in early generations.
+
+```{r response-to-selection, fig.cap="Genetic gain or genetic advance from selection indicates the progress plant breeders make from one generation to another based on the selection decisions they make.", out.width="45%", fig.align='center'}
+knitr::include_graphics("./images/response_to_selection.png")
+```
+
+Selection will only be successful if there is sufficient phenotypic variation and if at least some of this variation is genetic in origin. Response to selection is related to heritability.
+
+$$
+X_1 - X_{n-1} = R = i\sigma h^2
+$$
+
+Where, $X_1$ is the mean phenotype of progenies obtained from breeding of selected genotypes, $X_{n-1}$ is the mean phenotype of the base population, R is the advance as a result of one round of selection, $h^2$ is the heritability (narrow sense for sexually reproducing species, or broad sense for clonally or apomictic breeding crops), $\sigma$ is the phenotypic standard deviation of the whole population, and $i$ is the intensity of selection.
+
+The intensity of selection is related to the proportion (or percentage) of the population that is selected (k), and takes the values:
+
+```{r}
+knitr::kable(tibble::tribble(
+  ~"proportion selected($k$)", ~"$i$",
+  0.01, 2.665,
+  0.05, 2.063,
+  0.10, 1.755,
+  0.20, 1.400
+)
+  , caption = "This is first of mtcars table",
+             booktabs = TRUE, format = "latex", escape = FALSE) %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"))
+```
+
+In cases where the initial population is large (i.e. greater than 50 genotypes) and the proportion of genotypes selected is less than 20%, then the following equation can provide an estimate of $i$.
+
+$$
+i = 0.77 + \left(0.96 \times log\left(\frac{1}{k}\right)\right)
+$$
+
+It can be seen that there is not a linear relationship between higher selection rates (k) and greater response to the selection applied. Retaining 10% of the selected population results in an intensity of selection value of 1.755, while retaining only 1% (i.e. a 10 fold reduction in selections) results in an intensity of selection value fo only 1.52 times larger (i.e., $i = 2.665$).
+
+### Problem 1
+
+In a random mating population, the mean plant height and variance are 120 cm and 121 $cm^2$ respectively. A plant breeder selected the top 5% plants from the base population and found mean plant height 110 cm in the next generation. Find the genetic gain, selection differential and the heritability of this trait.
+
+\underline{Numerical}
+
+$\longrightarrow$
+
+Given,
+
+Mean ($X_0$) = `r (X0 = 120)`
+
+Variation ($\sigma^2$) = `r (sigma_sq = 121)`
+
+Mean of next (progeny) generation ($X_p$) = `r (Xp = 110)`
+
+Selection intensity ($k$) = `r (k = 0.05)`
+
+Here, 
+
+Response to selection (a.k.a. Genetic gain; R) = `r (Xp-X0)` ($\because$ height has decreased in progeny, the gain is negative in value).
+
+Selection differential (S) = $-\sigma i$ = $\sqrt{121} \times 2.06$ = `r -(sqrt(sigma_sq)*2.06)` ($\because$ selection has reduced the mean phenotype, selection differential is expressed as negative in value).
+
+To estimate heritability ($h^2$), we have:
+
+\begin{align}
+R &= i \sigma h^{2} \notag \\
+|110-120|  &= \sqrt{121} \times 2.06 h^{2} \notag \\
+h^2 &= \frac{10}{2.06 \times 11} \notag \\
+  &= 0.44 \notag
+\end{align}
+
+### Problem 2
+
+For a quantitative trait in RMP, mean is 100 and variation is 240. The regression of the offspring on mid-parent value is 0.25. Truncation selection is practiced with a selection differential of 32. What is the expected mean in the next generation ?
+
+\underline{Numerical}
+
+$\longrightarrow$
+
+Given,
+
+Mean ($X_0$) = `r (X0 = 100)`
+
+Variation ($\sigma^2$) = `r (sigma_sq = 240)`
+
+Regression of offspring on mid-parent value ($b$) = `r (b = 0.25)`
+
+Selection differential ($X_s - X_0$) = `r (S = 32)`
+
+We know that the performance of a selected population after applying selection differential:
+
+\begin{align}
+S &= \sqrt{\sigma^2} i \notag \\
+  &= \sqrt{240} i \notag \\
+i &= \frac{S}{\sqrt{240}} \notag
+\end{align}
+
+Thus, $\rightarrow$ $i$ = `r (S/sqrt(sigma_sq))`. And we know that $b = h^2_{ns}$, so:
+
+$\rightarrow$ $R = \sigma i h^2$ = `r (R = sqrt(sigma_sq)*S/sqrt(sigma_sq)*b)`
+
+Hence, the expected mean of next (progeny) generation ($P$) = $X_0 + \sigma i h^2$ = `r (X0 + R)`.
+
+## Mating designs and estimation of combining ability
+
+(refer to tufte handout on Crossing Plans, generated for Plant Breeding course.)
 
 ## Binomial expansion
 
@@ -884,7 +1055,7 @@ saturday_sales %>%
 
 mu <- sum(saturday_sales$numsold * saturday_sales$prob)
 cat("Mean: ", mu)
-cat("\\n")
+cat("\n")
 variance <- sum((saturday_sales$numsold-mu)^2 * saturday_sales$prob)
 cat("Variance: ", variance)
 
@@ -1130,7 +1301,9 @@ There is a difference between "replication" and "repeated measurements." For exa
 
 If a potential source of systematic variation is known, the experiment can sometimes be designed in blocks to minimize its effect.
  
-Experiment involves the application of treatments to experimental units to assess the effects of the treatments on some response. The "experimental units," which may be subjects, materials, conditions, points in time, or some combination of these, will be variable and induce variation in the response. Such variation in experimental units may be intentional, as the experimental conditions under which an experiment is run should be representative of those to which the conclusions of the experiment are to be applied. For inferences to be broad in scope, the experimental conditions should be appropriately varied. Blocking is a technique that can often be used to control and adjust for some of the variation in experimental units.
+Experiment involves the application of treatments to experimental units to assess the effects of the treatments on some response. The "experimental units," which may be subjects, materials, conditions, points in time, or some combination of these, will be variable and induce variation in the response. Such variation in experimental units may be intentional, as the experimental conditions under which an experiment is run should be representative of those to which the conclusions of the experiment are to be applied. For inferences to be broad in scope, the experimental conditions should be appropriately varied. In this regard, blocking mainly serves two purpose: 
+- Control and adjust for some of the variation in experimental units, hence increase the precision by grouping together a set of experimental units that are more or less homogeneous.
+- Increase convenience, to allow different sizes of experimental units, link an insurance policy against disturbances that may or may not arise during the course of an experiment.
 
 Block an experiment involves dividing, or partitioning, the experimental units into groups called blocks in such a way that the experimental units in each block are intended to be relatively similar, so that treatments assigned to experimental units in the same block can be compared under relatively similar experimental conditions.
 
@@ -1401,10 +1574,25 @@ tribble(
   "Mainplot", NA, NA, NA,
   "Replication (R)", "$(r-1) = 3-1 = 2$", NA, NA,
   "Main-plot factor (A)", "$(a-1) = 3-1 = 2$", NA, NA,
+  "Error (a)", "$(r-1)(a-1) = 8$", NA, NA,
+  "Subplot", NA, NA, NA,
+  "Subplot factor (B)", "$(b-1) = 2$", NA, NA,
+  "A x B", "$(a-1)(b-1) = 8$", NA, NA,
+  "Error(b)", "$a(r-1)(b-1) = 20$", NA, NA,
+  "Sub-sub plot", NA, NA, NA,
+  "Sub-sub plot factor (C)", "$(c-1) = 2$", NA, NA,
+  "A x C", "$(a-1)(c-1) = 8$", NA, NA,
+  "B x C", "$(b-1)(c-1) = 4$", NA, NA,
+  "A x B x C", "$(a-1)(b-1)(c-1) = 16$", NA, NA,
+  "Error (c)", "$ab(r-1)(c-1) = 60$", NA, NA,
+  "Total", "$rabc-1 = 134$", NA, NA
 ) %>% 
-  knitr::kable(booktabs = TRUE, caption = "ANOVA table for split split plot designs", escape = FALSE)
+  knitr::kable(booktabs = TRUE, caption = "ANOVA table for split split plot designs", escape = FALSE, longtable = TRUE) %>% 
+  kableExtra::kable_styling() %>% 
+  kableExtra::add_indent(c(2:4, 6:8, 10:14))
 
 ```
 
+(task: Figure out how to draw design! hint: agricolae contains a dataset and analysis function for `ssp.plot`).
 
 ## Factorial experiments

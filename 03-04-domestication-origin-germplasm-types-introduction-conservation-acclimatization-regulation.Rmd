@@ -133,6 +133,7 @@ A spectrum of different vegetables could be derived from the same wild progenito
 
 - *Secondary gene pool (GP2)* 
   - Members of this gene pool include both cultivated and wild relatives of the crop species. They are more distantly related and have crossability problems. Nonetheless, crossing produces hybrids and derivatives that are sufficiently fertile to allow gene flow. GP2 species can cross with those in GP1, with some fertility of the F1, but more difficulty with success.
+  - Example: _Glycine max_ x _Glycine tomentolla_
   
 - *Tertiary gene pool (GP3)*
   - GP3 involves the outer limits of potential genetic resources. Gene transfer by hybridization between GP1 and GP3 is very problematic, resulting in lethality, sterility, and other abnormalities. To exploit germplasm from distant relatives, tools such as embryo rescue and bridge crossing may be used to nurture an embryo from a wide cross to a full plant and to obtain fertile plants.
@@ -145,10 +146,46 @@ A spectrum of different vegetables could be derived from the same wild progenito
 
 ## Germplasm resources
 
-- Germplasm refers to the genetic material that can be used to perpetuate a species or population
+- Germplasm refers to the genetic material that can be used to perpetuate a species or population. It may be defined as the sum total heriditary material (all allele of all genes) present in a crop species and its wild relatives.
+- Germplasm may include seed or other plant organs such as leaf, stem, pollen, or cultured cells, which could be grown into mature plants.
 - Germplasm provides the material used to initiate a breeding program
 - Sometimes only germplasm screening and evaluation is practiced for introduction of improved variety in a region
 - Certain institutional sets-ups such as gene banks are charged with the responsibility of assembling, cataloguing, storing and managing large number of germplasm. This allows for quick retrieval.
+
+### Components
+
+1. Landraces
+
+- Are primitive varieties that evolved over centuries through both natural and artificial selection but without systematic plant breeding methods.
+- They are storehouse of genetic variability, souces of valuabel genes and adapted to the local soil and climatic condition.
+- Have low but stable yields.
+
+2. Obsolete varieties
+
+- Developed by systematic breeding efforts, once commercially cultivated but are not longer grown.
+
+3. Varieties in cultivation
+
+- Developed by systematic breeding, generally homozygous and genetically variable.
+- Source of genes like that for yield and quality, can be introduced into a new area and be directly released for cultivation.
+
+4. Breeding lines
+
+- They are lines/populations developed in breeding programs which contain valuable gene combinations.
+- Includes homozygous lines, mutant lines, lines derived from biotechnology programs and transgenic lines.
+- These lines usually have narrow genetic bases.
+
+5. Special genetic stocks
+
+- Includes those carrying gene mutations, chromosomal aberrations and marker genes, etc.
+- These are useful in genetic analysis and in breeding programs alike.
+- Obtained naturally or artificially.
+
+6. Wild forms and wild relatives
+
+- Wild forms are the wild species from which crop species were directly derived. They are easy to cross with concerned crop species.
+- Wild relatives are all other species which are related to the crop species by descent during their evolution. They are difficult to cross with concerned crops than wild forms.
+- Both groups are source of valuable genes for insect and disease resistance, tolerance to abiotic stresses like drought, cold, salinity and even quality traits and yield.
 
 ### Germplasm resources of Nepal
 
@@ -205,6 +242,15 @@ The plant breeder may import new, unadapted genotypes from outside the productio
 5. For scientific studies
 6. To augment aesthetics
 7. For germplasm collection and comparison
+
+**Procedure for plant introduction**
+
+1. Procurement
+2. Quarantine
+3. Cataloguing
+4. Evaluation
+6. Multiplication and distribution
+7. Utilization
 
 ### Plant export and import
 
@@ -289,6 +335,19 @@ Cells stay in completely inactive state. So, they can be conserved for long peri
 Germplasm can also be conserved as DNA segments cloned in a suitable vector like cosmids, plasmids or YACs (yeast artificial chromosomes). This is sophisticated, technically demanding and expensive. Threatened species can thus be conserved. Till date, there are no cases where DNA banks are being used as a replacement to traditional method of conservation. However, due to small sample size, this technique has promising potential for the storage of genetic information.
 
 It has become routine to extract DNA from the nuclei, mitochondria and chloroplasts. Derivatives like as RNA and cDNA are also being extracted. Technologies are available to allow all these to be stored quickly and at low cost in DNA banks as an insurance policy against loss of crop diversity. DNA storage allows genetic material for molecular applications. However, use of DNA in conservation is limited as whole plants cannot be directly reconstituted. The genetic material must be introduced through transgenic means. However, DNA banks have a potential future as new technologies develop day by day.
+
+## Genetic erosion
+
+- The gradual loss of variability from cultivated species and their wild relatives is called genetic erosion.
+- Variability in nature have arisen over an extremely long period of time. If it is allowed to be lost, it would be impossible to create it again during a short period.
+
+**Causes of genetic erosion**
+
+- Replacement of genetically variable land races (local varieties) by improved, genetically uniform pure line and hybrid varieties.
+- Crop management practices eliminating weedy form of crop species; selection against genetic diversity.
+- Extended farming and grazing into forests (extinction of many wild relatives of crops)
+- Development activities like construction of hydroelectric projects, roads, industrial areas, railways, buildings etc., have disrupted and displaced wild habitats.
+- Introduction of a pervasive weedy species, or cultivated species may contribute to genetic erosion.
 
 ## Acclimatization
 

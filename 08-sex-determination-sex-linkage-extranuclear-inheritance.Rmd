@@ -306,34 +306,31 @@ knitr::include_graphics("./images/maize_variegation.jpg")
 - Genetic (nuclear, genic) \male sterility is widespread in plants. The gene for sterility has been found in species including barley, cotton, soybean, tomato, potato, and lima bean. 
 - It is believed that nearly all diploid and polyploidy plant species have at least one \male sterility locus.
 - May be manifested as pollen abortion (pistillody) or abnormal anther development.
-- Genetic \male sterility is often conditioned by a single recessive nuclear gene, _ms_, the dominant allele, _Ms_, conditioning normal anther and pollen development. 
+- Genetic \male sterility is often conditioned by a single recessive nuclear gene, _ms_, the dominant allele, _Ms_, conditioning normal anther and pollen development (Figure \ref{fig:gms-use}). 
 - In alfalfa, however, two independently inherited genes have been reported
 - The expression of the gene may vary with the environment. But to be useful, the system must be stable
 
-
-```{r gms-use, fig.cap="Genetic \\male sterility as used in practical breeding", fig.align='center', out.width="35%"}
-# pdftools::pdf_convert("./../../references_plb/Principles of Plant Genetics and Breeding.pdf", pages = 118, format = "png", filenames = "./images/gms_use.png", dpi = 300)
-knitr::include_graphics("./images/gms_use.png")
-```
+<!-- ```{r gms-use, fig.cap="Genetic \\male sterility as used in practical breeding", fig.align='center', out.width="35%"} -->
+<!-- # pdftools::pdf_convert("./../../references_plb/Principles of Plant Genetics and Breeding.pdf", pages = 118, format = "png", filenames = "./images/gms_use.png", dpi = 300) -->
+<!-- knitr::include_graphics("./images/gms_use.png") -->
+<!-- ``` -->
 
 #### Cytoplasmic \male sterility
 
 - Sometimes, \male sterility is controlled by the cytoplasm (mitochondrial gene) but may be influenced by nuclear genes. 
-- A cytoplasm without sterility genes is described as normal (N) cytoplasm, while a cytoplasm that causes \male sterility is called a sterile ( _s_) cytoplasm or said to have cytoplasmic \male sterility (CMS).
+- A cytoplasm without sterility genes is described as normal (N) cytoplasm, while a cytoplasm that causes \male sterility is called a sterile ( _s_) cytoplasm or said to have cytoplasmic \male sterility (CMS) (Figure \ref{fig:cms-use}). 
 - Transmitted through the egg only (maternal factor).
 - Has been found in species including corn, sorghum, sugar beet, carrot, and flax. 
-- The condition has been induced in species such as sorghum by transferring nuclear chromosomes into a foreign cytoplasm. 
-- Has real advantages in breeding ornamental species because all the offspring is \male sterile, hence allowing them to remain fruitless.
+- The condition has been induced in species such as sorghum by transferring nuclear chromosomes into a foreign cytoplasm. - Has real advantages in breeding ornamental species because all the offspring is \male sterile, hence allowing them to remain fruitless.
 
 
-```{r cms-use, fig.cap="Cytoplasmic \\male sterility as applied in plant breeding (N, normal cytoplasm; s, sterile cytoplasm).", fig.align='center', out.width="40%"}
-# pdftools::pdf_convert("./../../references_plb/Plant Breeding, 2nd Edition (2014).pdf", pages = 76, format = "png", filenames = "./images/cms_use.png", dpi = 300)
-knitr::include_graphics("./images/cms_use.png")
-```
-
+<!-- ```{r cms-use, fig.cap="Cytoplasmic \\male sterility as applied in plant breeding (N, normal cytoplasm; s, sterile cytoplasm).", fig.align='center', out.width="40%"} -->
+<!-- # pdftools::pdf_convert("./../../references_plb/Plant Breeding, 2nd Edition (2014).pdf", pages = 76, format = "png", filenames = "./images/cms_use.png", dpi = 300) -->
+<!-- knitr::include_graphics("./images/cms_use.png") -->
+<!-- ``` -->
 
 - Hybrid seed production using CMS requires three types of genotypes;   
-- \male fertile lines (called *B* lines; maintained by selfing) with no cytoplasmic \male sterility genes and which are homozygous for a dominant restorer gene (i.e. normal ( _n_) cytoplasm, _RfRf_);
+- \male fertile lines (called *B* lines; maintained by selfing) with no cytoplasmic \male sterility genes and which are homozygous for a dominant restorer gene (i.e. normal ( _n_) cytoplasm, _RfRf_) (Figure \ref{fig:cgms-systems});
   - cytoplasmic sterile \female lines with \male sterile cytoplasm but with no restorer genes (called *A* lines; maintained by crossing with isogeneic cytoplasmic \male fertile line);
   - '\male-fertile' \female lines (called *A'* lines or *A'* maintainer
 lines; maintained by selfing) with normal cytoplasm and no restorer genes.
@@ -343,10 +340,10 @@ lines; maintained by selfing) with normal cytoplasm and no restorer genes.
 - Three kinds of progeny are possible following a cross, depending on the genotype of the pollen source. 
 - The resulting progenies assume that the fertility gene will be responsible for fertility restoration.
 
-```{r cgms-systems, fig.cap="The three systems of cytoplasmic genetic \\male sterility. The three factors involved in CMS are the normal cytoplasm (N), the \\male sterile cytoplasm (S), and the fertility restorer (Rf, rf).", fig.align='center', out.width="28%"}
-# pdftools::pdf_convert("./../../references_plb/Principles of Plant Genetics and Breeding.pdf", pages = 119, format = "png", filenames = "./images/cgms_systems.png", dpi = 300)
-knitr::include_graphics("./images/cgms_systems.png")
-```
+<!-- ```{r cgms-systems, fig.cap="The three systems of cytoplasmic genetic \\male sterility. The three factors involved in CMS are the normal cytoplasm (N), the \\male sterile cytoplasm (S), and the fertility restorer (Rf, rf).", fig.align='center', out.width="28%"} -->
+<!-- # pdftools::pdf_convert("./../../references_plb/Principles of Plant Genetics and Breeding.pdf", pages = 119, format = "png", filenames = "./images/cgms_systems.png", dpi = 300) -->
+<!-- knitr::include_graphics("./images/cgms_systems.png") -->
+<!-- ``` -->
 
 ### Maternal effects
 

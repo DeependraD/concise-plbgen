@@ -58,7 +58,7 @@ Both of these breeding methods depend upon the number of allele variants per loc
 
 4. Mutagenesis: Also known as ultimate source of biological variation, mutation may arise spontaneously in nature of as a result of errors in cellular process such as DNA replication (or duplication) and by chromosomal abberations (deletion, duplication, inversion and translocation). Mutations may too be induced artificially by using mutagenic agents: irradiation and chemicals. Commonly occuring mutations are those for dwarfing and nutritional quality. However, most mutations being deleterious in nature are selected against. Although, recessive mutations may remain hidden until much later, when they are expressed in homozygous combination.
 
-## Barriers to crossing and enforcing self and cross pollination enforcing mechanisms
+## Barriers to crossing and self and cross pollination enforcing mechanisms
 
 Q. What are the different factors that affect the amount of natural crossing or selfing ? Explain about the mechanisms that enforce self and cross pollination in field crops.
 
@@ -76,7 +76,7 @@ Mechanisms that prevent autogamy:
     1. Gametophytic incompatibility: Ability of the pollen to function is determined by its own genotype and not the plant that produces it.
     2. Sporophytic incompatibility: Incompatibility character of pollen are determined by plant (sporophyte) that produces it.
     
-    The self incompatibility mechanism promotes heterozygosity.
+The self incompatibility mechanism promotes heterozygosity.
     
 2. Male sterility: Anther or pollen are non-functional.
   1. Genetic (nuclear/genic): Barley, cotton, soybean, tomato, potato, etc. The system is under control of "ms" gene.
@@ -84,6 +84,283 @@ Mechanisms that prevent autogamy:
   3. Cytoplasmic genetic male sterility: Presence of "Rf" gene (nuclear) that overcomes cytoplasmic MS.
 
 3. Dichogamy: Maturing of pistils and stamens of a flower at differnt times. Reduces intensity of self pollination and fertilization. It includes protandry and protogyny.
+
+## Autogamy/Self-pollination
+
+- Mechanisms that promote autogamy
+  - Cleistogamy (flower fails to open)/Chasmogamy (opening of flower after pollination)
+  - Proximity of anther
+
+- Mechanisms that prevent autogamy
+  - Self incompatibility, male sterility and dichogamy
+
+## Self incompatibility (lack of self-fruitfulness)
+
+- A condition in which the pollen from a flower is not receptive on the stigma of the same flower, and hence incapable of setting seed. 
+- Both pollen and ovule development are normal and viable. 
+- It is caused by a genetically controlled physiological hindrance to self-fertilization.
+- Self incompatibility is widespread in nature, occurring in families such as Poaceae, Cruciferae, Compositae, and Rosaceae.
+- The incompatibility reaction is genetically conditioned by a locus designated *S*, with multiple alleles that can number over 100 in some species such as *Trifolium pretense*. 
+- Unlike monoecy and dioecy, all plants produce seed in self-incompatible species.
+- There are two well known systems:
+  - Homomorphic
+  - Heteromorphic
+
+### Heteromorphic
+
+- Caused by heterostyly
+- Pin (long styles and short anthers) and thrum (long anthers and short styles; e.g., primula)
+- Pin conditioned by genotype ss, and thrum by Ss.
+- Cross ss x ss as well as Ss x Ss is incompatible
+- But ss x Ss or SS x ss is compatible
+- The condition is called distyly
+
+### Homomorphic
+
+#### Gametophytic incompatibility (originally called the oppositional factor system)
+
+- The ability of the pollen to function is determined by its own genotype and not the plant that produces it.
+- This form of SI is more widespread (e.g. red clover, white clover and yellow sweet clover)
+- Controlled by a series of alleles at a single locus ( _S1_, _S2_, _S3_ ... _Sn_ )
+- The alleles of the incompatibility gene(s) act individually in the style.
+- Alleles exhibit no dominance
+- Incompatible pollen is inhibited in the style.
+- The pistil is diploid hence contains two incompatibility alleles (e.g., _S1_ _S3_, _S3_ _S4_). Reactions occur if identical alleles in both pollen and style are encountered. Only heterozygotes for _S_ alleles are produced in this system.
+
+#### Sporophytic incompatibility 
+
+- The incompatibility characteristics of the pollen are determined by the plant (sporophyte) that produces it.
+- It occurs in species such as broccoli, radish, and kale. 
+- The sporophytic system differs from the gametophytic system in that the _S_ allele exhibits dominance. 
+- Also, it may have individual action in both pollen and style, making this incompatibility system complex. 
+- The dominance is determined by the pollen parent. 
+- Incompatible pollen may be inhibited on the stigma surface. 
+- For example, a plant with genotype _S1_ _S2_ where _S1_ is dominant to _S2_, will produce pollen that will function like _S1_. Furthermore, _S1_ pollen will be rejected by an _S1_ style but received by an _S2_ style. Hence, homozygotes of _S_ alleles are possible.
+
+```{r si-comparison-reaction1, warning=FALSE, message=FALSE}
+incompatibility_systems <- read_csv("./data/incompatibility_systems.csv", comment = "#", 
+                                    skip = 5, show_col_types = FALSE)
+incompatibility_systems %>% 
+  relocate(`Female parent`, .before = 2) %>% 
+  rename_all(list(~str_replace_all(., "_", " "))) %>% 
+  knitr::kable(booktabs = TRUE, caption = "Incompatibility reactions of different mating combinations in a mono- and digenic cross.", longtable = TRUE) %>% 
+  kableExtra::kable_styling(font_size = 8) %>% 
+  kableExtra::column_spec(column = 4:9, width = c("4em", "6em", "8em",
+                                                  "8em", "6em", "8em")) %>% 
+  # kableExtra::collapse_rows(columns = 2:3, valign = "middle") %>% 
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack", valign = "top", latex_hline = "major") %>% 
+  kableExtra::column_spec(column = 1:3, width = c("1em", "3.5em", "3.5em")) %>% 
+  kableExtra::footnote(general = c("Suppose there are incompatibility conditioning genes S and Z", 
+                                   "Two genes could have alleles S1, S2, S3, S4… and Z1, Z2, Z3, Z4,…", 
+                                   "Under SSI system, dominance relation holds: S1>S2>S3 and Z1>Z2>Z3."), general_title = "Assumptions:")
+
+```
+
+
+#### Expression of SI
+  
+1. The germination of the pollen may be decreased (e.g., in broccoli); Removing the stigma allows normal pollen germination.
+2. Pollen germination is normal but pollen tube growth is inhibited in the style (e.g., tobacco).
+3. The incompatibility reaction occurs after fertilization (e.g., in _Gesteria_). This mechanism is rare.
+
+#### Implications of SI
+
+- Presence of this system may be exploited to facilitate some breeding methods. 
+- Self-incompatibility promotes heterozygosity. Consequently, selfing self-incompatible plants can create significant variability from which a breeder can select superior recombinants.
+- Overcoming:
+  - Removal of the stigma surface
+  - Early pollination
+  - Lowering the temperature
+- Self-incompatibility may be used to breed for F1 hybrids, synthetics, triploids. First, however, homozygous lines must be developed.
+- Sporophytic incompatibility is widely used in breeding of cabbage and other Brassica species. 
+- The single cross hybrids are more uniforms and easier to produce. 
+- The top cross is commonly used. A single self-incompatible parent is used as female and is open-pollinated by a desirable cultivar as pollen source.
+
+
+```{r si-use-sc, fig.cap="Production of single cross hybrid using inbred lines and sporophytic self incompatibility", out.width="60%", fig.align='center'}
+# pdftools::pdf_convert("./../../references_plb/Principles of Plant Genetics and Breeding.pdf", pages = 118, format = "png", filenames = "./images/incompatibility_use.png", dpi = 300)
+# knitr::include_graphics("./images/incompatibility_use_SC.png")
+DiagrammeR::mermaid(
+  "graph TB
+  A[A<br>S1S1] --> AB[AB<br>S1S2]
+  B[B<br>S2S2] --> AB
+  "
+)
+```
+
+
+```{r si-use-dc, fig.cap="Production of double cross hybrid using inbred lines and sporophytic self incompatibility", out.width="60%", fig.align='center'}
+# pdftools::pdf_convert("./../../references_plb/Principles of Plant Genetics and Breeding.pdf", pages = 118, format = "png", filenames = "./images/incompatibility_use.png", dpi = 300)
+# knitr::include_graphics("./images/incompatibility_use_DC.png")
+
+DiagrammeR::mermaid(
+  "graph TB
+  A[A<br>S1S1] --> AB[AB<br>S1S2]
+  B[B<br>S2S2] --> AB
+  
+  C[C<br>S3S3] --> CD[CD<br>S3S4]
+  D[D<br>S4S4] --> CD
+  AB --> ABCD[ABCD<br>S1S3, S1S4, S2S3, S2S4]
+  CD --> ABCD
+  "
+)
+```
+
+
+```{r si-use-tc, fig.cap="Production of triple cross hybrid using inbred lines and sporophytic self incompatibility", out.width="55%", fig.align='center'}
+# pdftools::pdf_convert("./../../references_plb/Principles of Plant Genetics and Breeding.pdf", pages = 118, format = "png", filenames = "./images/incompatibility_use.png", dpi = 300)
+# knitr::include_graphics("./images/incompatibility_use_TC.png")
+DiagrammeR::mermaid(
+  "graph TB
+  A[A<br>S1S1] --> AB[AB<br>S1S2]
+  B[B<br>S2S2] --> AB
+  
+  C[C<br>S3S3] --> Cdown[C<br>S3S3]
+  AB --> ABC[ABC<br>S1S3, S2S3]
+  Cdown --> ABC
+  
+  D[D<br>S4S4] --> DE[DE<br>S4S5]
+  E[E<br>S5S5] --> DE
+  
+  F[F<br>S6S6] --> Fdown[F<br>S6S6]
+  DE --> DEF[DEF<br>S4S6, S5S6]
+  Fdown --> DEF
+  
+  ABC --> ABCDEF[ABCDEF<br>S1S4, S1S6, S1S5<br>S2S4, S2S6, S2S5<br>S3S4, S3S6, S3S5]
+  DEF --> ABCDEF
+  "
+)
+```
+
+
+### How do you produce hybrid seed using one self-incompatible (P1) and another self-compatible (P2) parents ?
+
+$\longrightarrow$
+
+System of self-incompatibility prevents self fertilization based on the descrimination between self- and non-self pollen. It is known to be controlled by single S-locus with multi-allelic nature demonstrated among different groups of crops (more than 100 families and in approximately 40\% of species). Early instances of overcoming incompatibility is recorded in sweet cherry (\textit{Prunus avium L.}) cultivars through irradiation. However, using the same technique of SI during 1940s and 1950s, Japanese seed companies' introduced hybrid Cabbage gained heights of popularity.
+
+The S-locus encodes both male and female specificity determinants (S-determinants) whose products are predicted to interact and trigger the self/non-self discrimination process. Most types of SI can be classified as sporophytic or gametophytic based on time of gene action in the stamen. The pollen phenotype is determined by the S-genotype of the diploid pollen-parent in sporophytic SI and by the genotype of the individual microspore in gametophytic SI.
+
+In crops exhibiting SI (and even in SC crops), cultivars that serve as pollen donors ("pollenizers") are usually interspersed throughout orchards since fruit set depends largely on cross-pollinations. Pollenizers are commonly used in canola (\textit{Brassica L.}), sunflower, strawberry and apple.
+
+To achieve hybrid viour or heterosis, two parents with different genetic backgrounds (usually pure lines) need to be crossed. Heterotic F1 progeny show elevated yields as well as other agriculturally desirable traits. Since most cultivated crops are SC, producing hybrid seed requires an efficient system to control pollination to prevent the female parent from self-fertilization. SI has been reported to be preferred over male sterility in crop species with entomophilous pollination since pollen-collecting bees rarely visit male-sterile plants. Nonetheless, SI also may have disadvantages, for example, F1 hybrids of two SI parents are also SI and this may be undesirable for crop production. SI hybrids in such cases have hindered seed production (e.g., oilseed rape/canola) or fruit production. This is in regard of the fact that hybrid production requires maintanence of one or two lines continually over generations. If either of the two parents cannot be self fertilized, nevertheless it needs to be maintained, it is done by transiently breaking down the incompatibility by using chemical or physical techniques.
+
+A system of hybrid breeding utilizing one SI line as female parent (P1) and the other self compatible line as male parent (P2) is shown below:
+
+```{r diagram-si-system1, fig.width=4, out.width="80%", fig.cap="Maintenance of parental lines. P1 is Self incompatible (SI) while P2 is self compatible (SC). Propagating P1 requires transiently overcoming SI to allow selfing.", fig.align='center', fig.pos="H"}
+
+DiagrammeR::mermaid(
+  "
+  graph TB
+  subgraph P1
+  a1[S1S2<br> Self incompatible, female] -- Selfing --> a2[Incompatible]
+  end
+  
+  subgraph P2
+  b1[S0S0<br> Self compatible, male] -- Selfing --> b2[Compatible]
+  end
+  "
+)
+
+```
+
+
+```{r diagram-si-system2, fig.width=4, out.width="0.6\\textwidth", fig.cap="Production of single cross hybrid using P1 and P2", fig.align='center', fig.pos="H"}
+
+DiagrammeR::mermaid(
+  "
+  graph TB
+  
+  11[S1S2<br> Self incompatible, female] --> 21[\"S1S0, S2S0 <br>  Self (In)compatible\"]
+  12[S0S0<br> Self compatible, male] --> 21
+  "
+)
+```
+
+
+## Male sterility
+
+- Male sterility is a condition in plants whereby the anthers or pollen are non-functional. Male sterility also enforces cross-pollination.
+  - as absence of or extreme scarcity of pollen, 
+  - severe malformation or absence of flowers or stamens, or failure of pollen to dehisce. 
+  - similarly, it can be exploited as a tool to eliminate the need for emasculation for producing hybrid seed.
+  
+### Kinds of sterility based on the origin of the abnormality
+
+1. True male sterility - This is due to unisexual flowers that lack male sex organs (dioecy and monoecy), or bisexual flowers with abnormal or non-functional microspores (leading to pollen abortion).
+2. Functional male sterility - The anthers fail to release their contents even though the pollen is fertile.
+3. Induced male sterility - Plant breeders may use chemicals to induce sterility.
+
+### Genetic male sterility
+
+- Genetic (nuclear, genic) male sterility is widespread in plants. The gene for sterility has been found in species including barley, cotton, soybean, tomato, potato, and lima bean. 
+- It is believed that nearly all diploid and polyploidy plant species have at least one male sterility locus.
+- May be manifested as pollen abortion (pistillody) or abnormal anther development.
+- Genetic male sterility is often conditioned by a single recessive nuclear gene, _ms_, the dominant allele, _Ms_, conditioning normal anther and pollen development. 
+- In alfalfa, however, two independently inherited genes have been reported
+- The expression of the gene may vary with the environment. But to be useful, the system must be stable
+
+### Maintainance of GMS system
+
+- The breeder cannot produce and maintain a pure population of male sterile plants. 
+- The genetically male sterile types ( _msms_) can be propagated by crossing them with a heterozygous pollen source ( _Msms_).
+- Breeders will always harvest 50% male sterile plants by harvesting only the male sterile plants.
+
+```{r gms-use, fig.cap="Genetic male sterility as used in practical breeding", out.width="45%", fig.align='center'}
+# pdftools::pdf_convert("./../../references_plb/Principles of Plant Genetics and Breeding.pdf", pages = 118, format = "png", filenames = "./images/gms_use.png", dpi = 300)
+knitr::include_graphics("./images/gms_use.png")
+```
+
+### Cytoplasmic male sterility
+
+- Sometimes, male sterility is controlled by the cytoplasm (mitochondrial gene) but may be influenced by nuclear genes. 
+- A cytoplasm without sterility genes is described as normal (N) cytoplasm, while a cytoplasm that causes male sterility is called a sterile ( _s_) cytoplasm or said to have cytoplasmic male sterility (CMS).
+- Transmitted through the egg only (maternal factor).
+- Has been found in species including corn, sorghum, sugar beet, carrot, and flax. 
+- The condition has been induced in species such as sorghum by transferring nuclear chromosomes into a foreign cytoplasm. 
+- Has real advantages in breeding ornamental species because all the offspring is male sterile, hence allowing them to remain fruitless.
+
+### Cytoplasmic-genetic male sterility
+
+- Cytoplasmic male sterility may be modified by the presence of fertility-restoring genes in the nucleus. 
+- CMS is rendered ineffective when the dominant allele for the fertility-restoring gene ( _Rf_) occurs, making the anthers able to produce normal pollen.
+- CMS is transmitted only through the egg, but fertility can be restored by _Rf_ genes in the nucleus. 
+- Three kinds of progeny are possible following a cross, depending on the genotype of the pollen source. 
+- The resulting progenies assume that the fertility gene will be responsible for fertility restoration.
+
+```{r cgms-systems, fig.cap="The three systems of cytoplasmic genetic male sterility. The three factors involved in CMS are the normal cytoplasm (N), the male sterile cytoplasm (S), and the fertility restorer (Rf, rf).", out.height="55%", fig.align='center'}
+# pdftools::pdf_convert("./../../references_plb/Principles of Plant Genetics and Breeding.pdf", pages = 119, format = "png", filenames = "./images/cgms_systems.png", dpi = 300)
+knitr::include_graphics("./images/cgms_systems.png")
+```
+
+### Hybrid production using CGMS
+
+- Hybrid seed production using CMS requires three types of genotypes:
+  - cytoplasmic sterile female lines with male sterile cytoplasm but with no restorer genes (called *A* lines; maintained by crossing with isogeneic cytoplasmic male fertile line)
+  - 'male-fertile' female lines (called *B* lines or maintainer lines; maintained by selfing) with normal cytoplasm and no restorer genes
+  - male fertile lines (called *R* lines; maintained by selfing) with no cytoplasmic male sterility genes and which are homozygous for a dominant restorer gene (i.e. normal ( _n_) cytoplasm, _RfRf_)
+
+```{r cgms-dc-hybrid, out.width="75%", fig.align='center', fig.cap="CGMS system used in production of double cross hybrid using A, B and R lines"}
+# there's a bug in code. running Rmd compilation twice leads to changed figure
+DiagrammeR::mermaid(
+  "graph TB;
+  L1[Line 1 <br> CMS, non-restorer] --> SC1[Ms-rr];
+  L2[Line 2 <br> MF, non-restorer] --> SC1;
+  L3[Line 3 <br> CMS, non-restorer] --> SC2[MF-Rr];
+  L4[Line 4 <br> MF, restorer] --> SC2;
+  SC1 --> DC[DC hybrid <br> 1/2 MS-rr, 1/2 MF-Rr];
+  SC2 --> DC;
+  "
+  )
+
+```
+
+
+### Dichogamy (mechanism enforcing cross pollination)
+
+- Dichogamy is the maturing of pistils and stamens of a flower at different times.
+  - Protogyny (stigma is receptive before the anther is mature to release the pollen)
+  - Protandry (pollen is released from the anther before the female is receptive).
 
 Factors that affect cross and self pollination are:
 
@@ -99,7 +376,126 @@ Factors that affect cross and self pollination are:
 
 - Cross pollinated species: When additive gene action predominates in a cross-pollinated species, recurrent selection may be used to achieve general combining ability (GCA). Specific breeding products to pursue include synthetic varieties and composites. In the case of non-additive gene action, heterosis breeding just like in self pollinated species is recommended for breeding hybrid cultivars. Alternatively, breeders may consider recurrent selection for specific combining ability (SCA) for poulation improvement. Where both additive and non-additive gene action occur together, reciprocal recurrent selection may be used for population improvement.
 
-## Hybridization techniques
+## Hybridization, techniques and procedure
+
+*Hybrid* : Any sort of sexual or somatic combination of genetically more or less differentiated parental cells, individuals, or taxa; specifically, an individual plant from a cross between parents of differing genotypes; any heterozygote represents dissimilar alleles at a given locus; or a hybrid graft gene.
+
+- Mating or crossing of two parents or lines of dissimilar genotype is known as hybridization.
+- Hybrid breeding (syn *heterosis breeding*) involves the transfer of genes from one source or genetic background to another, or combining genes from different sources that complement each other, with the hope that the new cultivar will combine the best of both parents.
+- Harrison, 1990 defined hybridization as a cross between individuals from separate populations that differ in one or more heritable traits.
+- In flowering species, *sexual hybridization* is the commonly occuring mode of hybridization.
+
+### Objectives/applications of hybrid
+
+- Gene transfer (Combination breeding: Transfer of one or few oligogenic or polygenic desirable characters into a single variety.)
+- Recombination
+- Break of undesirable linkages
+- Heterosis
+- Maintenance of breeding
+- Maintenance of diversity in a gene pool
+- Evaluation of parental lines
+- Genetic analysis
+
+### Types of hybridization
+
+1. Inter-varietal hybridization (intra-specific)
+2. Intra-varietal hybridization
+3. Distant hybridization
+  - Interspecific
+  - Intergeneric
+  - Introgressive hybridization (transfer of a gene from one species into the gene pool of another by repeated backcrossing of an interspecific hybrid with one of its parent species)
+
+### Types of crosses
+
+1. Single (simple) cross
+2. Convergent (complex) cross: A cross involving more than 2 parents to produce $F_1$ hybrid. It aims at bringing together genes from several parents into a single hybrid.
+  - Three way cross: When $F_1$ from single cross is crossed to the third parent (involves 3 parents).
+  - Double cross: When $F_1$s from two single crosses are crossed (involves 4 parents).
+
+3. Diallel cross: Crossing of a number of inbred lines in all possible combinations.
+4. Partial diallel cross: A diallel cross based on a specified sample of crossess from amongst all possible crosses.
+
+### Procedure
+
+1. Choice of parents
+
+- Parents should belong to same or closely related species
+- Parents should together supply the critical genes needed to accomplish the breeding objective. Generally, inbred lines complementing for the allelic combinations are chosen as parents.
+- One parent is usually designated female. Whereas some breeding methods may not require this designation, breeders usually select one parent to be female and the other a male (pollen source).
+
+2. Evaluation of parents
+
+- Once inbred lines (or a set of parents) are developed, crossess are made in various combination among the parents to identify those that combine well.
+- For development of single cross hybrids, evaluation of inbred parents (procedure for the development of which in hybrid cultivar development is similar to that used to breed pure-line cultivars) follows combining ability (or more relevantly, general combining ability, GCA) test.
+- The combining ability test aims to identify parental lines which will produce productive progeny in a wide range of hybrid cross.
+- Since it is impractical to cross all possible parental lines in pairwise combinations, as the number of crosses to be made and evaluated increases exponentially with the increased number of parents, it is therefore more usual to cross each parent under evaluation to a common test parent or tester.
+  - The tester used is common to a set of evaluations, and therefore, general combining ability is determined by comparing the performance of each progeny, assuming that the only difference between the different progenies can be attributed to the different inbred parents.
+  - Testers are usually highly developed inbred lines that have proved successful in hybrid combinations in the past.
+- Evaluation of specific combining ability (or actual individual hybrid combination performance) is carried out when the number of parents is reduced to a reasonable level. The number of crossing combinations for $n$ number of parents to be evaluated is calculated as,
+
+$$
+\begin{aligned}
+\frac{n(n-1)}{2} &\longrightarrow \text{For pairwise crosses} \\
+\frac{n(n-1)(n-2)}{2} &\longrightarrow \text{For three-way crosses} \\
+\frac{n(n-1)(n-2)(n-3)}{8} &\longrightarrow \text{For double crosses}
+\end{aligned}
+$$
+
+- If 20 parents are to be tested then, there would be:
+  - 20 crosses to a single tester;
+  - 190 pairwise crosses; 
+  - 3,420 three-way crosses and
+  - 14,535 double cross combinations
+  
+- It is therefore common to predict the performance of three-way and double crosses from single cross performance rather than actually test them. The three-way cross $(P_1 \times P_2) \times P_3$ performance can be predicted from the equation,
+
+$$
+\frac{(P_1 \times P_3)(P_2 \times P_3)}{2}
+$$
+- It should be noted that the actual single cross in the hybrid predicted $(P_1 \times P_2)$ is not used in the prediction.
+
+- Performance of a double cross $(P_1 \times P_2)(P_3 \times P_4)$ can be predicted with the following equation:
+
+$$
+\frac{(P_1 \times P_3) + (P_1 \times P_4) + (P_2 \times P_3) + (P_2 \times P_4)}{4}
+$$
+- Note again that the two single crosses used in the double cross do not appear in the prediction equation.
+
+3. Pollination control techniques
+
+**Mechanical control**
+
+In hermaphroditic plants, females are emasculated and pollination is achieved either by hand or naturally. In diclinous plants simple physical protection (such as bagging) and hand-pollination are used. The problems with mechanical hybrid production are related to cost, labour inputs and the number of seeds produced by each pollination operation.
+
+**Nuclear male sterility (NMS)**
+
+In NMS system, sterility is usually determined by the expression of recessive alleles ($ms ms$) while fertility is present with the dominant homozygote ($Ms Ms$) and the heterozygotes ($Ms ms$). Clearly it is not possible to maintain a pure male sterile line by simple sexual reproduction. However, if seeds are collected from male sterile plants they will be heterozygous for the sterility locus and on selfing will segregate 75% fertile ($Ms ms$ or $Ms Ms$) and 25% sterile ($ms ms$). The major problems with NMS are related to introducing the necessary genes into commercially desirable genotypes, and the expression being environmentally dependent. Success has been achieved in castor and attempts have been made with cotton, carrot, tomato, sunflower and barley.
+
+**Self-incompatibility**
+
+To produce hybrids one simply interplants two self-incompatible, but cross compatible, inbred lines and harvests all the seed, all of which will be hybrid. Problems have been related to overcoming the self-incompatibility of parental lines in order to maintain them, which can be costly (e.g. bud pollination by hand is often necessary to overcome incompatibility in some _Brassica_ species). Incompatibility systems are also often influenced by environmental conditions.
+
+**Cytoplasmic male sterility**
+
+CMS is of wide natural occurrence and can sometimes be induced by backcrossing a desired, adapted genotype (i.e. its nucleus) into a foreign cytoplasm such that the nuclear– cytoplasmic interaction results in male sterility. A practical hybrid system also requires, of course, the restoration of male fertility, usually achieved with 'restorer genes'. These, fortunately, are mostly dominant. If the hybrid product need not produce seeds (e.g. onions or beets) the restorer gene is then not needed. The combination of effective sterility and reliable restorer genes are not often available. Another problem is that the cytoplasm itself (which is always a component of the resulting hybrid) often has deleterious effects on plant vigour. The lack of pollen in the female plants can also have an effect on hybrid production. For example, if the pollinating vectors are insects they may well prefer to visit only the fertile males. Examples of success are onions, carrot, sugar beet, maize and sorghum.
+
+**Chemical control**
+
+
+## Flower and flowering issues in hybridization
+
+- Flower health and induction
+- Synchronization of flowering
+- Selecting female parent and suitable flowers
+
+## Considerations of pollination
+
+- Successful pollination depends on pollen maturity, quality (freshness), and timing of pollination, among other factor.
+- Considerations:
+  - Collection and storage
+  - Application of pollen
+  - Tagging after pollination
+
 
 ### Synthetic cultivar and its development
 
