@@ -1,0 +1,300 @@
+
+# Gene and genotype frequencies, hardy-weinberg equilibrium and population characteristics
+
+## Gene and genotype frequencies
+
+An allele is the bit of DNA at the place called locus (the place on a chromosome where an allele resides).
+  - An allele is instantiation of a locus
+  - But by orthology, a locus is not template for an allele
+  - A locus is not tangible, rather a map describing where to find a tangible thing, an allele on a chromosome.
+  - A diploid individual has two alleles at a particular autosomal locus.
+
+## Allelic variation
+
+Two alleles of a same locus may differ by:
+
+1. By origin: For example genes occurring on same locus but on a different chromosome.
+
+2. By state
+
+  - It depends on the context they are put in, i.e. DNA sequence or amino acid sequence.
+  - Same amino acid sequence in some alleles may arise due to different DNA sequences (redundancy of genetic code).
+  - State may differ as protein sequence, the color of the pea or other genetically determined phenotypes of interest.
+
+3. By descent
+
+  - In practice, we are often concerned with relatively short time period in the past and are content to say that two alleles differ by descent, if they do not share a common ancestor, in say, the past 10 generations.
+  - Two alleles, different by descent may or may not be different by state because of mutation.
+
+- Converse of difference of alleles involves identity by origin, state or descent.
+
+```{r identity-by-descent-difference-by-state, fig.cap="Two alleles in generation (n-2), (n-1) and n, that are identical by descent but differ in state.", out.width="30%"}
+knitr::include_graphics("./drawings/identity-by-descent-difference-by-state.pdf")
+```
+
+- Diploid individual are said to be heterozygotes at a locus if two alleles at that locus are different by state.
+- If we are studying proteins, we may call an individual homozygous at locus when the protein sequence of the two alleles are identical, even if their DNA sequences differ.
+
+## Genotype and allele frequences
+
+In "$A$" loci, suppose, two alleles $A_1$ and $A_2$ are present in a diploid organism. The genotype and genotypic frequency of segregating population will be:
+
+```{r}
+tribble(
+  ~"Genotype", ~"$A_1A_1$", ~"$A_1A_2$", ~"$A_2A_2$",
+  "Relative frequency", "$x_11$", "$x_12$", "$x_22$"
+) %>% 
+  knitr::kable(booktabs = TRUE, escape = FALSE, format = "latex") %>% 
+  kableExtra::kable_styling()
+```
+
+As relative frequencies must add to 1,
+
+$$
+x_{11} + x_{12} + x_{22} = 1
+$$
+The order of subscripting heterozygous is arbitrary.
+
+Frequency of $A_1$ allele in the population is $p = x_{11} + \frac{1}{2}x_{12}$, and
+Frequency of $A_2$ allele in the population is $q = 1-p = x_{22} + \frac{1}{2}x_{12}$
+
+Measure of each allele frequency can be thought of as independent events, for eg., for allele $p$ to be selected,
+
+$$
+p = (x_{11} \times 1) + (x_{12} \times \frac{1}{2}) + (x_{22} \times 0)
+$$
+
+For loci with more than two alleles, frequency of $i^{th}$ allele will be called $p_{i}$, frequency of $A_iA_j$ genotype will be called $x_{ij}$ for heterozygotes, $i \neq j$ and, by convention $i < j$. If there are "n" alleles,
+
+$$
+\begin{aligned}
+1 &= x_{11} + x_{22} + ... + x_{nn} + x_{12} + x_{13} + ... + x_{(n-1)n} \\
+&= \sum_{i = 1}^n \sum_{j \geq i}^n x_{ij}
+\end{aligned}
+$$
+
+The frequency of $i^{th}$ allele is,
+
+$$
+p_i = x_{ii} + \frac{1}{2} \sum_{j = 1}^{i-1} x_{ji} + \frac{1}{2} \sum_{j = i + 1}^n x_{ij}
+$$
+**Question**
+
+How may different genotypes are there at a locus with n alleles that differ by state ?
+
+$\longrightarrow$ When there are n alleles, there are n homozygous genotypes, $A_iA_i$, for $i = 1,2,...,n$. If we first view an $A_iA_j$ heterozygote as distinct from an $A_jA_i$ heterozygote, then there are $n(n-1)$ such heterozygote. The actual number of heterozygotes will be one-half of this number, $\frac{n(n-1)}{2}$. Thus, the total number of genotypes is $n + \frac{n(n-1)}{2}$ = $\frac{n(n+1)}{2}$
+
+## Hardy-Weinberg law
+
+- In a random mating population (in which each male gamete has an equal chance of mating with any female gamete), when taken a loci with differences in alleles (A/a), following genotypes are possible: $AA$, $Aa$ and $aa$. 
+- With the corresponding frequencies of $p^2$, $2pq$ and $q^2$, respectively for each of the genotypes, and bearing that gene frequencies must add up to unity, $p^2+2pq+q^2 = 1$. This mathematical relationship is called the **Hardy-Weinberg equilibrium**.
+- Two scientists showed that the frequency of genotypes in a population depends on the frequency of genes in the preceding generation, not on the frequency of the genotypes.
+
+- In each subsequent generation following thereafter, however, gene and genotypic frequencies will remain unchanged, provided that:
+  1. Random mating occurs in a very large diploid population;
+  2. Allele A and allele a are equally fit (one does not confer a superior trait than the other);
+  3. There is no differential migration of one allele into or out of the population;
+  4. The mutation rate of allele A is equal to that of allele a.
+
+### Conservation of gene frequencies
+
+- Let us presume that among humans, the difference between those who can and those who cannot taste the chemical phenyl-thiocarbamate (PTC) resides in a single gene difference with two alleles, $T$ and $t$.
+- The allele for tasting, $T$, is dominant over $t$, so that heterozygotes, $Tt$ are tasters, and the only nontasters are $tt$.
+- If we were to choose an initial population composed of an arbitary number of each genotype, we may ask what will be the frequency of these genes after many generations.
+- Let us, for example, place upon an island a group of children in the ratio $.40TT:.40Tt:.20tt$. The gene frequencies in this newly formed population are therefore, $.4 + .2 = .6 T$, and $.2 + .2 = .4t$.
+- Let us also assume that the number of individuals in the population is large, and the tasting or nontasting has no effect upon survival (viability), fertility, or attraction between the sexes.
+- As these children mature, they will choose their mates at random from those of the opposite sex regardless of their tasting abilities.
+- Matings between any two genotypes can then be predicted solely on the basis of the frequency of those genotypes in the population.
+- Table \ref{tab:random-mating-monogene-gene-freq} shows matings in all possible combination.
+
+```{r random-mating-monogene-gene-freq}
+tribble(
+  ~"TT", ~"Tt", ~"tt", 
+  .16, .16, .08, 
+  .16, .16, .08, 
+  .08, .08, .04
+) %>% 
+  add_column(.before = 1, gametes = colnames(.)) %>% 
+  kable(booktabs = TRUE, escape = TRUE, caption = "Types of random-mating combinations and their relative frequencies in a population containing .40TT, .40Tt, and .20tt genotypes") %>% 
+  kableExtra::kable_styling(position = "center")
+```
+
+
+```{r}
+tribble(~"Type of mating", ~"Frequency of mating", 
+        "$TT \\times TT$", .16,
+        "$TT \\times Tt$", .32,
+        "$TT \\times tt$", .16,
+        "$Tt \\times Tt$", .16,
+        "$Tt \\times tt$", .16,
+        "$tt \\times tt$", .04) %>% 
+  add_column(.after = 2, TT = c("all(.16)", "1/2(.32)", NA, "1/4(.16)", NA, NA)) %>% 
+  add_column(.after = 3, Tt = c(NA, "+1/2(.32)", "all (.16)", "+1/2 (.16)", "1/2(.16)", NA)) %>% 
+  add_column(.after = 4, tt = c(NA, NA, NA, "+1/4(.16)", "+1/2(.16)", "all (.04)")) %>% 
+  kable(booktabs = TRUE, escape = FALSE, caption = "Relative frequencies of the different kinds of offspring produced by the matings") %>% 
+  kableExtra::kable_styling(position = "center", latex_options = "striped") %>% 
+  kableExtra::add_header_above(header = c("Parents" = 2, "Offspring ratio" = 3))
+```
+
+- Note that although the frequencies of genotypes have been altered by random mating, the gene frequencies have not changed.
+- For the $T$ gene frequency is equal to $.36 + 1/2(.48) = .60$, and the frequency of $t$ is $.16 + 1/2(.48) = .40$. 
+- No matter what the initial frequencies of the three genotypes, the gene frequencies of the next generation will be the same as those of parental generation.
+
+### Assertion
+
+1. Under conditions of random mating ( _panmixis_) in a large population where all genotypes are equally viable, gene frequencies of a particular generation depend upon the gene frequencies of the previous generation and not upon the _genotype frequencies_.
+2. The frequencies of different genotypes produced through random mating depend only upon the gene frequencies.
+- After the first generation of random mating, genotype frequencies also remain stable. i.e., equilibrium.
+
+```{r}
+tribble(~"Type of mating", ~"Frequency of mating", 
+        "$TT \\times TT$", "$p^2 \\times p^2 = p^4$",
+        "$TT \\times Tt$", "$2 \\times p^2 \\times 2pq = 4p^3q$",
+        "$TT \\times tt$", "$2 \\times p^2 \\times q^2 = 2p^2q^2$",
+        "$Tt \\times Tt$", "$2pq \\times 2pq = 4p^2q^2$",
+        "$Tt \\times tt$", "$2 \\times 2pq \\times q^2 = 4pq^3$",
+        "$tt \\times tt$", "$q^2 \\times q^2 = q^4$") %>% 
+  add_column(.after = 2, TT = c("$p^4$", "$2p^3q$", NA, "$p^2q^2$", NA, NA)) %>% 
+  add_column(.after = 3, Tt = c(NA, "$2p^3q$", "$2p^2q^2$", "$2p^2q^2$", "$2pq^3$", NA)) %>% 
+  add_column(.after = 4, tt = c(NA, NA, NA, "$p^2q^2$", "$2pq^3$", "$q^4$")) %>% 
+  add_row("Type of mating" = NA,
+          "Frequency of mating" = "$p^2(p^2 + 2pq + q^2) + 2pq(p^2 + 2pq + q^2) + q^2(p^2 + 2pq + q^2) = p^2 + 2pq + q^2 = (p + q)^2 = 1$",
+          "TT" = "$p^4 + 2p^3q + p^2q^2 = p^2(p^2 + 2pq + q^2) = p^2$",
+          "Tt" = "$2p^3q + 4p^2q^2 + 2pq^3 = 2pq(p^2 + 2pq + q^2) = 2pq$",
+          "tt" = "$p^2q^2 + 2pq^3 + q^4 = q^2(p^2 + 2pq + q^2) = q^2$") %>%
+  # mutate_at(c(2,3,4,5), ~replace(., 6, kableExtra::cell_spec(., underline = TRUE, format = "latex", escape = FALSE))) %>% # this has some troubles, use row spec instead
+  kable(booktabs = TRUE, escape = FALSE, caption = "Mating combinations and frequencies of offspring produced under conditions of random mating when genotypic frequencies are $p^2TT$, $2pqTt$, and $q^2tt$") %>% 
+  kableExtra::kable_styling(position = "center", latex_options = "striped", font_size = 6) %>% 
+  kableExtra::column_spec(1:5, width = c("6em", "12em", "8em", "8em", "8em")) %>% 
+  kableExtra::row_spec(6, hline_after = TRUE) %>% 
+  kableExtra::add_header_above(header = c("Parents" = 2, "Offspring ratio" = 3))
+```
+
+### Hardy weinberg law for sex-linked locus
+
+Let initial frequency of $A_1$ in females be $p_f$ and in males be $p_m$. (Following frequencies of alleles in successive generations, dynamics of direction and change could be understood. Then genotype equilibrium genotype frequencies in females and males may be calculated and presented.)
+
+As male get their X-chromosomes from their mothers, the frequency of $A_1$ in males is always equal to the frequency in females in the previous generation. As a female gets one X from her mother and the other from her father, the frequency of allele in female is always the average of the male and female frequencies in the previous generation. Thus, the allele frequencies over the first three generation are,
+
+
+```{r}
+tribble(
+  ~"Generation", ~"Female", ~"Male", ~"Female-male",
+  1, "$p_f$", "$p_m$", "$p_f - p_m$",
+  2, "$\frac{p_f + p_m}{2}$", "$p_f$", "$-\frac{p_f - p_m}{2}$",
+  3, "$frac{p + \frac{p_f + p_m}{2}}{2}$", "$\frac{p_f + p_m}{2}$", "$\frac{p_f - p_m}{4}$"
+) %>% 
+  knitr::kable(escape = FALSE, booktabs = TRUE) %>% 
+  kableExtra::kable_styling()
+```
+
+Two important things emerge from the table. First, the overall allele frequency,
+
+$$
+p = \frac{2}{3}p_f + \frac{1}{3}p_m
+$$
+does not change over time (convince yourself that this is so my calculating $p$ in generations 2 and 3). Second, the difference between the allele frequencies in female and males is halved each generation, as recorded in table. Taken together, these two observations show that eventually, the allele frequencies in males and females will converge to $p$. At that time, the genotype frequencies in females will be Hardy-Weinberg frequencies.
+
+
+## Factors affecting gene frequency
+
+- Two major types of process identified:
+  1. Systematic: Predictable in both direction and in amount
+  2. Dispersive: Predictable only in amount
+
+### Migration
+
+Migration is important in small populations. It entails the entry of individuals into an existing population from outside. Because plants are sedentary, migration, when it occurs naturally, is via pollen transfer (gamete migration). The impact that this immigration will have on the recipient population will depend on the immigration rate and the difference in gene frequency between the immigrants and natives. Mathematically, $\Delta q = m(q_m - q_o)$, where $\Delta q$ = the change in frequency of genes in the new mixed population, $m$ = number of immigrants, $q_m$ = the gene frequency of the immigrants, and $q_o$ = the gene frequency of the bost. Plant breeders employ this process to change frequencies when they undertake introgression of genes into their breeding populations. The breeding implication is that for open-pollinated (outbreeding) species, the frequency of the immigrant gene may be low, but its effect on the host gene and genotypes could be significant.
+
+### Mutation
+
+Natural mutations are generally rare. A unique mutation (non-recurrent mutation) would have little impact on gene frequencies. Mutations are generally recessive in gene action, but the dominant condition may also be observed. Recurrent mutation (occurs repeatedly at a constant frequency) may impact gene frequency of the population. Natural mutations are of little importance to practical plant breeding. However, breeders may artificially induce mutation to generate new variability for plant breeding.
+
+### Natural selection
+
+Chief among the mechanisms transforming populations is natural selection, discovered independently by Alfred Russel Wallace and Charles Darwin. The Wallace–Darwin concept of natural selection can be summarized as follows:
+
+1. Individuals of a species exhibit variations in phenotype.
+2. Many of these variations are heritable.
+3. Organisms tend to reproduce in an exponential fashion, although only a fraction of offspring survive.
+4. In the struggle for survival, individuals with particular phenotypes will be more successful than others.
+
+As a consequence of natural selection, traits that promote differential survival and reproduction will become more common (increase in frequency), and traits that confer a lowered ability for survival and reproduction will become less common.
+
+Aberration to Hardy-Weinberg law constitutes genotypes do not have equal rates of survival or do not leave equal numbers of offspring, then allele frequencies may change from one generation to the next.
+
+Let's imagine a population of 100 individuals in which the frequency of allele $A$ is 0.5 and that of $a$ is 0.5. Assuming the previous generation mated randomly, we find that the genotype frequencies in the present generation are
+
+- $(0.5)^2 = 0.25$ for AA
+- $2(0.5)(0.5) = 0.5$ for Aa, and
+- $(0.5)^2 = 0.25$ for aa.
+
+Because the population contains 100 individuals, we have 25 AA individuals, 50 Aa individuals and 25 aa individuals.
+
+Now let us suppose that individual with different genotypes have different rates of survival:
+
+- 100 percent of the 25 AA individuals survive to reproduce,
+- 90 percent or $\frac{45}{50}$ of the Aa individuals survive to reproduce, and
+- 80 percent or $\frac{20}{25}$ of the aa individuals survive to reproduce.
+
+When the survivors reproduce, each contributes two gametes to the new gene pol, giving us $2(25) + 2(45) + 2(20) = 180$ gametes.
+
+We have,
+
+- 50 "A" gametes from AA individuals plus 45 A gametes from Aa individuals, so the frequency of allele A is $\frac{(50 + 45)}{180} = 0.53$
+- 45 "a" gametes from Aa individuals, plus 40 a gametes from aa individuals, so the frequency of allele a is $\frac{45 + 40}{180} = 0.47$.
+
+These differ from the frequencies we started with. The frequency of allele A has increased, whereas the frequency of allele a has declined.
+
+Advantages in survival and reproduction ultimately translate into increased genetic contribution to future generations. An individual organism's genetic contribution to future generations is called its fitness. Genotypes associated with high rates of reproductive success are said to have high fitness, whereas genotypes associated with low rates of reproductive success are said to have low fitness.
+
+Hardy-Weinberg analysis also allows us to examine fitness as a measure of the degree of natural selection. By convention, $w$ is used to represent fitness. Thus,
+
+- $w_{AA}$ represents the relative fitness of genotype $AA$,
+- $w_{Aa}$ represents the relative fitness of genotype $Aa$, and
+- $w_{aa}$ represents the relative fitness of geneotype $aa$.
+
+For the hypothetical case of strong selection (as selection rarely occurs at the scale of 10% or more!) shown earlier, $w_{AA}$ = 1, $w_{Aa}$ = 0.9 and $w_{aa}$ = 0.8.
+
+Let us consider selection against deleterious alleles (homozygous lethal). Fitness values,
+
+- $w_{AA}$ = 1
+- $w_{Aa}$ = 1
+- $w_{aa}$ = 0
+
+As homozygous recessive individuals die without leaving offspring, the frequency of allele $a$ will decline. The decline in the frequency of allele $a$ is described by the equation
+
+$$
+q_g = \frac{q_0}{1 + gq_0}
+$$
+Where $q_g$ is the frequency of allele a in generation $g$, $q_0$ is the starting frequency of $a$ (i.e., the frequency of $a$ in generation 0), and g is the number of generations that have passed.
+
+```{r natural-selection-recessive-lethal, fig.cap="Gene frequency change of a recessive lethal allele with an initial frequency of 0.5. Af first, because of the high percentage of "aa" genotypes, the frequency of allele "a" declines rapidly. The frequency of "a" is halved in only two generations. By the sixth generation, the frequency is halved again. By now, however, the majority of a alleles are carried by heterozygotes. Because a is recessive, these heterozygotes are not selected against. Consequently, as more time passes, the frequency of allele a declines ever more slowly. As long as heterozygotes continue to mate, it is difficult for selection to completely eliminate a recessive allele from a population."}
+
+
+```
+
+
+### Artificial selection
+
+- Plant breeders impose selection to alter population gene frequencies. Its effect is the change in mean value of the progeny population from that of the parental population. This change may be greater or lesser than the population mean, depending on the trait of interest. For example, breeders aim for higher yield but may accept and select for less of a chemical factor in the plant that may be toxic in addition to the high yield. For selection to succeed:
+  1. there must be phenotypic variation for the trait to allow differences between genotypes to be observed;
+  2. the phenotypic variation must at least be partly genetic.
+
+### Random genetic drift
+
+- Non-directional forces that arises from variable sampling of the gene pool each generation is known as random genetic drift.
+- It is caused by the fact that real population are limited in size rather than infinite, so that gene-frequency changes occur because of sampling errors.
+- For instance, if only a few parents are chosen to begin a new generation, such a small sample of genes may deviate widely from the gene frequency of the previous generation.
+- The extent of the deviation in both cases can be measured mathematically by the standard deviation of a proportion ($\sigma = \sqrt{\frac{pq}{N}}$). Here $p$ is the frequency of one allele, $q$ of the other, and $N$ the number of genes sampled.
+- For diploid parents, each carrying two genes, $\sigma = \sqrt{\frac{pq}{2N}}$, where $N$ is the number of actual parents.
+- For example, if we begin with a large diploid population, where $p = q = .5$, and continue this population each generation by using 5000 parents, then $\sigma = \sqrt{(.5)(.5)/10000} = \sqrt{.000025} = 0.05$. The values of such populations will therefore fluctuate mostly (68% of the time), around $.5 \pm .005$, or between $0.495$ and $0.505$. On the other hand, a choice of only two parents as "founders" will produce a standard deviation of $\sqrt{(.5)(.5)/4} = 0.25$ or values of $.5 \pm .25$ (.25 to .75).
+
+### Effect of mating system on selection
+
+1. Random mating
+2. Non random mating:
+  - Genetic assortative mating: mating occurs such that the mating pair has the same phenotype more often than would occur by chance.
+  - Phenotypic assortative mating: the breeder selects and mates individuals on the basis of their phenotypic resemblance to each other compared to the rest of the population.
+  - Disassortative mating: may be genetic or phenotypic; entails mating individuals that are less closely related than they would under random mating (genotypic) or breeder may select individuals with contrasting phenotypes for mating (phenotypic).
+

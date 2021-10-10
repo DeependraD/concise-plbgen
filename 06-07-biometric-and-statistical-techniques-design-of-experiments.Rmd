@@ -1513,7 +1513,7 @@ Design was developed and first used for agricultural, mainly agronomic experimen
 
 When we have two treatment factors A and B, with levels $a_1, a_2, ..., a_a$ and $b_1, b_2, ..., b_b$, respectively. Factor A is referred to as the whole-plot-factor and the EUs to which the levels of A are applied are the whole-plots. Factor B is the split-plot factor and the EUs to which the level of B are applied are the split-plots, each whole-plot having b split-plots as illustrated below for b = 4
 
-```{r split-plot-component, fig.width=4, fig.height=0.5, out.width="40%"}
+```{r split-plot-component, fig.width=4, fig.height=0.5, out.width="40%", out.height="16%"}
 b <- 4
 crossing(whole_plot = 1, split_plots = 1:4) %>% 
   mutate_all(function(x)as_factor(x)) %>% 
@@ -1558,7 +1558,7 @@ tribble(
   "Error(B)", "$(r-1)a(b-1)$", "$\\sum_{ijk}{(y_{ijk} - \\bar{y}_{ij.} - \\bar{y}_{.jk} + \\bar{y}_{.j.})^2} = SS(E_B)$",
   "Total", "$rab-1$", "$\\sum_{i,j,k}{(y_{ijk} - \\bar{y}_{...})^2}$"
 ) %>% 
-  knitr::kable(booktabs = TRUE, escape = FALSE, caption = "ANOVA table for Split plot designs")
+  knitr::kable(booktabs = TRUE, escape = FALSE, caption = "ANOVA table for Split plot designs", longtable = TRUE)
 ```
 
 ## Split-split-plot design
