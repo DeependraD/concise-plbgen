@@ -28,7 +28,7 @@ Two alleles of a same locus may differ by:
 
 - Converse of difference of alleles involves identity by origin, state or descent.
 
-```{r identity-by-descent-difference-by-state, fig.cap="Two alleles in generation (n-2), (n-1) and n, that are identical by descent but differ in state.", out.width="30%"}
+```{r identity-by-descent-difference-by-state, fig.cap="Two alleles in generation (n-2), (n-1) and n, that are identical by descent but differ in state.", out.width="95%"}
 knitr::include_graphics("./drawings/identity-by-descent-difference-by-state.pdf")
 ```
 
@@ -228,24 +228,19 @@ $$
 - $A_2$ = virulence allele
 
 $$
-
-X \underset{\text{forward }(\mu_f)}{\stackrel{\text{backward }(\mu_b)}{\xrightleftharpoons}} Y
-
-
+X \xrightleftharpoons[\text{backward }(\mu_b)]{\text{forward }(\mu_f)} Y
 $$
-
-\[ \xrightleftharpoons[\text{backward }(\mu_b)]{\text{forward }(\mu_f)} \]
 
 $$
 \Delta q = \mu_f p_t - \mu_b q_t
 $$
 
-What happens to the frequency of the $A_2$ allele under these conditions? In every generation, the frequency of the $A_2$ allele ($q$) will increase by up due to forward mutation. At the same time, the frequency of $A_2$ will decrease by $\mu_b q$ due to the backward mutation. The net change in $A_2$ will depend on the difference between the gain in $A_2$ and the loss in $A_2$. $\Delta q = \mu_f - \mu_b$ for one generation. To calculate the frequency of $A_2$ at generation $t+1$, add the change in q ($\Delta q$) to the original frequency q at time t.
+What happens to the frequency of the $A_2$ allele under these conditions? In every generation, the frequency of the $A_2$ allele ($q$) will increase by up due to forward mutation. At the same time, the frequency of $A_2$ will decrease by $\mu_b q$ due to the backward mutation. The net change in $A_2$ will depend on the difference between the gain in $A_2$ and the loss in $A_2$. $\Delta q = \mu_f - \mu_b$ for one generation. To calculate the frequency of $A_2$ at generation $t+1$, add the change in ($q; \Delta q$) to the original frequency q at time t.
+
 
 $$
 \begin{aligned}
 q_{(t+1)} &= q_t + \Delta q \\
-
 q_{(t+1)} &= q_t + (\mu_f p_t - \mu_b q_t)
 \end{aligned}
 $$
