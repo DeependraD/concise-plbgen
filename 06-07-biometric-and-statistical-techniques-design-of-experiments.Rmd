@@ -1076,7 +1076,7 @@ Probability of successes 6 times or less = `r sum(dbinom(c(1:6), size = 10, prob
 
 Question: why is the probability of success 6 times or less is smaller than individual probabilities?
 
-$\longrightarrow$ Because individual probability of success is high i.e., 0.76)
+$\longrightarrow$ Because individual probability of success is high (i.e., 0.76).
 
 <!-- Generate 100 sample of successes in times out of 10 trials with given probability of success -->
 
@@ -1435,7 +1435,8 @@ tribble(
   ".", ".", ".", ".", ".", ".", 
   "r", "$T_{1r}$", "$T_{2r}$", "$T_{ir}$", "$T_{vr}$", "$B_{.r}$", 
 ) %>% 
-  knitr::kable(booktabs = TRUE, caption = "Two way tabulation of block and treatment observations.", escape = FALSE)
+  knitr::kable(booktabs = TRUE, caption = "Two way tabulation of block and treatment observations.", escape = FALSE) %>% 
+  kableExtra::kable_styling()
 
 ```
 

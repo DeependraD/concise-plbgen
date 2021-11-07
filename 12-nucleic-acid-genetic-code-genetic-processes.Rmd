@@ -56,8 +56,16 @@ knitr::include_graphics("./images/complementary_base_pairing.png")
 
 ## Replication of DNA
 
-- The DNA double helix strands are so arranged in positive-negative relationship that identical duplication or replication of heriditary information is possible.
+- Because essentially every cell in the body of an organism has the same genetic makeup, faithful replication of the genetic material at every cell division is crucial. Thus, the structual features of DNA must allow for faithful replication.
+- The DNA double helix strands are so arranged in positive-negative relationship that identical duplication or replication of hereditary information is possible.
 - Two strands separate and a base-complementary partner strand is newly formed with each strand. This mode of duplication is called semi-conservative mode.
+- At least three different ways exist in which a parental DNA molecule might be related to the daughter molecules. These hypothetical modes of replication are called semi-conservative, conservative and dispersive modes.
+  - In semiconservative replicaiton, the double helix of each daughter DNA molecule contains one strand from the original DNA molecule and one newly synthesized strand.
+  - In conservative replication, the parent DNA molecule is conserved, and a single daughter double helix is produced consisting of two newly synthesized strands.
+  - In dispersive replicaiton, daughter molecules consist of strands each containing segments of both parental DNA and newly synthesized DNA.
+- Meselson and Stahl, in 1958, performed an experiment to correctly describe DNA replication. Their idea was to allow parental DNA molecules containing nucleotides of one density to replicate in medium containing nucleotides of different density. If DNA replicated semiconservatively, the daughter molecules should be half old and half new and therefore of intermediate density. They were able to distinguish DNA of different densities because the molecules can be separated from one another by a procedure called Cesium chloride gradient centrifugation. The experiment involving transfer of cells grown in $^{15} N$ to a $^{14} N$ medium confirmed the results
+  - First generation produces a single intermediate DNA band and the second generation produces two bands: one intermediate and one light, matching the prediction of the semi-conservative model of DNA replication.
+
 
 ```{r dna-replication-mode, out.width="52%", fig.align='center'}
 # pdftools::pdf_convert("../../literatures/Plant Science Straussberger.pdf",
@@ -70,11 +78,11 @@ knitr::include_graphics("./images/semi_conservative_replication.png")
 
 **Steps in replication**
 
-- Unwinding of DNA double helix by **hellicase**
+- Unwinding of DNA double helix by **hellicase** (analogous to a zipper that unzips)
 - Prevention of knotting by relaxation enzyme (**topoisomerase I**)
 - Two strands of a replication fork (one $3^{\prime}$ and the other $5^{\prime}$) need to be extended by different mechanisms because DNA polymerases can only extend the chain at former orientation. Only $3^\prime$ end is continually extended.
 - Ligases are able to link $3^\prime$ ends with $5^\prime$ ends. Without these lagging strand sequences cannot be bonded and can be isolated as **Okazaki fragments**.
-- DNA polymerase require a **primer** (RNA sequences) in order to start synthesis. These primers supply the $3^\prime$ end on which the DNA polymerase can build further.
+- DNA polymerase require a **primer**^[Primers are synthesized by a set of proteins called primosomes, of which a central component is an enzyme called primase, a type of RNA polymerase.] (RNA sequences) in order to start synthesis. These primers supply the $3^\prime$ end on which the DNA polymerase can build further.
 - A sequence region replicated by a replicator is called a **replicon**.
 
 
@@ -86,6 +94,18 @@ knitr::include_graphics("./images/semi_conservative_replication.png")
 
 knitr::include_graphics("./images/dna_replication_process.png")
 ```
+
+**Fidelity of DNA replication**
+
+A different DNA (compared to DNA polymerase III), pol I, removes the RNA primers with its 5' - 3' exonuclease activity and fills in the gaps with its 5' - 3' polymerase activity. Another enzyme, DNA ligase, joins the 3' end of the gap filling DNA to the 5' end of the downstream Okazaki fragment. DNA ligase joins the broken pieces of DNA by catalyzing the formation of a phosphodiester bond between the 5'-phosphate end of one fragment and the adjacent 3'-OH group of another fragment.
+
+A hallmark of DNA replication is its accuracy, also called fidelity: overall less than one error per $10^{10}$ nucleotides is inserted. Part of the reason for the accracy of DNA replication is that both DNA pol I and DNA pol III possess 3' - 5' exonuclease activity, which serves a "proofreading" function by excising erroneously inserted mismatched bases.
+
+A mismatched base pair occurs when the 5' - 3' pol I activity inserts, for example "A" instead of a "G" next to a "C". The addition of an incorrect base is often due to a process called tautomerization. Each of the bases in DNA can appear in one of several forms called tautomers, which are isomers that differ in the position of their atoms and in the bonds in between the atoms. The forms are in equilibrium. The keto form of each base is normally present in DNA, but in rare instances a base may shift to the imino or enol form. The imino acide and keto forms may pair with the wrong base, forming a mispair. When a "C" shifts to it rare iminoform, such a mismatch is usually detected and removed by 3' - 5' exonuclease activity once the mismatched bases is removed the polymerase has another chance to add the correct complementary "G" base.
+
+As expected, mutant strains lacking a function of 3' - 5' exonuclease have a higher rate of mutation. In addition, because primase lacks a proofreading function, the RNA primer is more likely than DNA to contain errors. The need to maintain high fidelity of replication is one reason that the RNA primers at the ends of okazaki fragments must be removed and replaced with DNA. Only after the RNA primer is gone does DNA pol I catalyze DNA synthesis to replace the primers.
+
+
 
 ## Structure of RNA
 
