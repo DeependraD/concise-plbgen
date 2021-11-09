@@ -1,8 +1,6 @@
 # Concise note on Plant Breeding and Genetics
 
-<!-- badges: start -->
-  [![Build-Book](https://github.com/deependrad/concise-plbgen/workflows/Build-Book/badge.svg)](https://github.com/deependrad/concise-plbgen/actions)
-  <!-- badges: end -->
+[![bookdown](https://github.com/DeependraD/concise-plbgen/actions/workflows/bookdown.yaml/badge.svg)](https://github.com/DeependraD/concise-plbgen/actions/workflows/bookdown.yaml)
 
 ## Automated deployment with github actions
 
