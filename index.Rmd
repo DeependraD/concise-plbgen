@@ -15,8 +15,6 @@ biblio-style: apalike
 link-citations: yes
 # github-repo: deependrad/concise-plbgen
 description: "This is a work in rush reference note for lazy-ass preparee of Plant Breeding and Genetics exam"
-header-includes: 
-  - \usepackage{fancyhdr}
 ---
 
 ```{r setup, include=FALSE, message=FALSE}

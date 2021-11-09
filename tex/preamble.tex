@@ -1,6 +1,17 @@
 \usepackage{booktabs}
 
 \usepackage{geometry} % for custom layout of book and landscape geometry support
+
+\geometry{
+  a4paper,
+  left=2cm,
+  right=2cm,
+  headheight=2.5cm,
+  top=3cm,
+  bottom=3cm,
+  footskip=2.5cm
+}
+
 \usepackage{amsthm}
 \makeatletter
 \def\thm@space@setup{%
@@ -17,8 +28,8 @@
 \newcommand{\TheAuthor}{} % As given in documentation of **fancyhdr**
 \newcommand{\Author}[1]{\renewcommand{\TheAuthor}{#1}}
 \fancyhead{} % clear all fields
-\fancyhead[LE,RO]{\slshape \leftmark~ -- \TheAuthor}
-\fancyhead[CE]{\slshape \TheAuthor}
+\fancyhead[LE]{\slshape \leftmark~ \TheAuthor}
+\fancyhead[RO]{\slshape \rightmark~ \TheAuthor}
 \fancyfoot[C]{\thepage}
 % \renewcommand{\headrulewidth}{0.4pt}
 % \renewcommand{\footrulewidth}{0.6pt}
