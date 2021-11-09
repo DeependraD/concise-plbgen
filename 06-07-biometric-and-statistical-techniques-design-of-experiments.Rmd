@@ -664,7 +664,7 @@ Where, $X_1$ is the mean phenotype of progenies obtained from breeding of select
 
 The intensity of selection is related to the proportion (or percentage) of the population that is selected (k), and takes the values:
 
-```{r}
+```{r selection-intensity}
 knitr::kable(tibble::tribble(
   ~"proportion selected($k$)", ~"$i$",
   0.01, 2.665,
@@ -684,6 +684,44 @@ i = 0.77 + \left(0.96 \times log\left(\frac{1}{k}\right)\right)
 $$
 
 It can be seen that there is not a linear relationship between higher selection rates (k) and greater response to the selection applied. Retaining 10% of the selected population results in an intensity of selection value of 1.755, while retaining only 1% (i.e. a 10 fold reduction in selections) results in an intensity of selection value fo only 1.52 times larger (i.e., $i = 2.665$).
+
+### Correlated response to selection
+
+- Correlation is a measure of the degree of association between traits. The association may be on the basis of genetics or may be non-genetic.
+- Correlated response may be caused by pleiotrophism or linkage disequilibrium.
+- The correlated response ($CR_y$) to selection in the primary trait (y) for a secondary trait (x) is given by,
+
+$$
+\mathrm{CR_y} = i_x h_x h_y \rho_g \sqrt{V_{py}}
+$$
+
+Where,
+
+$h_x$ and $h_y$ are square roots of the heritabilities of the two respective traits and $\rho_g$ is the genetic correlation between traits.
+
+This relationship may also be reduced to,
+
+$$
+\mathrm{CR_y} = i_x h_x \rho_g \sqrt{V_{GY}}
+$$
+
+since $h_y = \sqrt{\frac{V_{GY}}{V_{PY}}}$
+
+Understandably, the effectiveness of indirect selection depends on the magnitude of genetic correlation and the heritability of the secondary traits being selected. Furthermore, given the same selection intensity and a high genetic correlation between the traits, indirect selection for the primary trait will be more effective than directional selection, if heritability of the secondary trait is high ($\rho_g h_x > h_y$). Such a scenario would occur when the secondary trait is less sensitive to environmental changes (or can be measured under controlled conditions). Also, when the secondary trait is easier and less costly to measure, the breeder may apply a higher selection pressure to it.
+
+### Selection for mutiple traits
+
+- Tandem selection
+- Independent curling (truncation selection)
+- Index selection
+
+**Intuitive index**: Selection from artistic perspective for the purpose of breeding plants. During selection, breeder formulates a mental picture of the product desired from the project and balance good qualities against moderate defects as they make final judgments in the selection process.
+
+**General worth**: For each crop, there are a number of traits which are considered together that define the overall desirability of the cultivar from the combined perspective of the producer and the consumer. The ranges of number of traits differ, and constitute the primary pool of traits that the breeder may target for improvement. They may include yield, disease resistance, etc.
+
+### Early generation testing
+
+A selection procedure in which the breeder initiates testing of genetically heterogeneous lines or families in an earlier than normal generation. For example, recurrent selection with testers can be used to evaluate materials in early generation. Testing early, if effective, helps to identify and select potential cultivars from superior families in the early stages of breeding programs thereby maximizing the genetic gain per year. Factors to consider in deciding which among the generations in which selection is made include the nature and expression level of trait being improved and the availability of off-season nurseries to use in producing additional generations per year.
 
 ### Problem 1
 
@@ -750,9 +788,60 @@ $\rightarrow$ $R = \sigma i h^2$ = `r (R = sqrt(sigma_sq)*S/sqrt(sigma_sq)*b)`
 
 Hence, the expected mean of next (progeny) generation ($P$) = $X_0 + \sigma i h^2$ = `r (X0 + R)`.
 
-## Mating designs and estimation of combining ability
+## Combining ability
 
-(refer to tufte handout on Crossing Plans, generated for Plant Breeding course.)
+Over the years, plant breeders have sought ways of facilitating plant breeding through efficient selection of parents for a cross, through effective and efficient selection within a segregating population and through prediction of response to selection, among other techniques.
+
+Quantitative assessment of the role of genetics in plant breeding entails the use of statistical genetics approaches to estimate variances and partition them into components. Because variance estimates are neither robust nor accurate, the direct benefits of statistical genetics to the breeder have been limited.
+
+In 1942, Sprague and Tatum proposed a method of evaluating inbred lines to be used in corn hybrid breeding, in an analytic framework which was free of genetic assumptions that accompany variance estimates, called combining ability. The procedure entails the evaluation of set of crosses among selected parents to ascertain the extent to which variances among crosses are attributable to statistically additive characteristics of the parents, and what could be considered the effect of residual interactions.
+
+Crossing each line with several other lines produces an additional measure in the mean performance of each line in all cross. This mean performance of a line, when expressed as deviation from the mean of all crosses, gives what Sprague and Tatum called the General Combining Ability (GCA) of the lines.
+
+The GCA is calculated as the average of all $F_1$s having this particular line as one parent, the value being expressed as a deviation from the overall mean of crosses. Each cross has an expected value (the sum of GCAs of its two parental lines). However, each cross may deviate from the expected value to a greater or lesser extent, the deviation being the specific combining ability ability (SCA) of the two lines in combination. The differences of GCA are due to additive and additive x additive interactions in the base population. The differences in SCA are attributable to non-additive genetic variance. Furthermore, SCA is expected to increase in variance more rapidly as inbreeding in the population reaches high levels. GCA is the average performance of a plant in a cross with different tester lines, while SCA measures the performance of a plant in a specific combination in comparison with other cross combinations. 
+
+The mathematical representation of this relationship for each cross is,
+
+$$
+X_{AB} = \bar{X} + G_A + G_B + S_{AB}
+$$
+
+Where $\bar{X}$ is the overall mean, $G_A$ and $G_B$ are the general combining ability estimates of the parents, and $S_AB$ is the statistically unaccounted for residual or SCA. The types of interactions that can be obtained depends upon the mating scheme used to produce the crosses, the most common being the diallel mating design (full or partial diallel).
+
+Plant breeders may use a variety of methods for estimating GAs, including the polycross and top-cross methods. However, the diallel cross (each line is mated with every other line) developed by B. Griffing in 1956 is perhaps the most commonly used method. The GCA of each line is calculated as follows,
+
+$$
+\mathrm{G_x} = \left[\frac{T_x}{n-2}\right]-\left[\frac{\sum T}{n(n-2)}\right]
+$$
+
+Where $x$ represents a specific line.
+
+By calculation of SCA and GCA of all combinations, a plot of observed values versus expected values is obtained. Because the values of SCA are subject to sampling error, the points on the plot do not lie on the diagonal. The distance from each point to the diagonal represents the SCA plus sampling error of the cross. Additional error would occur if the lines used in the crosses are not highly inbred.
+
+Combining ability calculations are statistically robust, being used on first degree statistics (totals, means). No genetic assumptions are made about individuals. The concept is applicable to both self and cross-pollinated species for identifying desirable cross combinations of inbred lines to include in a hybrid or for developing synthetic cultivars. It is used to predict the performance of a population derived from cross pollinated species, usually via a test cross or polycross. The combining ability calculations are best applied only in the context which they were calculated. This is because GCA values are relative and depend upon the mean of chosen parent materials in the crosses.
+
+A typical ANOVA for combining ability analysis is presented in \ref{tab:anova-combining-ability}.
+
+```{r anova-combining-ability}
+
+tribble(
+  ~"Source", ~"df", ~"SS", ~"Msq", ~"EMS",
+  "GCA", "p-1", "$S_g$", "$M_g$", "$\\sigma^2 + (p+2)(\\frac{1}{1-p})\\sum g_i^2$",
+  "SCA", "$\\frac{p(p-1)}{2}$", "$S_s$", "$M_s$", "$\\sigma^2 + \\frac{2p}{p-1}\\sum_j s_{ij}^2$",
+  "Error", "$(r-1)p\\frac{p+1}{2}$", "$S_e$", "$M_e$", "$\\sigma^2$"
+) %>% 
+  kable(format = "latex", booktabs = TRUE, escape = FALSE, caption = "Degrees of freedom, sum of squares and mean squares from the analysis of variance of a half diallel including parent selfs (Method 2), assuming fixed effects. Also shown are the expectations for the mean squares.") %>% 
+  kableExtra::kable_styling()
+```
+
+The method used for combining ability analysis depends on the available data,
+
+- Parents + $F_1$ or $F_2$ and reciprocal crosses (i.e. $p^2$ combination)
+- Parents + $F_1$ or $F_2$ without reciprocal crosses (i.e. $\frac{1}{2}p(p+1)$ combination)
+- $F_1$ + $F_2$ + reciprocals, without parents and reciprocals (i.e. $\frac{1}{2}p(p-1)$ combination)
+- Only $F_1$ generations without parents, reciprocal (i.e. $\frac{1}{2}p(p+1)$ combination)
+
+(For a more detailed discussion of Mating Designs and Combining Ability tests, refer to tufte handout on Crossing Plans, generated for Plant Breeding course.)
 
 ## Binomial expansion
 
