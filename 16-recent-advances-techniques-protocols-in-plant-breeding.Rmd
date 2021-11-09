@@ -40,7 +40,8 @@ tribble(
   "CAPs", "Fragmentation of the sequence of a marker and reamplification", "Specific genotyping; MAS", "Possibility to better discriminate the polymorphic locus", "Dependent on primary marker"
 ) %>% 
   knitr::kable(caption = "Molecular markers and the associated techniques, advangates and limitations", booktabs = TRUE) %>% 
-  kableExtra::kable_styling(latex_options = "striped")
+  kableExtra::kable_styling(latex_options = "striped") %>% 
+  kableExtra::column_spec(column = 1:5, width = c("3em", "12em", "8em", "8em", "8em"))
 ```
 
 ## PCR technology and PCR based markers
@@ -119,7 +120,7 @@ knitr::include_graphics("./images/genetic-basis-aflp-marker.png")
 
 ### DArT marker
 
-```{r dart-marker-genetic-basis, fig.cap="DArT marker technique. (A) The genomic DNA pool is cleaved by restriction enzymes. The resulting fragments are linked to adapters and amplified by PCR using selective primers. Fragments of the genomic representation are cloned, purified, and arrayed on a solid support, forming the diversity panel. (B) The DNAs of the individuals to be genotyped are subjected to complexity reduction using the same methodology used to obtain the genomic representation. The fragments are labeled with fluorescent dyes and used as probes for hybridization in the diversity panel. A fragment of the vector labeled with another fluorescent dye serves as a reference in the hybridization. (C) For some species, another panel, the genotyping array, is built before making the genotyping of the population. This allows the DNA of some individuals belonging to the DNA pool to be used as a probe and hybridized in the diversity panel. Clones that present polymorphism are arrayed in a new solid support, and this array is used to analyze all the individuals of the population.", out.width="80%"}
+```{r dart-marker-genetic-basis, fig.cap="DArT marker technique. (A) The genomic DNA pool is cleaved by restriction enzymes. The resulting fragments are linked to adapters and amplified by PCR using selective primers. Fragments of the genomic representation are cloned, purified, and arrayed on a solid support, forming the diversity panel. (B) The DNAs of the individuals to be genotyped are subjected to complexity reduction using the same methodology used to obtain the genomic representation. The fragments are labeled with fluorescent dyes and used as probes for hybridization in the diversity panel. A fragment of the vector labeled with another fluorescent dye serves as a reference in the hybridization. (C) For some species, another panel, the genotyping array, is built before making the genotyping of the population. This allows the DNA of some individuals belonging to the DNA pool to be used as a probe and hybridized in the diversity panel. Clones that present polymorphism are arrayed in a new solid support, and this array is used to analyze all the individuals of the population.", out.width="70%"}
 knitr::include_graphics("./images/genetic-basis-dart-marker.png")
 ```
 
