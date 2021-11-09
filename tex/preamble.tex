@@ -4,12 +4,12 @@
 
 \geometry{
   a4paper,
-  left=2cm,
-  right=2cm,
+  left=2.5cm,
+  right=2.5cm,
   headheight=2.5cm,
   top=3cm,
   bottom=3cm,
-  footskip=2.5cm
+  footskip=2cm
 }
 
 \usepackage{amsthm}
@@ -28,8 +28,11 @@
 \newcommand{\TheAuthor}{} % As given in documentation of **fancyhdr**
 \newcommand{\Author}[1]{\renewcommand{\TheAuthor}{#1}}
 \fancyhead{} % clear all fields
-\fancyhead[LE]{\slshape \leftmark~ \TheAuthor}
-\fancyhead[RO]{\slshape \rightmark~ \TheAuthor}
+% \fancyhead[LE]{\slshape \leftmark \\ \TheAuthor}
+\fancyhead[LE]{\small \itshape \begin{minipage}{0.8\textwidth}\raggedright \leftmark \end{minipage}\\[2pt]}
+\fancyhead[RE]{\slshape \TheAuthor}
+\fancyhead[RO]{\small \slshape \rightmark}
+\fancyhead[LO]{\slshape \TheAuthor}
 \fancyfoot[C]{\thepage}
 % \renewcommand{\headrulewidth}{0.4pt}
 % \renewcommand{\footrulewidth}{0.6pt}
