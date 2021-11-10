@@ -39,7 +39,7 @@ tribble(
   "SCARs", "Amplification of a polymorphic region derived from a molecular marker (secondary marker)", "Positional cloning; MAS", "High discriminatory power of polymorphic sequences; Reproducibility; Operability", "Dependent on primary marker",
   "CAPs", "Fragmentation of the sequence of a marker and reamplification", "Specific genotyping; MAS", "Possibility to better discriminate the polymorphic locus", "Dependent on primary marker"
 ) %>% 
-  knitr::kable(caption = "Molecular markers and the associated techniques, advangates and limitations", booktabs = TRUE) %>% 
+  knitr::kable(caption = "Molecular markers and the associated techniques, advangates and limitations", booktabs = TRUE, longtable = TRUE) %>% 
   kableExtra::kable_styling(latex_options = "striped") %>% 
   kableExtra::column_spec(column = 1:5, width = c("3em", "12em", "8em", "8em", "8em"))
 ```
@@ -126,7 +126,7 @@ knitr::include_graphics("./images/genetic-basis-dart-marker.png")
 
 ### Progression of molecular and marker based technologies in plant breeding
 
-```{r molecular-markers-development, fig.cap="Methodologies of genetics; molecular markers and researchers who contributed to the generation of new technologies with application in plant breeding.", out.width="90%"}
+```{r molecular-markers-development, fig.cap="Methodologies of genetics; molecular markers and researchers who contributed to the generation of new technologies with application in plant breeding.", out.width="70%"}
 knitr::include_graphics("./images/molecular-markers-development.png")
 ```
 

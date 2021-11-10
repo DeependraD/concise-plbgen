@@ -177,7 +177,7 @@ incompatibility_systems %>%
 - The top cross is commonly used. A single self-incompatible parent is used as female and is open-pollinated by a desirable cultivar as pollen source.
 
 
-```{r si-use-sc, fig.cap="Production of single cross hybrid using inbred lines and sporophytic self incompatibility", out.width="60%", fig.align='center'}
+```{r si-use-sc, fig.cap="Production of single cross hybrid using inbred lines and sporophytic self incompatibility", out.width="85%", fig.align='center'}
 # pdftools::pdf_convert("./../../references_plb/Principles of Plant Genetics and Breeding.pdf", pages = 118, format = "png", filenames = "./images/incompatibility_use.png", dpi = 300)
 # knitr::include_graphics("./images/incompatibility_use_SC.png")
 DiagrammeR::mermaid(
@@ -189,7 +189,7 @@ DiagrammeR::mermaid(
 ```
 
 
-```{r si-use-dc, fig.cap="Production of double cross hybrid using inbred lines and sporophytic self incompatibility", out.width="60%", fig.align='center'}
+```{r si-use-dc, fig.cap="Production of double cross hybrid using inbred lines and sporophytic self incompatibility", out.width="80%", fig.align='center'}
 # pdftools::pdf_convert("./../../references_plb/Principles of Plant Genetics and Breeding.pdf", pages = 118, format = "png", filenames = "./images/incompatibility_use.png", dpi = 300)
 # knitr::include_graphics("./images/incompatibility_use_DC.png")
 
@@ -207,7 +207,7 @@ DiagrammeR::mermaid(
 ```
 
 
-```{r si-use-tc, fig.cap="Production of triple cross hybrid using inbred lines and sporophytic self incompatibility", out.width="55%", fig.align='center'}
+```{r si-use-tc, fig.cap="Production of triple cross hybrid using inbred lines and sporophytic self incompatibility", out.width="80%", fig.align='center'}
 # pdftools::pdf_convert("./../../references_plb/Principles of Plant Genetics and Breeding.pdf", pages = 118, format = "png", filenames = "./images/incompatibility_use.png", dpi = 300)
 # knitr::include_graphics("./images/incompatibility_use_TC.png")
 DiagrammeR::mermaid(

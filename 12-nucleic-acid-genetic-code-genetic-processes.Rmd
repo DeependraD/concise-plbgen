@@ -105,8 +105,6 @@ A mismatched base pair occurs when the 5' - 3' pol I activity inserts, for examp
 
 As expected, mutant strains lacking a function of 3' - 5' exonuclease have a higher rate of mutation. In addition, because primase lacks a proofreading function, the RNA primer is more likely than DNA to contain errors. The need to maintain high fidelity of replication is one reason that the RNA primers at the ends of okazaki fragments must be removed and replaced with DNA. Only after the RNA primer is gone does DNA pol I catalyze DNA synthesis to replace the primers.
 
-
-
 ## Structure of RNA
 
 - Ribonucleic acid (RNA) is similar in structure to DNA. However, there are significant differences, the key ones being:
@@ -162,11 +160,11 @@ knitr::include_graphics("./images/mrna_processed.png")
 
 \begin{figure}
   \begin{center}
-  \includegraphics[width=0.6\linewidth]{./images/ribonucleic_acids_trna.png}
+  \includegraphics[width=0.55\linewidth]{./images/ribonucleic_acids_trna.png}
   \end{center}
   
   \begin{center}
-  \includegraphics[width=0.6\linewidth]{./images/ribonucleic_acids_types.png}
+  \includegraphics[width=0.45\linewidth]{./images/ribonucleic_acids_types.png}
   \end{center}
   
   \begin{center}
@@ -309,7 +307,7 @@ knitr::include_graphics("./images/polypeptides_amino_acid.png")
 ```
 
 
-```{r translation-prokaryotes, out.width="60%", fig.cap="(A) Initiation. Initiation of translation begins with the association of the small ribosome subunit with the Shine–Dalgarno sequence (S-D sequence) on the mRNA. Next, initiation factors IF1, IF2, and IF3 (not shown) charge or connect the initiator tRNA with fMet. The charged initiator tRNA ($tRNA^{ifMet}$) associates with the small ribosome subunit and finds the start codon. Finally, the large ribosomal subunit joins the small subunit and situates the initiator tRNA at the P site. (B) Elongation. During elongation, peptide bonds are formed between the amino acids at the A-site and the P-site. The movement of the ribosome along the mRNA and addition of a new tRNA to the A-site are controlled by elongation factors (also not shown). (C) Termination. Termination requires release factors. The various components dissociate. The completed protein folds into its proper three-dimensional shape."}
+```{r translation-prokaryotes, out.width="68%", fig.cap="(A) Initiation. Initiation of translation begins with the association of the small ribosome subunit with the Shine–Dalgarno sequence (S-D sequence) on the mRNA. Next, initiation factors IF1, IF2, and IF3 (not shown) charge or connect the initiator tRNA with fMet. The charged initiator tRNA ($tRNA^{ifMet}$) associates with the small ribosome subunit and finds the start codon. Finally, the large ribosomal subunit joins the small subunit and situates the initiator tRNA at the P site. (B) Elongation. During elongation, peptide bonds are formed between the amino acids at the A-site and the P-site. The movement of the ribosome along the mRNA and addition of a new tRNA to the A-site are controlled by elongation factors (also not shown). (C) Termination. Termination requires release factors. The various components dissociate. The completed protein folds into its proper three-dimensional shape."}
 # pdftools::pdf_convert("../../literatures/biotechnology/Biotechnology 2nd ed - David P. Clark, Nanette J. Pazdernik (AP, 2016).pdf",
 #                       pages = 62,
 #                       dpi = 300, format = "png",

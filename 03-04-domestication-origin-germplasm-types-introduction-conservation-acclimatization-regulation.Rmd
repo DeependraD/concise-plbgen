@@ -28,8 +28,8 @@ domestication_syndrome <- readxl::read_xlsx("./data/domestication_plant_introduc
 
 domestication_syndrome %>% 
   knitr::kable(booktabs = TRUE, caption = "Domestication syndrome in plants") %>% 
-  kableExtra::kable_styling(font_size = 6, latex_options = "striped") %>% 
-  kableExtra::column_spec(column = 1:2, width = c("18em", "38em"))
+  kableExtra::kable_styling(font_size = 8, latex_options = "striped") %>% 
+  kableExtra::column_spec(column = 1:2, width = c("16em", "28em"))
 ```
 
 ## Center of origin and estimated time of cultivation

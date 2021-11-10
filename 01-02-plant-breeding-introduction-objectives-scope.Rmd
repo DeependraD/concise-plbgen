@@ -233,15 +233,15 @@ knitr::include_graphics("./images/plb_development_nepal.PNG")
 
 ```{r rice-variety-development}
 readr::read_csv("./data/rice_varieties_from_landraces.csv", show_col_types = FALSE) %>% 
-  knitr::kable(format = "latex", caption = "Rice varieties from landraces", booktabs = TRUE, align = "l") %>% 
-  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position")) %>% 
+  knitr::kable(format = "latex", caption = "Rice varieties from landraces", booktabs = TRUE, align = "l", longtable = TRUE) %>% 
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"), font_size = 8) %>% 
   kableExtra::column_spec(column = 1:4, width = c("6em", "16em", "8em", "10em"))
 ```
 
 ```{r rice-pureline-variety-development}
 readr::read_csv("./data/rice_varieties_pureline_from_landraces.csv", show_col_types = FALSE) %>% 
   knitr::kable(format = "latex", caption = "Rice varieties (pureline) from landraces", booktabs = TRUE, longtable = TRUE, align = "l") %>% 
-  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position")) %>% 
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"), font_size = 8) %>% 
   kableExtra::column_spec(column = 1:5, width = c("2em", "6em", "8em", "8em", "10em"))
 ```
 
